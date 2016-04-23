@@ -1,0 +1,35 @@
+﻿@model RecordLabel.Catalogue.Metadata.MediaType
+
+@System.Web.Optimization.Scripts.Render("~/Js/Metadata/Edit")
+
+@{
+    string action = (ViewContext.RouteData.Values["action"] as string)?.ToUpperInvariant();
+    ViewBag.Title = $"{action} {ViewBag.ItemType}";
+}
+
+<h2>@action</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>@ViewBag.ItemType</h4>
+        <hr />
+        @Html.ValidationSummary(false, String.Empty, new { @class = "text-danger" })
+
+        <div>
+            @Html.EditorForEnumBasedCollection(model => model.Localization.Collection, localization => localization.Language, localization => localization.Text, new EnumBasedCollections.CssClasses("form-group", "control-label col-md-2", "col-md-10", "form-control"))
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success" />
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default", role = "button" })
+            </div>
+        </div>
+    </div>
+}
+@Html.Partial("DeleteModelButton")
+
+@Html.BackButtonBar("Back to Media Types")

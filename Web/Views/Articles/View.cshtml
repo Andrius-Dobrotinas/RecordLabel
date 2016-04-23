@@ -1,0 +1,104 @@
+﻿@model RecordLabel.Catalogue.Article
+@using RecordLabel.Catalogue
+
+@System.Web.Optimization.Styles.Render("~/Css/Articles/View")
+@System.Web.Optimization.Scripts.Render("~/Js/Articles/View")
+
+@{ 
+    IList<Article> news = ViewData["News"] as IList<Article>;
+}
+
+<article class="release-page">
+    @*<div class="row">
+        <h1 class="view-page-title dark-blanket">@Model.Title</h1>
+    </div>*@
+    <div class="row">
+        <div class="col-md-offset-1 col-md-8 col-sm-9 col-xs-12 main"> @*col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 col-xs-12*@
+            <section class="row frame shadow-box default-padding article" id="description">
+                @if (Model.Cover != null)
+                {
+                    @Html.DisplayFor(model => model.Cover, "Image", new { @class = "cover"})
+                }
+                
+                <h1>@Model.Title</h1>
+                <article>
+                    @Html.Raw(Model.Text)
+                </article>
+            </section>
+            <section class="row frame shadow-box default-padding article">
+                @if (!String.IsNullOrEmpty(Model.Author))
+                {
+                    <span>Article by </span><span>@Model.Author;</span>
+                }
+                <span>@Model.Date.ToLongDateString()</span>
+            </section>
+            
+
+            @*References*@
+            @{
+                IEnumerable<Reference> references = Model.References?.Collection?.Where(item => item.Type == RecordLabel.ReferenceType.Website);
+                if (references != null && references.Count() > 0)
+                {
+                    <section class="row frame shadow-box default-padding contains-labels" id="references">
+                        <div class="text-muted">Links</div>
+                        @foreach (Reference item in references)
+                        {
+                            <a href="@item.Target" target="_blank" class="label-my border">@item.Text</a>
+                        }
+                    </section>
+                }
+            }
+
+            @*Images*@
+            <aside id="images" class="row">
+                @Html.DisplayFor(model => Model.Images, new { id = "Images", @class = "row", aspectRatio = "aspect-16by9" })
+            </aside>
+
+            @*References - Youtube. Might want to change this. If not, this is identical to the one in release, so make a Partial View*@
+            @if (Model.References?.Collection?.Count > 0)
+            {
+                <section class="row">
+                    @foreach (Reference item in Model.References.Collection.Where(item => item.Type == RecordLabel.ReferenceType.Youtube).ToArray())
+                    {
+                        <aside class="row frame shadow-box reset-margins col-sm-6 col-md-12 col-lg-6">
+                            <div class="embed-responsive aspect-16by9">
+                                <iframe src="@item.Target" frameborder="0"></iframe>
+                            </div>
+                        </aside>
+                    }
+                </section>
+            }
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+            <section class="row frame shadow-box default-padding label-container">
+                @if (Model.Attributes?.Collection.Count > 0)
+                {
+                    @Html.DisplayFor(model => model.Attributes)
+                }
+            </section>
+            @*References - different layout*@
+            @{
+                if (references != null && references.Count() > 0)
+                {
+                    <section class="row frame shadow-box default-padding contains-labels" id="references">
+                        <div class="text-muted">Links</div>
+                        @foreach (Reference item in references)
+                        {
+                            <a href="@item.Target" class="label-my border">@item.Text</a>
+                        }
+                    </section>
+                }
+            }
+            <section class="row frame shadow-box default-padding label-container">
+                @if (news != null)
+                {
+                    foreach (Article item in news)
+                    {
+                        <div>@Html.ActionLink(item.Title, "View", new { Id = item.Id })</div>
+                    }
+                }
+            </section>
+        </div>
+    </div>
+</article>
+@Html.BackButtonBar("Back to News")

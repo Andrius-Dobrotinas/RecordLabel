@@ -1,0 +1,31 @@
+﻿@using RecordLabel
+@using RecordLabel.Catalogue
+@model Tuple<BaseWithImages, bool>
+@*Model.Item2 == tells whether it is an admin mode*@
+
+@{
+    Layout = null;
+    string modelName = Request.RequestContext.RouteData.Values["controller"] as string;
+    ViewBag.Title = modelName;
+}
+
+<div class="col-lg-4 col-sm-6 list-cell">
+    <div class="list-item">
+        <article>
+            <a href="/@modelName/View/@Model.Item1.Id">
+                @Html.DisplayFor(model => model.Item1.Cover, "Thumbnail", new { @class = "thumb1" })
+            </a>
+
+            <div class="body">
+                @if (Model.Item2)
+                {
+                    @Html.EditButton(modelName, Model.Item1.Id)
+                }
+                @Html.DisplayFor(model => model.Item1)
+            </div>
+        </article>
+        <a href="/@modelName/View/@Model.Item1.Id">
+            <div class="list-item-front-panel"></div>
+        </a>
+    </div>
+</div>

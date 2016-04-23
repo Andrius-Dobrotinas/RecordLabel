@@ -1,0 +1,19 @@
+﻿@using RecordLabel
+@using RecordLabel.Catalogue
+@model IEnumerable<RecordLabel.Catalogue.Metadata.Attribute>
+
+@System.Web.Optimization.Styles.Render("~/Css/Admin")
+
+@{
+    Layout = "~/Views/Shared/_ListLayout.cshtml";
+    ViewBag.Title = "Attributes";
+}
+
+<ul class="plain-list">
+    @foreach (RecordLabel.Catalogue.Metadata.Attribute item in Model)
+    {
+        <li>
+            @Html.DisplayFor(model => item, "ListItems/AttributeListItem")
+        </li>
+    }
+</ul>

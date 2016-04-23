@@ -1,0 +1,6 @@
+﻿@model RecordLabel.Catalogue.AttributeSet
+
+@Html.LabelFor(model => model, new { @class = "control-label col-md-2" })
+<div class="col-md-10">
+    @Html.ListBox("AttributeIds", null, htmlAttributes: new { @class = "form-control" })
+</div>

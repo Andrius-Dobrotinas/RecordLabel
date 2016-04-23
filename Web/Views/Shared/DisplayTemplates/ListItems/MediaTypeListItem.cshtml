@@ -1,0 +1,21 @@
+﻿@model RecordLabel.Catalogue.Metadata.MediaType
+@using RecordLabel.Catalogue;
+
+<div>
+    <div class="media metadata-list-item">
+        <div class="media-body">
+            <div>
+                
+                @foreach (LocalString item in Model.Localization.Collection)
+                {
+                    if (String.IsNullOrEmpty(item.Text) == false)
+                    {
+                        <span>
+                            @Html.ActionLink(item.Text, "Edit", new { id = Model.Id })
+                        </span>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

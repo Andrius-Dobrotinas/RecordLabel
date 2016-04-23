@@ -1,0 +1,17 @@
+﻿@model RecordLabel.Catalogue.Track
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", check_for_val = "true" } })
+        @Html.ValidationMessageFor(model => model.Title, String.Empty, new { @class = "text-danger" })
+    </div>
+
+    <label class="control-label col-md-2">Reference</label>
+    <div class="reference-view-line key-value frame col-md-10 input-group">
+        <span class="text-muted input-group-addon">@(Model?.Reference?.Text)</span>:<span class="val label form-control"><a href="@(Model?.Reference?.Target)" class="">@(Model?.Reference?.DisplayAs)</a></span> <div class="glyphicon"><button type="button" class="glyphicon-pencil btn btn-default" onclick="editreference(this);"></button></div>
+    </div>
+    <div class="reference-edit simply-hide frame col-md-10">
+        @Html.EditorFor(model => model.Reference)
+    </div>
+</div>

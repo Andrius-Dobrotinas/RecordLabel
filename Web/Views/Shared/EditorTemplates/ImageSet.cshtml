@@ -1,0 +1,16 @@
+﻿@using RecordLabel.Catalogue
+@model ImageSet
+
+<div class="col-md-offset-2 col-md-10">
+    <div id="ModelImages" data-template-url="/Image/AddImage" data-delete-url="/Image/Delete">
+        @if (Model?.Collection != null && Model.Collection?.Count > 0)
+            {
+                foreach (Image item in Model.Collection)
+                {
+                @Html.EditorFor(model => item)
+            }
+        }
+    </div>
+    <button type="button" id="addImageBtn" data-img-container-id="#ModelImages" class="btn btn-default">Add image</button>
+    <img id="loader" src="@Url.Content($"~/{Settings.StaticImageDirectory}/loader.gif")" />
+</div>

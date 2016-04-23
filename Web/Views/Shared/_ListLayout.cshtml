@@ -1,0 +1,18 @@
+﻿@using RecordLabel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewMode viewMode = Global.CurrentMode;
+}
+
+<h3>@ViewBag.Title</h3>
+
+@if (Global.IsAdminMode)
+{
+    <div class="create-new-btn-container">
+        @Html.ActionLink("Add New", "Create", null, new { @class = "btn btn-success" })
+    </div>
+}
+
+@Html.ValidationSummary(true, String.Empty, new { @class = "text-danger" })
+
+@RenderBody()

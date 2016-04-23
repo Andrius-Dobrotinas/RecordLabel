@@ -1,0 +1,9 @@
+﻿@model RecordLabel.Catalogue.Image
+
+@{
+    string classs = ViewData["class"] as string;
+}
+
+<div class="@classs">
+    <img src="@Url.Content($"~/{Model?.FullFileName()}")" alt="Image">
+</div>

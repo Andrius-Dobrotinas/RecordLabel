@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6812841D-4973-44B3-A2A7-0C2B487A5FF6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RecordLabel.Catalogue</RootNamespace>
+    <AssemblyName>ReleaseData</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enums\ImageType.cs" />
+    <Compile Include="Exceptions\EntityInUseException.cs" />
+    <Compile Include="Extensions\DbSetExtensions.cs" />
+    <Compile Include="Extensions\ModelExtensions.cs" />
+    <Compile Include="Extensions\ModelHelpers.cs" />
+    <Compile Include="ModelLocalization.Designer.cs">
+      <DependentUpon>ModelLocalization.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Models\Artist.cs" />
+    <Compile Include="Models\Base\Entity.cs" />
+    <Compile Include="Models\Sets\AttributeSet.cs" />
+    <Compile Include="Attributes\OneToOneRelationship.cs" />
+    <Compile Include="Attributes\UsesGenre.cs" />
+    <Compile Include="Models\Base\FirstBase.cs" />
+    <Compile Include="Models\Base\Base.cs" />
+    <Compile Include="Enums\ArticleType.cs" />
+    <Compile Include="Enums\ReferenceType.cs" />
+    <Compile Include="Exceptions\LocalizationEmptyException.cs" />
+    <Compile Include="Interfaces\IHasASet.cs" />
+    <Compile Include="Interfaces\IHasId.cs" />
+    <Compile Include="Interfaces\IKnowIfImEmpty.cs" />
+    <Compile Include="Interfaces\IValueComparable.cs" />
+    <Compile Include="Enums\AttributeType.cs" />
+    <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\Reference.cs" />
+    <Compile Include="Models\Base\BaseWithAttributes.cs" />
+    <Compile Include="Models\Base\BaseWithImages.cs" />
+    <Compile Include="Configurations\DropCreateAndSeedInitializer.cs" />
+    <Compile Include="Configurations\ReleaseConfiguration.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Interfaces\ICollectionWrapper.cs" />
+    <Compile Include="Models\Sets\ImageSet.cs" />
+    <Compile Include="Models\Sets\LocalStringSet.cs" />
+    <Compile Include="Models\Base\Metadata.cs" />
+    <Compile Include="Models\Image.cs" />
+    <Compile Include="Enums\Language.cs" />
+    <Compile Include="Models\Sets\ReferenceSet.cs" />
+    <Compile Include="ReleaseContext.cs" />
+    <Compile Include="Enums\PrintStatus.cs" />
+    <Compile Include="Models\Release.cs" />
+    <Compile Include="Models\Metadata\MediaType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\Metadata\Attribute.cs" />
+    <Compile Include="Models\LocalString.cs" />
+    <Compile Include="Models\Base\Set.cs" />
+    <Compile Include="Models\Track.cs" />
+    <Compile Include="Models\Sets\Tracklist.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ModelLocalization.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ModelLocalization.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj">
+      <Project>{48f46b5a-4665-40bf-8779-52cb06411fa3}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

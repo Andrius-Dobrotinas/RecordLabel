@@ -1,0 +1,76 @@
+﻿@using System.Configuration
+@{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+
+@section NavigationHorizontal {
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="margin-bottom: 0px !important">
+                    <span style="color: azure">@Localization.Nav_Menu</span>
+                </button>
+                <div>
+                    <a href="Home/Index">
+                        <img src="@Url.Content($"~/{Settings.StaticImageDirectory}/{Settings.LogoFileName}")" class="pull-left" style="height: 50px" />
+                    </a>
+
+                    @*Html.ActionLink(, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                </div>
+            </div>
+            <div>
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav" aria-labelledby="dropdownMenuDivider">
+                    <li>@Html.ActionLink(Localization.NavSection_Releases, "Index", "Release", new { area = "" }, new { @class = "nav" })</li>
+                    @*<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catalogue <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Artists", "Index", "Artist", new { area = "" }, new { @class = "nav" })</li>
+                                <li>@Html.ActionLink("Releases", "Index", "Release", new { area = "" }, new { @class = "nav" })</li>
+                            </ul>
+                        </li>*@
+
+                    <li>@Html.ActionLink(Localization.NavSection_News, "Index", "Articles", new { area = "" }, new { @class = "nav" })</li>
+                    <li>@Html.ActionLink(Localization.NavSection_Ordering, "Ordering", "Home", new { area = "" }, new { @class = "nav" })</li>
+                    <li>@Html.ActionLink(Localization.NavSection_Contact, "Index", "Home", new { area = "" }, new { @class = "nav" })</li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Global.CurrentLanguage <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink(RecordLabel.Catalogue.ModelLocalization.Enum_Lithuanian, "ChangeLanguage", "Home", new { area = String.Empty, lang = "lt" }, new { @class = "nav" })</li>
+                            <li>@Html.ActionLink(RecordLabel.Catalogue.ModelLocalization.Enum_English, "ChangeLanguage", "Home", new { area = String.Empty, lang = "en" }, new { @class = "nav" })</li>
+                        </ul>
+                    </li>
+
+                    @if (Global.IsAdminMode)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink(@AdminLocalization.NavSection_Artists, "Index", "Artist", new { area = "" }, new { @class = "nav" })</li>
+                                <li>@Html.ActionLink(@AdminLocalization.NavSection_Attributes, "Index", "Attribute", new { area = "" }, new { @class = "nav" })</li>
+                                <li>@Html.ActionLink(@AdminLocalization.NavSection_MediaTypes, "Index", "MediaType", new { area = "" }, new { @class = "nav" })</li>
+                                <li>@Html.ActionLink(@AdminLocalization.NavSection_LogOut, "LogOut", "Admin", new { area = "" }, new { @class = "nav" })</li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
+    <main class="container body-content">
+        @RenderBody()
+        <div class="footer-margin"></div>
+    </main>
+
+@section Footer {
+    <footer>
+        <div class="container">
+            <p>&copy; @DateTime.Now.Year - @Settings.CompanyName</p>
+        </div>
+    </footer>
+}

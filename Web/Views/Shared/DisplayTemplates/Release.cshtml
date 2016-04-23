@@ -1,0 +1,34 @@
+﻿@model RecordLabel.Catalogue.Release
+@using RecordLabel.Catalogue;
+
+<header>
+    @Html.ActionLink(Model.Artist.Name, "ByArtist", new { id = Model.ArtistId }, new { @class = "title on-top" })
+    @*@Html.ActionLink(Model.Artist?.Name, "View", "Artist", new { id = Model.ArtistId }, new { @class = "label invert no-left-pad subtitle on-top" })*@
+    @Html.ActionLink(Model.Title, "View", new { id = Model.Id }, new { @class = "label2 invert no-left-pad subtitle on-top" })
+</header>
+<div>
+    <span class="text-muted on-top versions-menu-trigger">
+        @Model.Media.Name
+        
+            @{
+                if (Model.OtherVersions.Count > 0)           
+                {
+                    <span class="versions-menu frame">
+                    @Html.ActionLink($"{Model.Media.Name} ({Model.CatalogueNumber})", "View", new { id = Model.Id }, new { @class = "label2" })
+                    @foreach (Release item in Model.OtherVersions)
+                    {
+                        @Html.ActionLink($"{item.Media.Name} ({item.CatalogueNumber})", "View", new { id = item.Id }, new { @class = "label2" })
+                    }
+                    </span>
+                }
+            }
+        
+    </span>
+    <span class="text-muted on-top">@Model.CatalogueNumber</span>
+</div>
+<p class="summary">
+    @if (String.IsNullOrWhiteSpace(Model.Text) == false)
+    {
+        @Html.ActionLink(Model.Text, "View", "Release", new { id = Model.Id }, new { @class = "default-text-style" })
+    }
+</p>

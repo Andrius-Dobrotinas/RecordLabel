@@ -1,0 +1,20 @@
+﻿@model RecordLabel.Catalogue.Metadata.Attribute
+
+<div>
+    <div class="media metadata-list-item">
+        <div class="media-body">
+            <div>
+                <span class="label @(Model.Type == RecordLabel.Catalogue.Metadata.AttributeType.Attribute ? "label-info" : "label-success")">@Model.Type</span>
+                @foreach (LocalString item in Model.Localization.Collection)
+                {
+                    if (String.IsNullOrEmpty(item.Text) == false)
+                    {
+                        <span>
+                            @Html.ActionLink(item.Text, "Edit", new { id = Model.Id })
+                        </span>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

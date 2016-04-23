@@ -1,0 +1,5 @@
+﻿@model RecordLabel.Catalogue.Article
+
+<header>
+    <span class="list-item-title">@Model.Date.ToString("yyyy MM dd") @Html.ActionLink(Model.Title, "View", "Articles", new { id = Model.Id }, null)</span>
+</header>

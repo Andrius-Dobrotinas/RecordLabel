@@ -1,0 +1,17 @@
+﻿@model RecordLabel.Catalogue.Image
+
+<div name="Image" data-id="" data-backendId="@Model.Id" class="inline-block" data-from-model="1">
+    <div name="preview">
+        
+        @*Delete button*@
+        @Html.Partial("ExtensionPartials/EditButtons", Html.Button(null, null, null, new { data_action="delete", type="button", @class="glyphicon-remove right-top-btn" }, false, true))
+
+        <div class="margin-auto">
+            <img src="@Url.Content($"~/{Model.ThumbnailFileName()}")" name="preview" />
+        </div>
+        <span class="chooseimg z-index-1000">Choose an image...</span>
+        <div class="chooseimg hover-bgcolor"></div>
+    </div>
+    <input type="file" name="image" class="hide"/>
+    <input type="hidden" name="imageOrder" value="@Model.Order" />
+</div>

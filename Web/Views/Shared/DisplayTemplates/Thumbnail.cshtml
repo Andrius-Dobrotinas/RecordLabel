@@ -1,0 +1,9 @@
+﻿@model RecordLabel.Catalogue.Image
+
+@{
+    string classs = ViewData["class"] as string;
+}
+
+<div class="@classs"> @*thumb-container*@
+    <img src="@Url.Content($"~/{Model?.ThumbnailFileName()}")" alt="Image"> @*class="thumb" *@
+</div>

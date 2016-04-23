@@ -1,0 +1,25 @@
+﻿@model RecordLabel.Catalogue.Entity
+
+@{
+    bool isTemplate = Html.ViewData["isTemplate"] as bool? ?? false;
+
+    string typeName = Html.ViewData["typeName"] as string;
+    int? index = Html.ViewData["index"] as int?;
+    string indexFieldName = Html.ViewData["indexFieldName"] as string;
+    HtmlString htmlAttributes = (Html.ViewData["htmlAttributes"] as IDictionary<string, object>)?.RenderHtmlAttributes();
+}
+
+<div name="@typeName" @htmlAttributes>
+    <button type="button" name="remove" class="close">
+        <span class="glyphicon glyphicon-remove"></span>
+    </button>
+    
+    <input type="hidden" data-name="indexField" name="@indexFieldName" value="@index" />
+
+    @if (isTemplate == false)
+    {
+        @*<input type="hidden" data-name="idField" id="@Model.Id" name="" />*@
+        @Html.HiddenFor(model => model.Id)
+    }
+    @Html.Partial($"EditorTemplates/{typeName}", Html.ViewData)
+</div>

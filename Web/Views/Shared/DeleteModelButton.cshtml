@@ -1,0 +1,22 @@
+﻿@model RecordLabel.Catalogue.FirstBase
+
+@{ 
+    var controller = ViewContext.RouteData.Values["controller"] as string;
+}
+
+@if (Model != null)
+{
+    <div class="form-horizontal">
+        @using (Html.BeginForm("Delete", controller, FormMethod.Post))
+        {
+            @Html.HiddenFor(model => model.Id)
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Delete" name="delete-btn" id="deleteBtn" class="btn btn-danger pull-right" />
+                </div>
+            </div>
+        }
+    </div>
+}

@@ -1,0 +1,8 @@
+﻿@{
+    var text = ViewData["text"] as string;
+    var action = ViewData["action"] as string;
+}
+
+<div class="row button-bar bottom dark-blanket">
+    @Html.ActionLink(text, action, null, new { @class = "btn btn-default" })
+</div>

@@ -1,0 +1,18 @@
+﻿@using RecordLabel
+@using RecordLabel.Catalogue
+@model IEnumerable<Artist>
+
+@{
+    Layout = "~/Views/Shared/_ListLayout.cshtml";
+    ViewBag.Title = "Artists";
+    bool adminMode = Global.IsAdminMode;
+}
+
+<ul class="media-list">
+    @foreach (Artist item in Model)
+    {
+        <li>
+            @Html.ListItemWithImage(item, adminMode)
+        </li>
+    }
+</ul>

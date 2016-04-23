@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @Settings.CompanyName</title>
+    @System.Web.Optimization.Styles.Render("~/Css/_BaseLayout")
+    @System.Web.Optimization.Scripts.Render("~/Js/_BaseLayout")
+</head>
+<body>
+    @RenderSection("NavigationHorizontal", false)
+
+    <main class="container body-content">
+        @RenderBody()
+        <div class="footer-margin"></div>
+    </main>
+
+    @RenderSection("Footer", false)
+</body>
+</html>

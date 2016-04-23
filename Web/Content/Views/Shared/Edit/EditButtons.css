@@ -1,0 +1,51 @@
+﻿.edit-btn-block {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    z-index: 100;
+}
+
+.edit-btn-block a,
+.edit-btn-block:hover a {
+    color: black;
+}
+
+.edit-btn-container {
+    display: flex;
+    background-color: #d8d7c0;/*body background color*//* #DBDBDB;*/
+    /*opacity: 0.9;*/
+}
+
+.edit-btn-container > * {
+    padding: 5px;
+}
+
+.right-top-btn {
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000000;
+    text-shadow: 0 1px 0 #ffffff;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+}
+
+/*button.right-top-btn {
+    ///padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    background-color: #DBDBDB;
+}*/
+
+.right-top-btn:hover,
+.right-top-btn:focus {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+

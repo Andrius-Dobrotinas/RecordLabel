@@ -1,0 +1,47 @@
+﻿div[name='preview'] {
+    /*position:relative;
+    display:inline-block;*/
+    height: 150px;
+    width: 150px;
+    margin: 5px;
+    border-width: 1px;
+    border-style: groove;
+    position: relative;
+    display: flex;
+}
+img[name='preview'] {
+    max-height: 100%;
+    max-width: 100%;
+    border-color: green;
+    border-style: solid;
+    /*position: absolute;*/
+}
+
+.chooseimg {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    display:flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 7px;
+}
+
+/*//////////////////GENERIC////////////////////*/
+.hidden {
+    display: none;
+}
+.invisible {
+    visibility: hidden;
+}
+.margin-auto {
+    margin: auto;
+}
+div.chooseimg:hover {
+    background-color: rgba(0,0,0,0.55);
+    opacity: 0.4;
+}
+.z-index-1000 {
+    z-index: -1000;
+}

@@ -1,0 +1,55 @@
+﻿@using RecordLabel.Catalogue
+@model ImageSet
+
+@{ 
+    string aspectRatio = ViewData["aspectRatio"] as string ?? "aspect-1by1";
+}
+
+@if (Model != null && Model.Collection.Count > 0)
+{
+    @*IMAGE VIEWER*@
+    <div class="row reset-margins frame shadow-box">
+        <div class="frame">
+            <div class="img-view-box @aspectRatio responsive-img-box">
+                <div class="img-container mouse-pointer">
+                    @if (Model.Collection?.Count > 0)
+                    {
+                        <img src="@Url.Content($"~/{Model.Collection[0].FullFileName()}")" data-id="@Model.Collection[0].Id" />
+                    
+                        for (int i = 1; i < Model.Collection?.Count; i++)
+                        {
+                            <img src="@Url.Content($"~/{Model.Collection[i].FullFileName()}")" data-id="@Model.Collection[i].Id" class="simply-hide" />
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*THUMBNAILS*@
+    @*<div class="row reset-margins">*@
+        foreach (Image item in Model.Collection)
+        {
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 frame highlight-border">
+                <div class="responsive-img-box aspect-16by9">
+                    <img name="thumbnail" src="@Url.Content($"~/{item.ThumbnailFileName()}")" data-id="@item.Id">
+                </div>
+            </div>
+        }
+    @*</div>*@
+
+    @*MODAL IMAGE VIEWER*@
+    <div id="ModalImageViewer" class="modal">
+        <span name="close" class="fullscreen-close">×</span>
+        @foreach (Image item in Model.Collection)
+        {
+            <div name="image-view" data-id="@item.Id" class="simply-hide">
+                <img name="content" src="@Url.Content($"~/{item.FullFileName()}")">
+                <div name="caption">@item.Name</div>
+            </div>
+        }
+        
+        <button name="prev" class="glyphicon glyphicon-chevron-left modal-button-prev"></button>
+        <button name="next" class="glyphicon glyphicon-chevron-right modal-button-next"></button>
+    </div>
+}

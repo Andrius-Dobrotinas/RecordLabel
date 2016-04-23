@@ -177,7 +177,6 @@
     <Content Include="Content\Views\Shared\Edit\ImageSet.css" />
     <Content Include="Content\Views\Shared\List.css" />
     <Content Include="Content\Views\Shared\Media.css" />
-    <Content Include="Content\Images\logo.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

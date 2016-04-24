@@ -70,7 +70,7 @@ namespace RecordLabel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lithuanian.
+        ///   Looks up a localized string similar to Lithuani.
         /// </summary>
         internal static string Enum_Lithuanian {
             get {

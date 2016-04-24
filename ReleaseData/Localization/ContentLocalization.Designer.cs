@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RecordLabel.Catalogue {
+namespace RecordLabel.Content.Localization {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace RecordLabel.Catalogue {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ModelLocalization {
+    public class ContentLocalization {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ModelLocalization() {
+        internal ContentLocalization() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace RecordLabel.Catalogue {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RecordLabel.Catalogue.ModelLocalization", typeof(ModelLocalization).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RecordLabel.Content.Localization.ContentLocalization", typeof(ContentLocalization).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -156,24 +156,6 @@ namespace RecordLabel.Catalogue {
         public static string DateRecorded {
             get {
                 return ResourceManager.GetString("DateRecorded", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to English.
-        /// </summary>
-        public static string Enum_English {
-            get {
-                return ResourceManager.GetString("Enum_English", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Lithuanian.
-        /// </summary>
-        public static string Enum_Lithuanian {
-            get {
-                return ResourceManager.GetString("Enum_Lithuanian", resourceCulture);
             }
         }
         

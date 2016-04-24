@@ -4,10 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
-using RecordLabel.Catalogue;
+using RecordLabel.Content;
 namespace RecordLabel.Web.Controllers
 {
-    public abstract class MetadataController<TModel> : EntityBaseController<TModel> where TModel : Catalogue.Metadata.Metadata<TModel>
+    public abstract class MetadataController<TModel> : EntityBaseController<TModel> where TModel : Content.Metadata.Metadata<TModel>
     {
         public MetadataController(ReleaseContext dbContext, Func<ReleaseContext, DbSet<TModel>> entitySet) : base(dbContext, entitySet)
         {

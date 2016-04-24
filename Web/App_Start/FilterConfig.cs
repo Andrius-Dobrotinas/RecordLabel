@@ -7,7 +7,7 @@ namespace RecordLabel.Web
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new DefaultExceptionHandler() { View = "Error" });
+            filters.Add(new DefaultExceptionHandlerAttribute() { View = "Error" });
         }
     }
 }

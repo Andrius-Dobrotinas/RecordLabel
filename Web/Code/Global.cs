@@ -1,4 +1,4 @@
-﻿using RecordLabel.Catalogue;
+﻿using RecordLabel.Content;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -31,7 +31,7 @@ namespace RecordLabel.Web
         {
             get
             {
-                return LocalStringSet.ResolveLanguage(System.Threading.Thread.CurrentThread.CurrentCulture).ToString();
+                return RecordLabel.Localization.ResolveLanguage(System.Threading.Thread.CurrentThread.CurrentCulture).ToString();
             }
         }
 
@@ -39,7 +39,7 @@ namespace RecordLabel.Web
         {
             if (String.IsNullOrEmpty(lang))
             {
-                lang = LocalStringSet.English;
+                lang = RecordLabel.Localization.DefaultLanguageCode;
             }
             HttpContext.Current.Session["Culture"] = CultureInfo.GetCultureInfo(lang);
         }

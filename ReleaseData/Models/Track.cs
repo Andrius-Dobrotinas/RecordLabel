@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using RecordLabel.Content.Localization;
 
-namespace RecordLabel.Catalogue
+namespace RecordLabel.Content
 {
     [OneToOneRelationship]
     public class Track : FirstBase, IKnowIfImEmpty, IValueComparable<Track>
     {
         [Required]
-        [Display(ResourceType = typeof(ModelLocalization), Name = "Title")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Title")]
         public string Title { get; set; }
 
         [ForeignKey("Reference")]
         public int? ReferenceId { get; set; }
-        [Display(ResourceType = typeof(ModelLocalization), Name = "Reference")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Reference")]
         public virtual Reference Reference { get; set; }
 
         public override void UpdateModel(ReleaseContext dbContext, object sourceModel)

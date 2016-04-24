@@ -4,52 +4,51 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Data.Entity;
-using RecordLabel.Catalogue;
-using RecordLabel.Catalogue.Attributes;
+using RecordLabel.Content.Localization;
 
-namespace RecordLabel.Catalogue
+namespace RecordLabel.Content
 {
     [UsesGenre]
     public class Release : BaseWithImages, IHasASet<Reference>, IHasASet<Track>, IHasASet<Release>, IValueComparable<Release>
     {
         [Required]
-        [Display(ResourceType = typeof(ModelLocalization), Name = "Title")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Title")]
         public string Title { get; set; }
         
         [ForeignKey("Artist")]
         [Required]
-        [Display(ResourceType = typeof(ModelLocalization), Name = "Release_Artist")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Release_Artist")]
         public int ArtistId { get; set; }
         public Artist Artist { get; set; }
 
-        [Display(ResourceType = typeof(ModelLocalization), Name = "Release_Subtitle")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Release_Subtitle")]
         public string Subtitle { get; set; }
-        [Display(ResourceType = typeof(ModelLocalization), Name = "Release_Date")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Release_Date")]
         [Range(1950, 2099)]
         public short? Date { get; set; }
-        [Display(ResourceType = typeof(ModelLocalization), Name = "DateRecorded")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "DateRecorded")]
         [Range(1950, 2099)]
         public short? DateRecorded { get; set; }
-        [Display(ResourceType = typeof(ModelLocalization), Name = "Playtime")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Playtime")]
         public short? Playtime { get; set; }
-        [Display(ResourceType = typeof(ModelLocalization), Name = "MusicBy")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "MusicBy")]
         public string MusicBy { get; set; }
-        [Display(ResourceType = typeof(ModelLocalization), Name = "LyricsBy")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "LyricsBy")]
         public string LyricsBy { get; set; }
 
         /// <summary>
         /// Indicates that other (slave) versions may be assigned to this release
         /// </summary>
-        [Display(ResourceType = typeof(ModelLocalization), Name = "IsMasterVersion")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "IsMasterVersion")]
         public bool IsMasterVersion { get; set; }
 
         [ForeignKey("References")]
-        [Display(ResourceType = typeof(ModelLocalization), Name = "References")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "References")]
         public int? ReferencesId { get; set; }
         public ReferenceSet References { get; set; }
 
         [ForeignKey("Tracklist")]
-        [Display(ResourceType = typeof(ModelLocalization), Name = "Tracklist")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Tracklist")]
         public int? TracklistId { get; set; }
         public virtual Tracklist Tracklist { get; set; }
 
@@ -58,21 +57,21 @@ namespace RecordLabel.Catalogue
         public LocalStringSet Descriptions { get; set; }
 
         [NotMapped]
-        [Display(ResourceType = typeof(ModelLocalization), Name = "Release_Description")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Release_Description")]
         public string Description => Descriptions?.Text;
 
         [Required]
-        [Display(ResourceType = typeof(ModelLocalization), Name = "CatalogueNumber")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "CatalogueNumber")]
         public string CatalogueNumber { get; set; }
 
         [Required]
         [ForeignKey("Media")]
-        [Display(ResourceType = typeof(ModelLocalization), Name = "Media")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Media")]
         public int MediaId { get; set; }
         public Metadata.MediaType Media { get; set; }
 
         [Required]
-        [Display(ResourceType = typeof(ModelLocalization), Name = "PrintStatus")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "PrintStatus")]
         public PrintStatus PrintStatus { get; set; } = PrintStatus.InPrint;
 
         /// <summary>
@@ -89,7 +88,7 @@ namespace RecordLabel.Catalogue
         /// A list of all releases (excluding this one) related through the Master version, populated by calling LoadOtherVersions
         /// </summary>    
         [NotMapped]
-        [Display(ResourceType = typeof(ModelLocalization), Name = "Release_OtherVersions")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Release_OtherVersions")]
         public IList<Release> OtherVersions {
             get
             {

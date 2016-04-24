@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
-using RecordLabel.Catalogue;
+using RecordLabel.Content;
 
 namespace RecordLabel
 {

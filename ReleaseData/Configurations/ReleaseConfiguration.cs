@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
 
-namespace RecordLabel.Catalogue.Configurations
+namespace RecordLabel.Content.Configurations
 {
     public class ReleaseConfiguration : EntityTypeConfiguration<Release>
     {

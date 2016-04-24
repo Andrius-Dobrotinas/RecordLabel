@@ -1,5 +1,6 @@
-﻿@using RecordLabel.Catalogue
+﻿@using RecordLabel.Content
 @using RecordLabel.Web
+@using RecordLabel.Web.Localization
 @model Tuple<Release[], Article[]>
 
 @System.Web.Optimization.Styles.Render("~/Css/Home/Index")
@@ -21,7 +22,7 @@
             </div>
 
             <section class="row new-releases">
-                <div class="title text-muted">@Localization.Home_NewReleases</div>
+                <div class="title text-muted">@ApplicationLocalization.Home_NewReleases</div>
                 @foreach (Release item in Model.Item1)
                 {
                     <div class="item col-xs-4 col-lg-3" data-id="@(item.Id)">
@@ -43,31 +44,31 @@
             </div>
             <section class="row news">
                 <div class="col-xs-12">
-                    <div class="title text-muted"><span>@Localization.NavSection_News</span></div>
+                    <div class="title text-muted"><span>@ApplicationLocalization.NavSection_News</span></div>
                     <ul class="news">
                         @foreach (Article item in Model.Item2)
                         {
                             <li>
                                 <a href="/Articles/View/@item.Id">@item.Title</a>
-                                @if (item.Type == RecordLabel.ArticleType.Article)
+                                @if (item.Type == ArticleType.Article)
                                 {
-                                    <span class="text-muted italic">(@RecordLabel.ArticleType.Article.ToString())</span>
+                                    <span class="text-muted italic">(@ArticleType.Article.ToString())</span>
                                 }
                                 <span class="text-muted">@item.Date.ToString("yyyy MM dd")</span>
                             </li>  
                         }
                     </ul>
                     <ul>
-                        <li class="btn menu-btn">@Html.ActionLink(Localization.Home_MoreNews, "Index", "Articles", new { area = "" })</li>
+                        <li class="btn menu-btn">@Html.ActionLink(ApplicationLocalization.Home_MoreNews, "Index", "Articles", new { area = "" })</li>
                     </ul>
                 </div>
             </section>
             <section class="row">
                 <nav class="col-xs-12">
                     <ul class="front-page-menu">
-                        <li class="btn menu-btn">@Html.ActionLink(Localization.NavSection_Releases, "Index", "Release")</li>
-                        <li class="btn menu-btn">@Html.ActionLink(Localization.NavSection_Ordering, "Ordering", "Home")</li>
-                        <li class="btn menu-btn">@Html.ActionLink(Localization.NavSection_Contact, "Index", "Home")</li>
+                        <li class="btn menu-btn">@Html.ActionLink(ApplicationLocalization.NavSection_Releases, "Index", "Release")</li>
+                        <li class="btn menu-btn">@Html.ActionLink(ApplicationLocalization.NavSection_Ordering, "Ordering", "Home")</li>
+                        <li class="btn menu-btn">@Html.ActionLink(ApplicationLocalization.NavSection_Contact, "Index", "Home")</li>
                     </ul>
                 </nav>
             </section>

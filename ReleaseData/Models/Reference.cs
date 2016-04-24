@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using RecordLabel.Content.Localization;
 
-namespace RecordLabel.Catalogue
+namespace RecordLabel.Content
 {
     [OneToOneRelationship]
     public class Reference : Base, IKnowIfImEmpty, IValueComparable<Reference>
@@ -12,7 +13,7 @@ namespace RecordLabel.Catalogue
         public static string YoutubeLinkBase { get; set; }
 
         [Required]
-        [Display(ResourceType = typeof(ModelLocalization), Name = "Reference_Target")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Reference_Target")]
         public string Target
         {
             get
@@ -34,14 +35,14 @@ namespace RecordLabel.Catalogue
         private string target;
 
         [Required]
-        [Display(ResourceType = typeof(ModelLocalization), Name = "Reference_Type")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Reference_Type")]
         public ReferenceType Type { get; set; }
 
         [NotMapped]
-        [Display(ResourceType = typeof(ModelLocalization), Name = "Reference_DisplayAs")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Reference_DisplayAs")]
         public string DisplayAs => Target?.Replace("http://", "").Replace("https://", "");
 
-        [Display(ResourceType = typeof(ModelLocalization), Name = "Order")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Order")]
         public int Order { get; set; }
 
         public override void UpdateModel(ReleaseContext dbContext, object sourceModel)

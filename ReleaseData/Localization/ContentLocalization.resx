@@ -231,10 +231,4 @@
   <data name="ReferenceType_Youtube" xml:space="preserve">
     <value>Youtube</value>
   </data>
-  <data name="Enum_English" xml:space="preserve">
-    <value>English</value>
-  </data>
-  <data name="Enum_Lithuanian" xml:space="preserve">
-    <value>Lithuanian</value>
-  </data>
 </root>

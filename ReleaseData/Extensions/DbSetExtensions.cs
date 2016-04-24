@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
-namespace RecordLabel.Catalogue.Extensions
+namespace RecordLabel.Content.Extensions
 {
     public static class DbSetExtensions
     {

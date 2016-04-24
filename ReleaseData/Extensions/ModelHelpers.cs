@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RecordLabel.Catalogue
+namespace RecordLabel.Content
 {
     public static class ModelHelpers
     {

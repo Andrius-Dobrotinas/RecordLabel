@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RecordLabel.Catalogue
+namespace RecordLabel.Content
 {
     /// <summary>
     /// A base class for all database entities that contain a localized text property, attributes and images

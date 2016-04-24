@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RecordLabel.Catalogue
+namespace RecordLabel.Content
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class OneToOneRelationship : Attribute
+    public class OneToOneRelationshipAttribute : Attribute
     {
 
     }

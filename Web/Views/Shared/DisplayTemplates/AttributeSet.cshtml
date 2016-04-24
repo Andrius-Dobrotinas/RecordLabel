@@ -1,6 +1,6 @@
-﻿@model RecordLabel.Catalogue.AttributeSet
+﻿@model RecordLabel.Content.AttributeSet
 
-@foreach (RecordLabel.Catalogue.Metadata.Attribute item in Model.Collection.OrderBy(item => item.Type))
+@foreach (RecordLabel.Content.Metadata.Attribute item in Model.Collection.OrderBy(item => item.Type))
 {
     <a class="label-my border" href="#">@item.Text</a>
 }

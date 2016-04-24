@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Collections.Specialized;
-using RecordLabel.Catalogue;
+using RecordLabel.Content;
 using RecordLabel.Web.Controllers;
 
 using System.Linq.Expressions;

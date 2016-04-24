@@ -3,7 +3,7 @@ using System.Data.Entity;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace RecordLabel.Catalogue
+namespace RecordLabel.Content
 {
     //[DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
     public class ReleaseContext : DbContext

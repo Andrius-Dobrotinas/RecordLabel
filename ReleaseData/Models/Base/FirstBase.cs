@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 
-namespace RecordLabel.Catalogue
+namespace RecordLabel.Content
 {
     /// <summary>
     /// Database entity class with Id as a primary key

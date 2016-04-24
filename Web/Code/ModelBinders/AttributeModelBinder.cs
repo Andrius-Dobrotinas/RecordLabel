@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Web.Mvc;
-using RecordLabel.Catalogue;
+using RecordLabel.Content;
 using RecordLabel.Web.Controllers;
 
 namespace RecordLabel.Web.ModelBinding

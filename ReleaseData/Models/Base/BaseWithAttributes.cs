@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RecordLabel.Catalogue
+namespace RecordLabel.Content
 {
     /// <summary>
     /// A base class for all database entities that contain a localized text property and attributes

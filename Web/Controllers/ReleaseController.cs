@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using RecordLabel.Catalogue;
+using RecordLabel.Content;
 using System.Data.Entity;
 using RecordLabel.Web.ModelBinding;
 using System.Linq.Expressions;
@@ -146,7 +146,7 @@ namespace RecordLabel.Web.Controllers
             return new EmptyResult();
         }
 
-        /*public ActionResult ByAttribute(RecordLabel.Catalogue.Metadata.Attribute model)
+        /*public ActionResult ByAttribute(RecordLabel.Content.Metadata.Attribute model)
         {
             db.Releases.Include(item => item.Attributes).Where(item => item.Attributes.Any(attr => attr.)
         }*/

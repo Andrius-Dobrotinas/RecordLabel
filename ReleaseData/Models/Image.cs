@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System;
 
-namespace RecordLabel.Catalogue
+namespace RecordLabel.Content
 {
     public class Image : FirstBase, IValueComparable<Image>
     {

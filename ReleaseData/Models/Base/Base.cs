@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using RecordLabel.Catalogue;
 using System.ComponentModel.DataAnnotations;
+using RecordLabel.Content.Localization;
 
-namespace RecordLabel.Catalogue
+namespace RecordLabel.Content
 {
     /// <summary>
     /// A base class for all database entities with a localized text property
@@ -20,7 +20,7 @@ namespace RecordLabel.Catalogue
         /// Text from localization in current (or, if not available, default) language 
         /// </summary>
         [NotMapped]
-        [Display(ResourceType = typeof(ModelLocalization), Name = "Base_Text")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Base_Text")]
         public string Text => Localization?.Text;
         
         /// <summary>

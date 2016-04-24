@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace RecordLabel.Web
 {
-    public class DefaultExceptionHandler : HandleErrorAttribute
+    public class DefaultExceptionHandlerAttribute : HandleErrorAttribute
     {
         public override void OnException(ExceptionContext filterContext)
         {
@@ -13,7 +13,7 @@ namespace RecordLabel.Web
             //If it's not a Handled exception, and we're not in admin mode, just show a generic error message
             if (handledException == null && !Global.IsAdminMode)
             {
-                handledException = new HandledException(Localization.UnexpectedError);
+                handledException = new HandledException(Localization.ApplicationLocalization.UnexpectedError);
             }
 
             filterContext.ExceptionHandled = true;

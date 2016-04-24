@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.Linq.Expressions;
 
-namespace RecordLabel.Catalogue
+namespace RecordLabel.Content
 {
     public abstract class Set<T> : FirstBase, IKnowIfImEmpty where T : Entity, IValueComparable<T>
     {
@@ -112,7 +112,7 @@ namespace RecordLabel.Catalogue
         {
             get
             {
-                return typeof(T).GetCustomAttribute(typeof(OneToOneRelationship)) != null;
+                return typeof(T).GetCustomAttribute(typeof(OneToOneRelationshipAttribute)) != null;
             }
         }
 

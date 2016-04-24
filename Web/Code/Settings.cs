@@ -25,19 +25,19 @@ namespace RecordLabel.Web
 
         public static void LoadApplicationConfiguration()
         {
-            Catalogue.LocalStringSet.DefaultLanguage = Catalogue.LocalStringSet.ResolveLanguage(ConfigurationManager.AppSettings.Get("DefaultLanguage"));
-            Catalogue.Reference.YoutubeLinkBase = ConfigurationManager.AppSettings.Get("YoutubeLinkBase");
+            RecordLabel.Localization.DefaultLanguageCode = ConfigurationManager.AppSettings.Get("DefaultLanguage");
+            Content.Reference.YoutubeLinkBase = ConfigurationManager.AppSettings.Get("YoutubeLinkBase");
 
-            Settings.ThumbnailQualityLevel = int.Parse(ConfigurationManager.AppSettings.Get("ThumbnailQualityLevel"));
-            Settings.ListItemBatchSize = int.Parse(ConfigurationManager.AppSettings.Get("ListItemBatchSize"));
-            Settings.CompanyName = ConfigurationManager.AppSettings.Get("CompanyName");
-            Settings.LogoFileName = ConfigurationManager.AppSettings.Get("LogoFileName");
-            Settings.ThumbnailWidth = double.Parse(ConfigurationManager.AppSettings.Get("ThumbnailWidth"));
-            Settings.ThumbnailQualityLevel = int.Parse(ConfigurationManager.AppSettings.Get("ThumbnailQualityLevel"));
+            ThumbnailQualityLevel = int.Parse(ConfigurationManager.AppSettings.Get("ThumbnailQualityLevel"));
+            ListItemBatchSize = int.Parse(ConfigurationManager.AppSettings.Get("ListItemBatchSize"));
+            CompanyName = ConfigurationManager.AppSettings.Get("CompanyName");
+            LogoFileName = ConfigurationManager.AppSettings.Get("LogoFileName");
+            ThumbnailWidth = double.Parse(ConfigurationManager.AppSettings.Get("ThumbnailWidth"));
+            ThumbnailQualityLevel = int.Parse(ConfigurationManager.AppSettings.Get("ThumbnailQualityLevel"));
 
             var directories = ConfigurationManager.GetSection("directories") as System.Collections.Specialized.NameValueCollection;
-            Settings.ContentDirectory = directories.Get("ContentDirectory");
-            Settings.StaticImageDirectory = directories.Get("StaticImageDirectory");
+            ContentDirectory = directories.Get("ContentDirectory");
+            StaticImageDirectory = directories.Get("StaticImageDirectory");
         }
     }
 }

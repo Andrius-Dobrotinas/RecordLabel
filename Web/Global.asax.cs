@@ -7,7 +7,7 @@ using System.Web.Optimization;
 using System.Data.Entity;
 using System.Globalization;
 using System.Threading;
-using RecordLabel.Catalogue;
+using RecordLabel.Content;
 using RecordLabel.Web.Controllers;
 using System.Web.Mvc.Html;
 
@@ -29,9 +29,9 @@ namespace RecordLabel.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Settings.LoadApplicationConfiguration();
 
-#if (true == false)
+#if (true == true)
             //Reinitialize the database with test data
-            Database.SetInitializer(new Catalogue.Configurations.DropCreateAndSeedInitializer<ReleaseContext>());
+            Database.SetInitializer(new Content.Configurations.DropCreateAndSeedInitializer<ReleaseContext>());
 #endif
         }
 
@@ -44,7 +44,7 @@ namespace RecordLabel.Web
 
             HomeController controller = Common.CreateController<HomeController>();
             //Users don't have to know any details about this exception - show it only to an admin
-            ActionResult result = controller.Error(Global.IsAdminMode ? exception : new Exception(Localization.UnexpectedError));
+            ActionResult result = controller.Error(Global.IsAdminMode ? exception : new Exception(Localization.ApplicationLocalization.UnexpectedError));
             result.ExecuteResult(controller.ControllerContext);
         }
 
@@ -53,7 +53,7 @@ namespace RecordLabel.Web
             //Set current culture from session
             if (HttpContext.Current.Session != null)
             {
-                CultureInfo culture = HttpContext.Current.Session["Culture"] as CultureInfo ?? CultureInfo.GetCultureInfo(LocalStringSet.English);
+                CultureInfo culture = HttpContext.Current.Session["Culture"] as CultureInfo ?? CultureInfo.GetCultureInfo(RecordLabel.Localization.DefaultLanguageCode);
                 Thread.CurrentThread.CurrentCulture = culture;
                 Thread.CurrentThread.CurrentUICulture = culture;
             }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RecordLabel.Catalogue
+namespace RecordLabel.Content
 {
     public class ImageSet : Set<Image>
     {

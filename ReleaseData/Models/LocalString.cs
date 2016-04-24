@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using schema = System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
-using RecordLabel.Catalogue;
+using RecordLabel.Content;
 
-namespace RecordLabel.Catalogue
+namespace RecordLabel.Content
 {
     public class LocalString : Entity, IKnowIfImEmpty, IValueComparable<LocalString>
     {

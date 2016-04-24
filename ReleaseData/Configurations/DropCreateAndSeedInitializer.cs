@@ -1,19 +1,19 @@
-﻿using RecordLabel.Catalogue;
+﻿using RecordLabel.Content;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 
-namespace RecordLabel.Catalogue.Configurations
+namespace RecordLabel.Content.Configurations
 {
     public class DropCreateAndSeedInitializer<T> : DropCreateDatabaseAlways<T> where T : ReleaseContext
     {
         protected override void Seed(T db)
         {
             var attrib1_local = createLocalStringSet(db, "attribute", "attribute-lt");
-            var attrib1 = db.Attributes.Add(new Catalogue.Metadata.Attribute() { Localization = attrib1_local });
+            var attrib1 = db.Attributes.Add(new Metadata.Attribute() { Localization = attrib1_local });
 
             var genre1_local = createLocalStringSet(db, "metal", "metal-lt");
-            var attrib2 = db.Attributes.Add(new Catalogue.Metadata.Attribute() { Localization = genre1_local, Type = Catalogue.Metadata.AttributeType.Genre });
+            var attrib2 = db.Attributes.Add(new Metadata.Attribute() { Localization = genre1_local, Type = Metadata.AttributeType.Genre });
 
             //Artist 1
             //var description1 = createLocalStringSet(db, "Some short description", "some short description-lt");
@@ -37,19 +37,19 @@ namespace RecordLabel.Catalogue.Configurations
 
 
             var genre2_local = createLocalStringSet(db, "stoner rock and roll", "stoner rock and roll-lit");
-            var attrib5 = db.Attributes.Add(new Catalogue.Metadata.Attribute() { Localization = genre2_local, Type = Catalogue.Metadata.AttributeType.Genre });
+            var attrib5 = db.Attributes.Add(new Metadata.Attribute() { Localization = genre2_local, Type = Metadata.AttributeType.Genre });
 
             var genre3 = createLocalStringSet(db, "oldschool metal", "oldschool metal");
-            var attrib7 = db.Attributes.Add(new Catalogue.Metadata.Attribute() { Localization = genre3, Type = Catalogue.Metadata.AttributeType.Genre });
+            var attrib7 = db.Attributes.Add(new Metadata.Attribute() { Localization = genre3, Type = Metadata.AttributeType.Genre });
 
             var genre4_local = createLocalStringSet(db, "progressive rock", "progressive rock-lt");
-            var attrib8 = db.Attributes.Add(new Catalogue.Metadata.Attribute() { Localization = genre4_local, Type = Catalogue.Metadata.AttributeType.Genre });
+            var attrib8 = db.Attributes.Add(new Metadata.Attribute() { Localization = genre4_local, Type = Metadata.AttributeType.Genre });
 
             var attr_local3 = createLocalStringSet(db, null, "best-lt");
-            var attrib3 = db.Attributes.Add(new Catalogue.Metadata.Attribute() { Localization = attr_local3 });
+            var attrib3 = db.Attributes.Add(new Metadata.Attribute() { Localization = attr_local3 });
 
             var attr_local2 = createLocalStringSet(db, "artpop", "artpop-lt");
-            var attrib4 = db.Attributes.Add(new Catalogue.Metadata.Attribute() { Localization = attr_local2 });
+            var attrib4 = db.Attributes.Add(new Metadata.Attribute() { Localization = attr_local2 });
 
             artist1.Attributes.Collection.Add(attrib4);
 
@@ -101,16 +101,16 @@ namespace RecordLabel.Catalogue.Configurations
             db.ReferenceSets.Add(refSet);
 
             //Media Types
-            var mediaCD = new Catalogue.Metadata.MediaType()
+            var mediaCD = new Metadata.MediaType()
             {
                 Localization = createLocalStringSet(db, "CD", null)
             };
-            var mediaFLAC = new Catalogue.Metadata.MediaType()
+            var mediaFLAC = new Metadata.MediaType()
             {
                 Localization = createLocalStringSet(db, "FLAC", null)
             };
 
-            var mediaLP = new Catalogue.Metadata.MediaType()
+            var mediaLP = new Metadata.MediaType()
             {
                 Localization = createLocalStringSet(db, "LP", null)
             };
@@ -139,7 +139,7 @@ namespace RecordLabel.Catalogue.Configurations
                 Media = mediaFLAC,
                 MasterVersion = release1,
                 CatalogueNumber = "FLAC322",
-                Attributes = new AttributeSet(new List<Catalogue.Metadata.Attribute>() { attrib5, attrib7, attrib3 })
+                Attributes = new AttributeSet(new List<Metadata.Attribute>() { attrib5, attrib7, attrib3 })
             };
 
             Release release3 = new Release()
@@ -150,7 +150,7 @@ namespace RecordLabel.Catalogue.Configurations
                 Media = mediaCD,
                 CatalogueNumber = "CM2500",
                 IsMasterVersion = true,
-                Attributes = new AttributeSet(new List<Catalogue.Metadata.Attribute>() { attrib4, attrib8, attrib7, attrib5 })
+                Attributes = new AttributeSet(new List<Metadata.Attribute>() { attrib4, attrib8, attrib7, attrib5 })
             };
 
             Release release4 = new Release()
@@ -160,7 +160,7 @@ namespace RecordLabel.Catalogue.Configurations
                 Date = 1967,
                 Media = mediaLP,
                 CatalogueNumber = "Dec 25",
-                Attributes = new AttributeSet(new List<Catalogue.Metadata.Attribute>() { attrib4, attrib7 })
+                Attributes = new AttributeSet(new List<Metadata.Attribute>() { attrib4, attrib7 })
             };
 
             Release release5 = new Release()
@@ -170,7 +170,7 @@ namespace RecordLabel.Catalogue.Configurations
                 Date = 2003,
                 Media = mediaCD,
                 CatalogueNumber = "38505",
-                Attributes = new AttributeSet(new List<Catalogue.Metadata.Attribute>() { attrib4 })
+                Attributes = new AttributeSet(new List<Metadata.Attribute>() { attrib4 })
             };
 
             Release release6 = new Release()
@@ -181,7 +181,7 @@ namespace RecordLabel.Catalogue.Configurations
                 Media = mediaLP,
                 CatalogueNumber = "CMLP500",
                 MasterVersion = release3,
-                Attributes = new AttributeSet(new List<Catalogue.Metadata.Attribute>() { attrib4, attrib7 })
+                Attributes = new AttributeSet(new List<Metadata.Attribute>() { attrib4, attrib7 })
             };
 
             Release release7 = new Release()
@@ -192,7 +192,7 @@ namespace RecordLabel.Catalogue.Configurations
                 Media = mediaFLAC,
                 CatalogueNumber = "artist2",
                 MasterVersion = release3,
-                Attributes = new AttributeSet(new List<Catalogue.Metadata.Attribute>() { attrib1, attrib3 })
+                Attributes = new AttributeSet(new List<Metadata.Attribute>() { attrib1, attrib3 })
             };
 
             db.Releases.Add(release2);

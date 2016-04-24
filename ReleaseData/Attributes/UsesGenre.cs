@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace RecordLabel.Catalogue.Attributes
+namespace RecordLabel.Content
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class UsesGenre : System.Attribute
+    public class UsesGenreAttribute : Attribute
     {
     }
 }

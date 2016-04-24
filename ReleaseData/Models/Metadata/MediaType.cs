@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using RecordLabel.Catalogue;
+using RecordLabel.Content;
 
-namespace RecordLabel.Catalogue.Metadata
+namespace RecordLabel.Content.Metadata
 {
     public class MediaType : Metadata<MediaType>
     {

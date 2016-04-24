@@ -1,4 +1,4 @@
-﻿using RecordLabel.Catalogue;
+﻿using RecordLabel.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;

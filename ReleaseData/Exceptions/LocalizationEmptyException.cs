@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RecordLabel.Catalogue
+namespace RecordLabel.Content
 {
     public class LocalizationEmptyException : Exception
     {

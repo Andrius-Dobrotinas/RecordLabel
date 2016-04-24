@@ -1,6 +1,6 @@
 ﻿@using RecordLabel
-@using RecordLabel.Catalogue
-@model IEnumerable<RecordLabel.Catalogue.Metadata.MediaType>
+@using RecordLabel.Content
+@model IEnumerable<RecordLabel.Content.Metadata.MediaType>
 
 @System.Web.Optimization.Styles.Render("~/Css/Admin")
 
@@ -10,7 +10,7 @@
 }
 
 <ul class="plain-list">
-    @foreach (RecordLabel.Catalogue.Metadata.MediaType item in Model)
+    @foreach (RecordLabel.Content.Metadata.MediaType item in Model)
     {
         <li>
             @Html.DisplayFor(model => item, "ListItems/MediaTypeListItem")

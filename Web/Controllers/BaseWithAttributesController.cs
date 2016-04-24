@@ -4,9 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
-using RecordLabel.Catalogue;
-using RecordLabel.Catalogue.Attributes;
-using RecordLabel.Web.ModelBinding;
+using RecordLabel.Content;
+using RecordLabel.Content.Metadata;
 
 namespace RecordLabel.Web.Controllers
 {
@@ -20,30 +19,30 @@ namespace RecordLabel.Web.Controllers
         private SelectListItem[] SelectAllAttributes()
         {
             //Currently, there are only two types of attributes
-            if (typeof(TModel).GetCustomAttributes(typeof(UsesGenre), true).Any() == false)
+            if (typeof(TModel).GetCustomAttributes(typeof(UsesGenreAttribute), true).Any() == false)
             {
-                return DbContext.Attributes.Where(item => item.Type == Catalogue.Metadata.AttributeType.Attribute).ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name);
+                return DbContext.Attributes.Where(item => item.Type == AttributeType.Attribute).ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name);
             }
             else
             {
                 SelectListGroup attributeGroup = new SelectListGroup() { Name = "Attribures" };
                 SelectListGroup genreGroup = new SelectListGroup() { Name = "Genres" };
-                return DbContext.Attributes.ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name, item => (item.Type == Catalogue.Metadata.AttributeType.Attribute) ? attributeGroup : genreGroup);
+                return DbContext.Attributes.ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name, item => (item.Type == AttributeType.Attribute) ? attributeGroup : genreGroup);
             }
         }
 
         private SelectListItem[] SelectAttributesForEdit(TModel model)
         {
             //Currently, there are only two types of attributes
-            if (typeof(TModel).GetCustomAttributes(typeof(UsesGenre), true).Any() == false)
+            if (typeof(TModel).GetCustomAttributes(typeof(UsesGenreAttribute), true).Any() == false)
             {
-                return DbContext.Attributes.Where(item => item.Type == Catalogue.Metadata.AttributeType.Attribute).ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name, item => model?.Attributes?.Collection?.Contains(item) ?? false);
+                return DbContext.Attributes.Where(item => item.Type == AttributeType.Attribute).ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name, item => model?.Attributes?.Collection?.Contains(item) ?? false);
             }
             else
             {
                 SelectListGroup attributeGroup = new SelectListGroup() { Name = "Attribures" };
                 SelectListGroup genreGroup = new SelectListGroup() { Name = "Genres" };
-                return DbContext.Attributes.ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name, item => model?.Attributes?.Collection?.Contains(item) ?? false, item => (item.Type == Catalogue.Metadata.AttributeType.Attribute) ? attributeGroup : genreGroup);
+                return DbContext.Attributes.ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name, item => model?.Attributes?.Collection?.Contains(item) ?? false, item => (item.Type == AttributeType.Attribute) ? attributeGroup : genreGroup);
             }
         }
 

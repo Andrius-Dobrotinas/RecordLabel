@@ -39,7 +39,7 @@ namespace RecordLabel.Web
             TextAreaModal = 2,
         }
 
-        public static MvcHtmlString EditorForEnumBasedCollection<TModel, TCollectionItem, TEnumProperty>(this HtmlHelper<TModel> helper, Expression<Func<TModel, IList<TCollectionItem>>> collectionPropertyExpression, Expression<Func<TCollectionItem, TEnumProperty>> enumPropertyExpression, Expression<Func<TCollectionItem, object>> valuePropertyExpression, CssClasses cssClasses) where TModel : Catalogue.Base where TEnumProperty : struct, IConvertible, IComparable, IFormattable
+        public static MvcHtmlString EditorForEnumBasedCollection<TModel, TCollectionItem, TEnumProperty>(this HtmlHelper<TModel> helper, Expression<Func<TModel, IList<TCollectionItem>>> collectionPropertyExpression, Expression<Func<TCollectionItem, TEnumProperty>> enumPropertyExpression, Expression<Func<TCollectionItem, object>> valuePropertyExpression, CssClasses cssClasses) where TModel : Content.Base where TEnumProperty : struct, IConvertible, IComparable, IFormattable
         {
             return EditorForEnumBasedCollection(helper, collectionPropertyExpression, enumPropertyExpression, valuePropertyExpression, cssClasses, InputFieldType.SingleLine);
         }
@@ -57,7 +57,7 @@ namespace RecordLabel.Web
         /// <param name="cssClasses">Object that contains css class names for elements built by this helper</param>
         /// <param name="inputFieldType">Type of value input fields</param>
         /// <returns></returns>
-        public static MvcHtmlString EditorForEnumBasedCollection<TModel, TCollectionItem, TEnumProperty>(this HtmlHelper<TModel> helper, Expression<Func<TModel, IList<TCollectionItem>>> collectionPropertyExpression, Expression<Func<TCollectionItem, TEnumProperty>> enumPropertyExpression, Expression<Func<TCollectionItem, object>> valuePropertyExpression, CssClasses cssClasses, InputFieldType inputFieldType) where TModel : Catalogue.Base where TEnumProperty : struct, IConvertible, IComparable, IFormattable
+        public static MvcHtmlString EditorForEnumBasedCollection<TModel, TCollectionItem, TEnumProperty>(this HtmlHelper<TModel> helper, Expression<Func<TModel, IList<TCollectionItem>>> collectionPropertyExpression, Expression<Func<TCollectionItem, TEnumProperty>> enumPropertyExpression, Expression<Func<TCollectionItem, object>> valuePropertyExpression, CssClasses cssClasses, InputFieldType inputFieldType) where TModel : Content.Base where TEnumProperty : struct, IConvertible, IComparable, IFormattable
             //This TEnumProperty constraint is supposed to ensure that only Enum types are passed
         {
             TModel model = helper.ViewData.Model;

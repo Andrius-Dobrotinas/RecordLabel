@@ -1,4 +1,4 @@
-﻿@model RecordLabel.Catalogue.Reference
+﻿@model RecordLabel.Content.Reference
 
 <div>
     @Html.EditorForEnumBasedCollection(model => model.Localization.Collection, localization => localization.Language, localization => localization.Text, new EnumBasedCollections.CssClasses("form-group", "control-label col-md-2", "col-md-10", "form-control"))

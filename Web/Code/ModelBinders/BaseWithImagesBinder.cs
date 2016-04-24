@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using RecordLabel;
-using RecordLabel.Catalogue;
+using RecordLabel.Content;
 using System.IO;
 
 namespace RecordLabel.Web.ModelBinding

@@ -1,4 +1,4 @@
-﻿namespace RecordLabel.Catalogue.Metadata
+﻿namespace RecordLabel.Content.Metadata
 {
     public enum AttributeType
     {

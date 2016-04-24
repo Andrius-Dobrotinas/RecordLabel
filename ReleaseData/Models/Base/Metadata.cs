@@ -3,9 +3,9 @@ using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using schema = System.ComponentModel.DataAnnotations.Schema;
-using RecordLabel.Catalogue;
+using RecordLabel.Content.Localization;
 
-namespace RecordLabel.Catalogue.Metadata
+namespace RecordLabel.Content.Metadata
 {
     /// <summary>
     /// Base class for simple shared reusable (One-To-Many type relationship) entities that have a mandatory localized text property
@@ -17,7 +17,7 @@ namespace RecordLabel.Catalogue.Metadata
         /// Localized name
         /// </summary>
         [schema.NotMapped]
-        [Display(ResourceType = typeof(ModelLocalization), Name = "Metadata_Name")]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Metadata_Name")]
         public string Name => base.Text;
 
         [Required]

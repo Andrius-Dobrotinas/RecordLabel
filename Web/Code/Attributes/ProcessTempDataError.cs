@@ -9,7 +9,7 @@ namespace RecordLabel.Web
     /// <summary>
     /// Checks TempData for "Error" key and, if found, adds its value to ModelState Errors
     /// </summary>
-    public class ProcessTempDataError : ActionFilterAttribute
+    public class ProcessTempDataErrorAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {

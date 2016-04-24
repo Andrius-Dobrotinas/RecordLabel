@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
-using RecordLabel.Catalogue;
+using RecordLabel.Content;
 using System.Web;
 
 namespace RecordLabel.Web

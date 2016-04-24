@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RecordLabel.Catalogue
+namespace RecordLabel.Content
 {
     /// <summary>
     /// A very base class for all database entity classes with no primary key

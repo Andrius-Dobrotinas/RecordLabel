@@ -3,28 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Globalization;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RecordLabel.Catalogue
+namespace RecordLabel.Content
 {
     public class LocalStringSet : Set<LocalString>, IValueComparable<LocalStringSet>, IQueryable<LocalString>, IEnumerable<LocalString>
     {
-        public const string Lithuanian = "lt";
-        public const string English = "en";
-
-        [NotMapped]
-        public static Language DefaultLanguage { get; set; }
-
         /// <summary>
         /// A string that corresponds to the current thread culture or, if not found, a default culture, or, if not found, first non-empty string
         /// </summary>
-        public string Text => Collection?.FirstOrDefault(item => item.Language == CurrentLanguage)?.Text ??
-            Collection?.FirstOrDefault(item => item.Language == DefaultLanguage)?.Text ??
+        public string Text => Collection?.FirstOrDefault(item => item.Language == RecordLabel.Localization.CurrentLanguage)?.Text ??
+            Collection?.FirstOrDefault(item => item.Language == RecordLabel.Localization.DefaultLanguage)?.Text ??
             Collection.FirstOrDefault(item => !String.IsNullOrEmpty(item.Text))?.Text;
-
-        public Language CurrentLanguage => ResolveLanguage(CultureInfo.CurrentCulture);//Thread.CurrentThread.CurrentCulture
-
+        
         public override void UpdateModel(ReleaseContext dbContext, object newModel)
         {
             //Update Collection items with values from newModel and Add new items from newModel
@@ -83,24 +74,7 @@ namespace RecordLabel.Catalogue
 
 
 
-
-        public static Language ResolveLanguage(CultureInfo cultureInfo)
-        {
-            return ResolveLanguage(cultureInfo.TwoLetterISOLanguageName);
-        }
-
-        public static Language ResolveLanguage(string twoLetterISOLanguageName)
-        {
-            switch (twoLetterISOLanguageName)
-            {
-                case Lithuanian:
-                    return Language.Lithuanian;
-                default:
-                    return Language.English;
-            }
-        }
-
-
+        
         Expression IQueryable.Expression
         {
             get

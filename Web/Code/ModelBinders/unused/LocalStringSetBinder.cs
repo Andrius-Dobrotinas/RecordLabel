@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
 using System.Web.Mvc;
-using RecordLabel.Catalogue;
+using RecordLabel.Content;
 
 namespace RecordLabel.Web.ModelBinding
 {
     /// <summary>
-    /// Removes empty elements from the Localization model and returns null if it is empty
+    /// Removes empty elements from the LocalStringSet model and returns null if it is empty
     /// </summary>
     public class LocalStringSetBinder : DefaultModelBinder
     {

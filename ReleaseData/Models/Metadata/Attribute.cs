@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RecordLabel.Catalogue.Metadata
+namespace RecordLabel.Content.Metadata
 {
     public class Attribute : Metadata<Attribute>, IValueComparable<Attribute>
     {

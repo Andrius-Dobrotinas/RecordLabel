@@ -689,15 +689,15 @@
     <Compile Include="HtmlHelpers\GeneralHtmlHelpers.cs" />
     <Compile Include="Code\Enums\ViewMode.cs" />
     <Compile Include="HtmlHelpers\Models\LoadMoreBarModel.cs" />
-    <Compile Include="AdminLocalization.Designer.cs">
-      <DependentUpon>AdminLocalization.resx</DependentUpon>
+    <Compile Include="Localization\AdminApplicationLocalization.Designer.cs">
+      <DependentUpon>AdminApplicationLocalization.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Localization.Designer.cs">
+    <Compile Include="Localization\ApplicationLocalization.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Localization.resx</DependentUpon>
+      <DependentUpon>ApplicationLocalization.resx</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginData.cs" />
     <Compile Include="HtmlHelpers\Models\ModalDialogModel.cs" />
@@ -767,13 +767,13 @@
       <Project>{3eb20f73-7b6b-4faf-8eaa-1f0ff6ba518f}</Project>
       <Name>ImageProcessing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ReleaseData\ReleaseData.csproj">
+    <ProjectReference Include="..\ReleaseData\Content.csproj">
       <Project>{6812841d-4973-44b3-a2a7-0c2b487a5ff6}</Project>
-      <Name>ReleaseData</Name>
+      <Name>Content</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Shared\Shared.csproj">
+    <ProjectReference Include="..\Shared\Core.csproj">
       <Project>{48f46b5a-4665-40bf-8779-52cb06411fa3}</Project>
-      <Name>Shared</Name>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -783,13 +783,13 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AdminLocalization.resx">
+    <EmbeddedResource Include="Localization\AdminApplicationLocalization.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AdminLocalization.Designer.cs</LastGenOutput>
+      <LastGenOutput>AdminApplicationLocalization.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Localization.resx">
+    <EmbeddedResource Include="Localization\ApplicationLocalization.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Localization.Designer.cs</LastGenOutput>
+      <LastGenOutput>ApplicationLocalization.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

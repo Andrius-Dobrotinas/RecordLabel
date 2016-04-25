@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Content", "ReleaseData\Content.csproj", "{6812841D-4973-44B3-A2A7-0C2B487A5FF6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentModels", "ReleaseData\ContentModels.csproj", "{6812841D-4973-44B3-A2A7-0C2B487A5FF6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{BE5CB037-A70D-4A65-803C-005A07986E44}"
 EndProject

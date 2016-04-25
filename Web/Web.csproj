@@ -767,9 +767,9 @@
       <Project>{3eb20f73-7b6b-4faf-8eaa-1f0ff6ba518f}</Project>
       <Name>ImageProcessing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ReleaseData\Content.csproj">
+    <ProjectReference Include="..\ReleaseData\ContentModels.csproj">
       <Project>{6812841d-4973-44b3-a2a7-0c2b487a5ff6}</Project>
-      <Name>Content</Name>
+      <Name>ContentModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\Shared\Core.csproj">
       <Project>{48f46b5a-4665-40bf-8779-52cb06411fa3}</Project>

@@ -131,5 +131,14 @@ namespace RecordLabel.Web.Localization {
                 return ResourceManager.GetString("UnexpectedError", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back to Releases.
+        /// </summary>
+        public static string View_BackToReleases {
+            get {
+                return ResourceManager.GetString("View_BackToReleases", resourceCulture);
+            }
+        }
     }
 }

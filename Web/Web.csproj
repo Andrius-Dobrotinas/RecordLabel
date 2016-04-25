@@ -168,6 +168,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\Views\Shared\Edit\Common.css" />
     <Content Include="Content\Views\Shared\ModalImageViewer.css" />
     <Content Include="Content\Views\Home\Index.css" />
     <Content Include="Content\Views\Articles\View.css" />

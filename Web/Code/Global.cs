@@ -15,7 +15,7 @@ namespace RecordLabel.Web
         {
             get
             {
-                return (HttpContext.Current.Session["AdminMode"] as bool?) == true;
+                return (HttpContext.Current.Session?["AdminMode"] as bool?) == true;
             }
         }
 

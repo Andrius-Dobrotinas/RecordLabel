@@ -141,4 +141,7 @@
   <data name="UnexpectedError" xml:space="preserve">
     <value>An error occured in the application</value>
   </data>
+  <data name="View_BackToReleases" xml:space="preserve">
+    <value>Back to Releases</value>
+  </data>
 </root>

@@ -36,14 +36,14 @@
 
             @*References*@
             @{
-                IEnumerable<Reference> references = Model.References?.Collection?.Where(item => item.Type == RecordLabel.ReferenceType.Website);
+                IEnumerable<Reference> references = Model.References?.Collection?.Where(item => item.Type == ReferenceType.Website);
                 if (references != null && references.Count() > 0)
                 {
                     <section class="row frame shadow-box default-padding contains-labels" id="references">
                         <div class="text-muted">Links</div>
                         @foreach (Reference item in references)
                         {
-                            <a href="@item.Target" target="_blank" class="label-my border">@item.Text</a>
+                            <a href="@item.DisplayAs" target="_blank" class="label-my border">@item.Text</a>
                         }
                     </section>
                 }
@@ -58,11 +58,11 @@
             @if (Model.References?.Collection?.Count > 0)
             {
                 <section class="row">
-                    @foreach (Reference item in Model.References.Collection.Where(item => item.Type == RecordLabel.ReferenceType.Youtube).ToArray())
+                    @foreach (Reference item in Model.References.Collection.Where(item => item.Type == ReferenceType.Youtube).ToArray())
                     {
                         <aside class="row frame shadow-box reset-margins col-sm-6 col-md-12 col-lg-6">
                             <div class="embed-responsive aspect-16by9">
-                                <iframe src="@item.Target" frameborder="0"></iframe>
+                                <iframe src="@item.DisplayAs" frameborder="0"></iframe>
                             </div>
                         </aside>
                     }
@@ -84,7 +84,7 @@
                         <div class="text-muted">Links</div>
                         @foreach (Reference item in references)
                         {
-                            <a href="@item.Target" class="label-my border">@item.Text</a>
+                            <a href="@item.DisplayAs" class="label-my border">@item.Text</a>
                         }
                     </section>
                 }

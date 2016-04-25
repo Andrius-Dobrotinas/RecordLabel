@@ -30,7 +30,11 @@ namespace RecordLabel.Web
             bundles.Add(new StyleBundle("~/Css/EditWithImages")
                 .Include("~/Content/themes/base/all.css") //jQuery UI
                 .Include("~/Content/Views/Shared/Edit/ImageSet.css")
-                .Include("~/Content/Views/Shared/Edit/EditButtons.css"));
+                .Include("~/Content/Views/Shared/Edit/EditButtons.css")
+                .Include("~/Content/Views/Shared/Edit/Common.css"));
+
+            bundles.Add(new StyleBundle("~/Css/Edit")
+                .Include("~/Content/Views/Shared/Edit/Common.css"));
 
             bundles.Add(new StyleBundle("~/Css/Shared/List")
                 .Include("~/Content/Views/Shared/List.css")

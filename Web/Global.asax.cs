@@ -29,7 +29,7 @@ namespace RecordLabel.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Settings.LoadApplicationConfiguration();
 
-#if (true == true)
+#if (true == false)
             //Reinitialize the database with test data
             Database.SetInitializer(new Content.Configurations.DropCreateAndSeedInitializer<ReleaseContext>());
 #endif

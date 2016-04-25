@@ -14,8 +14,15 @@ namespace RecordLabel.Content
 
         [Required]
         [Display(ResourceType = typeof(ContentLocalization), Name = "Reference_Target")]
-        public string Target
-        {
+        public string Target { get; set; }
+
+        [Required]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Reference_Type")]
+        public ReferenceType Type { get; set; }
+
+        [NotMapped]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Reference_DisplayAs")]
+        public string DisplayAs {
             get
             {
                 if (Type == ReferenceType.Youtube)
@@ -24,23 +31,10 @@ namespace RecordLabel.Content
                 }
                 else
                 {
-                    return target;
+                    return Target?.Replace("http://", "").Replace("https://", "");
                 }
             }
-            set
-            {
-                target = value;
-            }
         }
-        private string target;
-
-        [Required]
-        [Display(ResourceType = typeof(ContentLocalization), Name = "Reference_Type")]
-        public ReferenceType Type { get; set; }
-
-        [NotMapped]
-        [Display(ResourceType = typeof(ContentLocalization), Name = "Reference_DisplayAs")]
-        public string DisplayAs => Target?.Replace("http://", "").Replace("https://", "");
 
         [Display(ResourceType = typeof(ContentLocalization), Name = "Order")]
         public int Order { get; set; }
@@ -73,7 +67,7 @@ namespace RecordLabel.Content
 
         private string GenerateYoutubeLink()
         {
-            return $"{YoutubeLinkBase}{target}";
+            return $"{YoutubeLinkBase}{Target}";
         }
     }
 }

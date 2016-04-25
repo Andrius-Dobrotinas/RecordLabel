@@ -113,7 +113,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Core.csproj">
+    <ProjectReference Include="..\Core\Core.csproj">
       <Project>{48f46b5a-4665-40bf-8779-52cb06411fa3}</Project>
       <Name>Core</Name>
     </ProjectReference>

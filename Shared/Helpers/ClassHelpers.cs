@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RecordLabel.Content
+namespace RecordLabel
 {
-    public static class ModelHelpers
+    /// <summary>
+    /// Helpers for working with reference types and class properties
+    /// </summary>
+    public static class ClassHelper
     {
         /// <summary>
         /// Compares two class type objects that implement IValueComparable and tells whether their values are equal. Handles null cases.
@@ -18,24 +19,32 @@ namespace RecordLabel.Content
         /// <param name="object1"></param>
         /// <param name="object2"></param>
         /// <returns>True for equal values</returns>
-        public static bool CompareReferenceTypes<T>(T object1, T object2) where T : IValueComparable<T>
+        public static bool CompareReferenceTypes<T>(T object1, T object2) where T : class, IValueComparable<T>
         {
             return ((object1 == null && object2 == null) ||
                 (object1?.ValuesEqual(object2) ?? false));
         }
 
-        public static bool CompareNagivationalProperties<TModel>(TModel model1, TModel model2, Expression<Func<TModel, int?>> foreignKey)
+        /// <summary>
+        /// Compares navigational properties of two models defined by a foreign key property. These nagivational properties must implement IHasId interface and cannot be lists and collections. TODO: improve this method so that an actual navigational property is selected, not its foreign key
+        /// </summary>
+        /// <typeparam name="TModel"></typeparam>
+        /// <param name="model1"></param>
+        /// <param name="model2"></param>
+        /// <param name="foreignKey"></param>
+        /// <returns></returns>
+        public static bool CompareNagivationalProperties<TModel>(TModel model1, TModel model2, Expression<Func<TModel, int?>> foreignKey) where TModel : class
         {
             if (foreignKey == null)
             {
-                throw new ArgumentNullException("foreignKey may not be null whereas it is now");
+                throw new ArgumentNullException("foreignKey may not be null whereas it is null now");
             }
             MemberExpression mex = (MemberExpression)foreignKey.Body;
             PropertyInfo fkProperty = (PropertyInfo)mex.Member;
             ForeignKeyAttribute attr = fkProperty.GetCustomAttribute(typeof(ForeignKeyAttribute)) as ForeignKeyAttribute;
             if (attr == null)
             {
-                throw new ArgumentException("foreignKey property does not containt ForeignKey attribute");
+                throw new ArgumentException("foreignKey property does not contain ForeignKey attribute");
             }
 
             int? key1 = fkProperty.GetValue(model1) as int?;

@@ -24,7 +24,7 @@ namespace RecordLabel.Web.ModelBinding
 
             if (model.MasterVersionId.HasValue && model.MasterVersionId.Value > 0)
             {
-                model.MasterVersion = ((IHasDbContext)controllerContext.Controller).DbContext.Releases.First(item => item.Id == model.MasterVersionId);
+                model.MasterVersion = ((IHasDbContext<ReleaseContext>)controllerContext.Controller).DbContext.Releases.First(item => item.Id == model.MasterVersionId);
             }
             return model;
         }

@@ -231,4 +231,10 @@
   <data name="ReferenceType_Youtube" xml:space="preserve">
     <value>Youtube</value>
   </data>
+  <data name="AttributeType_Attribute" xml:space="preserve">
+    <value>Attribute</value>
+  </data>
+  <data name="AttributeType_Genre" xml:space="preserve">
+    <value>Genre</value>
+  </data>
 </root>

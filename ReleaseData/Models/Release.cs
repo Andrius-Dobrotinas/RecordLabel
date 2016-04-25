@@ -174,12 +174,12 @@ namespace RecordLabel.Content
                 LyricsBy == compareTo.LyricsBy &&
                 PrintStatus == compareTo.PrintStatus &&
                 IsMasterVersion == compareTo.IsMasterVersion &&
-                ModelHelpers.CompareNagivationalProperties(this, compareTo, m => m.TracklistId) &&
-                ModelHelpers.CompareNagivationalProperties(this, compareTo, m => m.ReferencesId) &&
-                ModelHelpers.CompareNagivationalProperties(this, compareTo, m => m.DescriptionsId) &&
-                ModelHelpers.CompareNagivationalProperties(this, compareTo, m => m.MediaId) &&
-                ModelHelpers.CompareNagivationalProperties(this, compareTo, m => m.ArtistId) &&
-                ModelHelpers.CompareReferenceTypes(Localization, compareTo.Localization);
+                ClassHelper.CompareNagivationalProperties(this, compareTo, m => m.TracklistId) &&
+                ClassHelper.CompareNagivationalProperties(this, compareTo, m => m.ReferencesId) &&
+                ClassHelper.CompareNagivationalProperties(this, compareTo, m => m.DescriptionsId) &&
+                ClassHelper.CompareNagivationalProperties(this, compareTo, m => m.MediaId) &&
+                ClassHelper.CompareNagivationalProperties(this, compareTo, m => m.ArtistId) &&
+                ClassHelper.CompareReferenceTypes(Localization, compareTo.Localization);
         }
 
         /// <summary>

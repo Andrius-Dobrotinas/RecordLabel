@@ -44,7 +44,7 @@ namespace RecordLabel.Content
         {
             return track != null &&
                 Title == track.Title &&
-                ModelHelpers.CompareReferenceTypes(Reference, track.Reference);
+                ClassHelper.CompareReferenceTypes(Reference, track.Reference);
         }
 
         bool IKnowIfImEmpty.IsEmpty

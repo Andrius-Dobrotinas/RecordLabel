@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 
 namespace RecordLabel.Content
 {
-    public abstract class Set<T> : FirstBase, IKnowIfImEmpty where T : Entity, IValueComparable<T>
+    public abstract class Set<T> : FirstBase, IKnowIfImEmpty where T : EntityBase, IValueComparable<T>
     {
         public virtual IList<T> Collection {
             get
@@ -57,7 +57,7 @@ namespace RecordLabel.Content
                     //Add/Remove items
                     sourceSet.UpdateModel(dbContext, newSet);
                     
-                    /*IList<T> itemsToRemove = sourceSet.Collection.UpdateCollectionByIds2(newSet.Collection, dbContext);
+                    /*IList<T> itemsToRemove = sourceSet.Collection.UpdateCollectionByIds(newSet.Collection, dbContext);
                     if (itemsToRemove.Count > 0) //&& DeleteItemsFromTheContext
                     {
                         DeleteItems(itemsToRemove, dbContext);
@@ -67,9 +67,8 @@ namespace RecordLabel.Content
         }
 
         public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
-        {
-            
-            IList<T> itemsToRemove = Collection.UpdateCollectionByIds2(((Set<T>)sourceModel).Collection, dbContext);
+        {  
+            IList<T> itemsToRemove = Collection.UpdateCollectionByIds(((Set<T>)sourceModel).Collection, dbContext);
             if (itemsToRemove.Count > 0)
             {
                 DeleteItems(itemsToRemove, dbContext);

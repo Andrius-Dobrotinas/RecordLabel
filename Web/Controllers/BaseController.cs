@@ -15,7 +15,7 @@ namespace RecordLabel.Web.Controllers
     /// <summary>
     /// Base controller with database context
     /// </summary>
-    public abstract class BaseController : Controller, IHasDbContext
+    public abstract class BaseController : Controller, IHasDbContext<ReleaseContext>
     {
         private ReleaseContext db;
         public ReleaseContext DbContext => db;

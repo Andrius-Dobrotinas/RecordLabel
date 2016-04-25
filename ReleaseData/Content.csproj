@@ -55,30 +55,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\OneToOneRelationship.cs" />
     <Compile Include="Enums\ImageType.cs" />
     <Compile Include="Exceptions\EntityInUseException.cs" />
     <Compile Include="Extensions\DbSetExtensions.cs" />
     <Compile Include="Extensions\ModelExtensions.cs" />
-    <Compile Include="Extensions\ModelHelpers.cs" />
     <Compile Include="Localization\ContentLocalization.Designer.cs">
       <DependentUpon>ContentLocalization.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Models\Artist.cs" />
-    <Compile Include="Models\Base\Entity.cs" />
+    <Compile Include="Models\Base\EntityBase.cs" />
     <Compile Include="Models\Sets\AttributeSet.cs" />
-    <Compile Include="Attributes\OneToOneRelationship.cs" />
     <Compile Include="Attributes\UsesGenre.cs" />
     <Compile Include="Models\Base\FirstBase.cs" />
     <Compile Include="Models\Base\Base.cs" />
     <Compile Include="Enums\ArticleType.cs" />
     <Compile Include="Enums\ReferenceType.cs" />
     <Compile Include="Exceptions\LocalizationEmptyException.cs" />
-    <Compile Include="Interfaces\IHasASet.cs" />
-    <Compile Include="Interfaces\IHasId.cs" />
-    <Compile Include="Interfaces\IKnowIfImEmpty.cs" />
-    <Compile Include="Interfaces\IValueComparable.cs" />
     <Compile Include="Enums\AttributeType.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Reference.cs" />
@@ -86,8 +81,6 @@
     <Compile Include="Models\Base\BaseWithImages.cs" />
     <Compile Include="Configurations\DropCreateAndSeedInitializer.cs" />
     <Compile Include="Configurations\ReleaseConfiguration.cs" />
-    <Compile Include="Extensions\CollectionExtensions.cs" />
-    <Compile Include="Interfaces\ICollectionWrapper.cs" />
     <Compile Include="Models\Sets\ImageSet.cs" />
     <Compile Include="Models\Sets\LocalStringSet.cs" />
     <Compile Include="Models\Base\Metadata.cs" />

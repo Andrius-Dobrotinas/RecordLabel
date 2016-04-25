@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RecordLabel.Content
+namespace RecordLabel
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class OneToOneRelationshipAttribute : Attribute

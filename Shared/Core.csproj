@@ -44,6 +44,13 @@
     <Compile Include="Attributes\LanugageCodeAttribute.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Enum\Language.cs" />
+    <Compile Include="Helpers\ClassHelpers.cs" />
+    <Compile Include="Interfaces\ICollectionWrapper.cs" />
+    <Compile Include="Interfaces\IHasASet.cs" />
+    <Compile Include="Interfaces\IHasId.cs" />
+    <Compile Include="Interfaces\IKnowIfImEmpty.cs" />
+    <Compile Include="Interfaces\IUpdatable.cs" />
+    <Compile Include="Interfaces\IValueComparable.cs" />
     <Compile Include="Localization.cs" />
     <Compile Include="LocalizationResource.Designer.cs">
       <AutoGen>True</AutoGen>

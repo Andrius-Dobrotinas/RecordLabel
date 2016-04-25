@@ -10,7 +10,7 @@ namespace RecordLabel.Content
     /// <summary>
     /// A very base class for all database entity classes with no primary key
     /// </summary>
-    public abstract class Entity : IHasId
+    public abstract class EntityBase : IHasId, IUpdatableModel<ReleaseContext>
     {
         public virtual int Id { get; set; }
 

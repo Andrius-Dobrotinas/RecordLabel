@@ -56,7 +56,7 @@ namespace RecordLabel.Content
                 LocalString source = Collection.SingleOrDefault(entry => (int)entry.Language == lang);
                 LocalString compareTo = localization.Collection.SingleOrDefault(entry => (int)entry.Language == lang);
 
-                if (ModelHelpers.CompareReferenceTypes(source, compareTo) == false)
+                if (ClassHelper.CompareReferenceTypes(source, compareTo) == false)
                 {
                     return false;
                 }

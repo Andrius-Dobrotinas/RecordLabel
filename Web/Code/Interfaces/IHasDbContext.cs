@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RecordLabel.Content;
+﻿using RecordLabel.Content;
 
 namespace RecordLabel.Web
 {
     /// <summary>
     /// Indicates that a model has a reference to a database context
     /// </summary>
-    public interface IHasDbContext
+    public interface IHasDbContext<TContext>
     {
-        ReleaseContext DbContext { get; }
+        TContext DbContext { get; }
     }
 }

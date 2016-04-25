@@ -12,7 +12,7 @@ namespace RecordLabel.Web.ModelBinding
     /// Removes empty elements from the Set and returns null if it is empty
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class SetBinder<T> : DefaultModelBinder where T : Entity, IKnowIfImEmpty, IValueComparable<T>
+    public class SetBinder<T> : DefaultModelBinder where T : EntityBase, IKnowIfImEmpty, IValueComparable<T>
     {
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {

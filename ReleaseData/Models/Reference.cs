@@ -59,7 +59,7 @@ namespace RecordLabel.Content
             return reference != null &&
                 Target == reference.Target &&
                 Type == reference.Type &&
-                ModelHelpers.CompareReferenceTypes(Localization, reference.Localization);
+                ClassHelper.CompareReferenceTypes(Localization, reference.Localization);
         }
 
         public virtual bool IsEmpty

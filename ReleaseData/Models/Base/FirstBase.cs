@@ -11,7 +11,7 @@ namespace RecordLabel.Content
     /// <summary>
     /// Database entity class with Id as a primary key
     /// </summary>
-    public abstract class FirstBase : Entity
+    public abstract class FirstBase : EntityBase
     {
         [Key]
         public override int Id { get; set; }

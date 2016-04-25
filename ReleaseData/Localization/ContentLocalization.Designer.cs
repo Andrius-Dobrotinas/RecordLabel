@@ -133,6 +133,24 @@ namespace RecordLabel.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attribute.
+        /// </summary>
+        public static string AttributeType_Attribute {
+            get {
+                return ResourceManager.GetString("AttributeType_Attribute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Genre.
+        /// </summary>
+        public static string AttributeType_Genre {
+            get {
+                return ResourceManager.GetString("AttributeType_Genre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Text.
         /// </summary>
         public static string Base_Text {

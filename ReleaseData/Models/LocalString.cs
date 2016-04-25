@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-using schema = System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
-using RecordLabel.Content;
 
 namespace RecordLabel.Content
 {
-    public class LocalString : Entity, IKnowIfImEmpty, IValueComparable<LocalString>
+    public class LocalString : EntityBase, IKnowIfImEmpty, IValueComparable<LocalString>
     {
-        [schema.ForeignKey("LocalizationObject"), Key, schema.Column(Order = 0)]
+        [NotMapped]
+        public override int Id { get; set; }
+
+        [ForeignKey("LocalizationObject"), Key, Column(Order = 0)]
         public int StringSetId { get; set; }
         public LocalStringSet LocalizationObject { get; set; }
 
-        [Key, schema.Column(Order = 1)]
+        [Key, Column(Order = 1)]
         public Language Language { get; set; }
 
         [AllowHtml]

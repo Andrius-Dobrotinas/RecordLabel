@@ -23,7 +23,7 @@ namespace RecordLabel.Web
         /// <param name="setProperty">Model property which to build the editor for</param>
         /// <param name="containerHtmlElementId">An Id for a resulting Html element</param>
         /// <returns></returns>
-        public static MvcHtmlString EditorForASet<TModel, TProperty, T>(this HtmlHelper<TModel> html, Expression<Func<TModel, TProperty>> setProperty, string containerHtmlElementId) where TModel : IHasASet<T> where TProperty : Set<T> where T : Entity, IValueComparable<T>//constraint here is just to make sure that we operate on types that are accepted by the Set class
+        public static MvcHtmlString EditorForASet<TModel, TProperty, T>(this HtmlHelper<TModel> html, Expression<Func<TModel, TProperty>> setProperty, string containerHtmlElementId) where TModel : IHasASet<T> where TProperty : Set<T> where T : EntityBase, IValueComparable<T>//this constraint is here to just make sure that we operate on types that are accepted by the Set class
         {
             if (String.IsNullOrWhiteSpace(containerHtmlElementId))
             {
@@ -90,7 +90,7 @@ namespace RecordLabel.Web
         /// <param name="html"></param>
         /// <param name="property">Collection property which to build the editor for</param>
         /// <returns></returns>
-        public static HtmlString EditorTemplateFor<TModel, T>(this HtmlHelper<TModel> html, Expression<Func<TModel, IList<T>>> property) where T : Entity
+        public static HtmlString EditorTemplateFor<TModel, T>(this HtmlHelper<TModel> html, Expression<Func<TModel, IList<T>>> property) where T : EntityBase
         {
             IList<PropertyInfo> propertyTree = Reflection.Reflection.GetPropertyTree((MemberExpression)property.Body);
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RecordLabel.Content
+﻿namespace RecordLabel
 {
     /// <summary>
     /// Denotes that a class can compare values of properties that matter (in such a comparison) and tell whether the values of two instances are equal

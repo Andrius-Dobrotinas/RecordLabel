@@ -31,7 +31,7 @@ namespace RecordLabel.Content.Metadata
         {
             return compareTo != null &&
                 Type == compareTo.Type &&
-                ModelHelpers.CompareReferenceTypes(Localization, compareTo.Localization);
+                ClassHelper.CompareReferenceTypes(Localization, compareTo.Localization);
         }
     }
 

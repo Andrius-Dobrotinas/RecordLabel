@@ -16,7 +16,7 @@ namespace RecordLabel.Web.ModelBinding
         {
             object model = base.BindModel(controllerContext, bindingContext);
 
-            ReleaseContext dbContext = ((IHasDbContext)controllerContext.Controller).DbContext;
+            ReleaseContext dbContext = ((IHasDbContext<ReleaseContext>)controllerContext.Controller).DbContext;
             NameValueCollection form = controllerContext.HttpContext.Request.Form;
             if (form.AllKeys.Contains("AttributeIds"))
             {

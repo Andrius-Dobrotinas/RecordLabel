@@ -33,7 +33,7 @@ namespace RecordLabel.Content
             modelBuilder.Entity<LocalStringSet>().HasMany(x => x.Collection).WithRequired(y => y.LocalizationObject).WillCascadeOnDelete();
         }
 
-        public void UpdateModel<TModel>(TModel model, TModel copyFrom) where TModel : Base
+        public void UpdateModel<TModel>(TModel model, TModel copyFrom) where TModel : EntityBase
         {
             model.UpdateModel(this, copyFrom);
         }
@@ -43,7 +43,7 @@ namespace RecordLabel.Content
             if (targetId != sourceId)
             {
                 targetId = sourceId;
-                if (sourceValue != null) //chech if the id property is non-nullable
+                if (sourceValue != null) //check if the id property is non-nullable
                 {
                     targetValue = sourceValue;
                 }
@@ -51,7 +51,7 @@ namespace RecordLabel.Content
             else if (targetValue != sourceValue)
             {
                 //this implies that the property is non-nullable
-                if (sourceValue != null)// && Media != source.Media)
+                if (sourceValue != null)
                 {
                     targetValue = sourceValue;
                 }

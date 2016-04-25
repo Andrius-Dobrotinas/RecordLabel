@@ -1,0 +1,204 @@
+﻿@using RecordLabel.Content
+@model Release
+
+@System.Web.Optimization.Styles.Render("~/Css/EditWithImages")
+@System.Web.Optimization.Scripts.Render("~/Js/Release/Edit")
+
+@{
+    string action = (ViewContext.RouteData.Values["action"] as string)?.ToUpperInvariant();
+    ViewBag.Title = action;
+}
+
+<h2>@action</h2>
+
+@using (Html.BeginForm(action, "Release", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Release</h4>
+        <hr />
+        @Html.ValidationSummary(false, String.Empty, new { @class = "text-danger" })
+        @*Html.HiddenFor(model => model.Id)*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArtistId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ArtistId, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CatalogueNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CatalogueNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CatalogueNumber, String.Empty, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MediaId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.MediaId, null, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrintStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.PrintStatus, new { @class = "form-control" })
+            </div>
+        </div>
+
+        @{
+            /*If otherVersions is null, it means that this is a IsMasterVersion version and that it has associated slave versions.
+            Therefore both Other versions menu and IsMasterVersion checkbox are disabled - IsMasterVersion option cannot be removed since it
+            has slave versions*/
+            IList<SelectListItem> otherVersions = ViewBag.MasterVersionId;
+            bool primaryVersionDisabled = ViewBag.IsMasterVersionDisabled == true;
+
+            Dictionary<string, object> htmlAttributesForIsMasterVersion = new Dictionary<string, object>();
+            htmlAttributesForIsMasterVersion.Add("class", "checkbox");
+            htmlAttributesForIsMasterVersion.Add("title", "If checked, this release will be in the Other Versions list for other releases to be used as a primary version");
+
+            if (primaryVersionDisabled == true)
+            {
+                htmlAttributesForIsMasterVersion.Add("disabled", String.Empty);
+                htmlAttributesForIsMasterVersion["title"] = "This option cannot be changed because this release serves as a primary version for other releases. To be able to change this value, you need to remove this association from other releases referencing this one";
+            }
+        }
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsMasterVersion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.CheckBoxFor(model => model.IsMasterVersion, htmlAttributesForIsMasterVersion)
+                </div>
+            </div>
+        </div>
+
+        @if (otherVersions?.Count > 0)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.MasterVersionId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @{
+                        Dictionary<string, object> htmlAttributes = new Dictionary<string, object>();
+                        htmlAttributes.Add("class", "form-control");
+
+                        /*If this version is IsMasterVersion (but has no associated slave versions), disable the dropdown menu*/
+                        if (Model?.IsMasterVersion == true)
+                        {
+                            htmlAttributes.Add("disabled", String.Empty);
+                        }
+                        @Html.DropDownListFor(model => model.MasterVersionId, null, htmlAttributes)
+                    }
+                </div>
+            </div>
+                        }
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Attributes, null, String.Empty)
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">References</label>
+            <div class="col-md-10">
+                @Html.ModalOpenButton("ReferencesModal", "Edit References")
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label col-md-2">Tracklist</label>
+            <div class="col-md-10">
+                @Html.ModalOpenButton("TracklistModal", "Edit Tracklist")
+            </div>
+        </div>
+
+        <div>
+            @{
+                MvcHtmlString refEditor = Html.EditorForASet<Release, ReferenceSet, Reference>(model => model.References, "ModelReferences");
+                MvcHtmlString addRefBtn = Html.ButtonForModal("Add Reference", null, "addReferenceBtn");
+                @Html.ModalDialog("ReferencesModal", refEditor, "References", addRefBtn);
+            }
+        </div>
+        <div>
+            @{
+                MvcHtmlString trackEditor = Html.EditorForASet<Release, Tracklist, Track>(model => model.Tracklist, "Tracklist");
+                MvcHtmlString addTrackBtn = Html.ButtonForModal("Add Track", null, "addTrackBtn");
+                @Html.ModalDialog("TracklistModal", trackEditor, "Tracklist", addTrackBtn);
+            }
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Playtime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Playtime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Playtime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateRecorded, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateRecorded, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateRecorded, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MusicBy, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MusicBy, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LyricsBy, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LyricsBy, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div>
+            @Html.EditorForEnumBasedCollection(model => model.Localization.Collection, localization => localization.Language, localization => localization.Text, new EnumBasedCollections.CssClasses("form-group", "control-label col-md-2", "col-md-10", "form-control"))
+        </div>
+
+        <div>
+            @Html.EditorForEnumBasedCollection(model => model.Descriptions.Collection, localization => localization.Language, localization => localization.Text, new EnumBasedCollections.CssClasses("form-group", "control-label col-md-2", "col-md-10", "form-control rich-text"), EnumBasedCollections.InputFieldType.TextAreaModal)
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Images, null, String.Empty)
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success" />
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default", role = "button" })
+            </div>
+        </div>
+    </div>
+}
+@Html.Partial("DeleteModelButton")
+
+<div id="Templates">
+    @(Html.EditorTemplateFor(model => model.References.Collection))
+    @(Html.EditorTemplateFor(model => model.Tracklist.Collection))
+</div>
+
+@Html.BackButtonBar("Back to Releases")

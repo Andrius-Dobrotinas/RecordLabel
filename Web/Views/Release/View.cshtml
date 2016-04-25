@@ -1,0 +1,181 @@
+﻿@using RecordLabel.Content
+@model Release
+
+@System.Web.Optimization.Styles.Render("~/Css/Release/View")
+@System.Web.Optimization.Scripts.Render("~/Js/Release/View")
+
+<article class="release-page">
+    <div class="row">
+        <h1 class="view-page-title dark-blanket">@(Model.Artist?.Name) - @Model.Title</h1>
+    </div>
+    <div class="row">
+        <section class="col-md-6">
+            <div class="sm-margin-right">
+                <section class="row frame shadow-box release-info default-padding">
+                    @Html.DisplayFor(model => model.Cover, "Thumbnail", new { @class = "album-cover" })
+                    <div>
+                        <div id="tracklist">
+                            @if (Model.Tracklist?.Collection.Count > 0)
+                            {
+                                for (int i = 0; i < Model.Tracklist.Collection.Count; i++)
+                                {
+                                    var item = Model.Tracklist.Collection[i];
+
+                                    @*<div><span class="text-muted">@(i+1).</span><span>@item.Title</span>
+                                        @if (item.Reference != null)
+                                        {
+                                            <a style="font-style: italic;" href="@item.Reference.DisplayAs">@item.Reference.Name</a>
+                                        }
+                                    </div>*@
+                                    <div class="track">
+                                        <span class="text-muted">@(i + 1).</span>
+                                        <span>
+                                            @item.Title
+                                            @if (item.Reference != null)
+                                            {
+                                                string icon = null;
+                                                if (item.Reference.Type == ReferenceType.Youtube || item.Reference.Type == ReferenceType.File)
+                                                {
+                                                    if (item.Reference.Type == ReferenceType.Youtube)
+                                                    {
+                                                        icon = "glyphicon glyphicon-facetime-video";
+                                                    }
+                                                    else
+                                                    {
+                                                        icon = "glyphicon glyphicon-volume-up";
+                                                    }
+
+                                                }
+                                                <a href="@item.Reference.DisplayAs" target="_blank" class="glyphicon @icon"></a>
+                                            }
+                                        </span>                                  
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </section>
+
+                @if (!String.IsNullOrWhiteSpace(Model.Description))
+                {
+                    <section class="row frame shadow-box default-padding article" id="description">
+                        <article>
+                            @Html.Raw(Model.Description)
+                        </article>
+                    </section>
+                }
+
+                <section class="row frame shadow-box default-padding key-value">
+                    <div>
+                        @Html.LabelFor(model => model.Date, new { @class = "text-muted" }): <span class="val">@Model.Date</span>
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.Media, new { @class = "text-muted" }): <span class="val">@Model.Media.Name</span>
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.CatalogueNumber, new { @class = "text-muted" }): <span class="val">@Model.CatalogueNumber</span>
+                    </div>
+                    <div>
+                        @Html.LabelFor(model => model.PrintStatus, new { @class = "text-muted" }): <span class="val">@Model.PrintStatus</span>
+                    </div>
+
+                    @if (Model.Playtime != null)
+                                {
+                        <div>
+                            @Html.LabelFor(model => model.Playtime, new { @class = "text-muted" }): <span class="val">@Model.Playtime</span>
+                        </div>
+                    }
+
+                    @if (Model.DateRecorded != null) {
+                        <div>
+                            @Html.LabelFor(model => model.DateRecorded, new { @class = "text-muted" }): <span class="val">@Model.DateRecorded</span>
+                        </div>
+                    }
+
+                    @if (Model.MusicBy != null)
+                        {
+                        <div>
+                            @Html.LabelFor(model => model.MusicBy, new { @class = "text-muted" }): <span class="val">@Model.MusicBy</span>
+                        </div>
+                    }
+
+                    @if (Model.LyricsBy != null)
+                        {
+                        <div>
+                            @Html.LabelFor(model => model.LyricsBy, new { @class = "text-muted" }): <span class="val">@Model.LyricsBy</span>
+                        </div>
+                    }
+                </section>
+
+                @if (Model.OtherVersions?.Count > 0)
+                        {
+                    <section class="row frame shadow-box default-padding">
+                        @Html.LabelFor(model => model.OtherVersions, new { @class = "text-muted" }):
+                        @foreach (Release item in Model.OtherVersions)
+                        {
+                            @Html.ActionLink($"{item.Media.Name} ({item.Date})", "View", new { Id = item.Id }, new { @class = "label-my border" })
+                        }
+                    </section>
+                }
+
+                @*References*@
+                @{
+                    IEnumerable<Reference> references = Model.References?.Collection?.Where(item => item.Type == ReferenceType.Website)?.
+                                                Union(Model.Artist.References?.Collection?.Where(item => item.Type == ReferenceType.Website) ?? new Reference[0]);
+                    if (references != null && references.Count() > 0)
+                    {
+                        @*<section class="row frame shadow-box default-padding" id="references">
+                            @foreach (Reference item in references)
+                            {
+                                <aside class="key-value">
+                                    @item.Text:<span><a href="@item.DisplayAs" class="bold left-margin-5">@item.DisplayAs</a></span>
+                                </aside>
+                            }
+                        </section>*@
+
+                        <section class="row frame shadow-box default-padding contains-labels" id="references">
+                            <div class="text-muted">@RecordLabel.Content.Localization.ContentLocalization.References</div>
+                            @foreach (Reference item in references)
+                            {
+                                <a href="@item.DisplayAs" target="_blank" class="label-my border">@item.Text</a>
+                            }
+                        </section>
+                    }
+                }
+
+                @if (Model.Attributes?.Collection.Count > 0)
+                {
+                    <section class="row frame shadow-box default-padding label-container">
+                        @Html.DisplayFor(model => model.Attributes)
+                    </section>
+                }
+            </div>
+        </section>
+
+        <section class="col-md-6">
+            <div class="sm-margin-left">
+                @*Images*@
+                <aside id="images" class="row">
+                    @Html.DisplayFor(model => Model.Images, new { id = "Images", @class = "row" })
+                </aside>
+
+
+                @if (Model.References?.Collection?.Count > 0)
+                {
+                    <section class="row">
+                        @foreach (Reference item in Model.References.Collection.Where(item => item.Type == ReferenceType.Youtube).ToArray())
+                        {
+                        <aside class="row frame shadow-box reset-margins col-sm-6 col-md-12 col-lg-6">
+                            <div class="embed-responsive aspect-16by9">
+                                <iframe src="@item.DisplayAs" frameborder="0"></iframe>
+                            </div>
+                        </aside>
+                        }
+                    </section>
+                }
+            </div>
+        </section>
+    </div>
+</article>
+
+@Html.BackButtonBar(RecordLabel.Web.Localization.ApplicationLocalization.View_BackToReleases)

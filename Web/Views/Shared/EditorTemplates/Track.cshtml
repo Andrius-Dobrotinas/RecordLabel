@@ -7,9 +7,9 @@
         @Html.ValidationMessageFor(model => model.Title, String.Empty, new { @class = "text-danger" })
     </div>
 
-    <label class="control-label col-md-2">Reference</label>
+    <label class="control-label col-md-2">@RecordLabel.Content.Localization.ContentLocalization.Reference</label>
     <div class="reference-view-line key-value frame col-md-10 input-group">
-        <span class="text-muted input-group-addon">@(Model?.Reference?.Text)</span>:<span class="val label form-control"><a href="@(Model?.Reference?.DisplayAs)" class="">@(Model?.Reference?.Target)</a></span> <div class="glyphicon"><button type="button" class="glyphicon-pencil btn btn-default" onclick="editreference(this);"></button></div>
+        <span class="text-muted input-group-addon">@(Model?.Reference?.Text)</span>:<span class="val label form-control"><a href="@(Model?.Reference?.TargetUrl)">@(Model?.Reference?.DisplayTargetAs)</a></span> <div class="glyphicon"><button type="button" class="glyphicon-pencil btn btn-default" onclick="editreference(this);"></button></div>
     </div>
     <div class="reference-edit simply-hide frame col-md-10">
         @Html.EditorFor(model => model.Reference)

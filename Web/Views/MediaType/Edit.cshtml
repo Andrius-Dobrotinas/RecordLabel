@@ -26,11 +26,11 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-success" />
-                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default", role = "button" })
+                @Html.ActionLink(RecordLabel.Web.Localization.ApplicationLocalization.Cancel, "Index", null, new { @class = "btn btn-default", role = "button" })
             </div>
         </div>
     </div>
 }
 @Html.Partial("DeleteModelButton")
 
-@Html.BackButtonBar("Back to Media Types")
+@Html.BackButtonBar(RecordLabel.Web.Localization.AdminApplicationLocalization.Edit_BackToMediaTypes)

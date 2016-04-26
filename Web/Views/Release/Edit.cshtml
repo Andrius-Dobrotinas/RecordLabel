@@ -1,4 +1,7 @@
 ﻿@using RecordLabel.Content
+@using RecordLabel.Content.Localization
+@using RecordLabel.Web.Localization
+
 @model Release
 
 @System.Web.Optimization.Styles.Render("~/Css/EditWithImages")
@@ -76,12 +79,12 @@
 
             Dictionary<string, object> htmlAttributesForIsMasterVersion = new Dictionary<string, object>();
             htmlAttributesForIsMasterVersion.Add("class", "checkbox");
-            htmlAttributesForIsMasterVersion.Add("title", "If checked, this release will be in the Other Versions list for other releases to be used as a primary version");
+            htmlAttributesForIsMasterVersion.Add("title", AdminApplicationLocalization.Edit_MasterVersion_Info);
 
             if (primaryVersionDisabled == true)
             {
                 htmlAttributesForIsMasterVersion.Add("disabled", String.Empty);
-                htmlAttributesForIsMasterVersion["title"] = "This option cannot be changed because this release serves as a primary version for other releases. To be able to change this value, you need to remove this association from other releases referencing this one";
+                htmlAttributesForIsMasterVersion["title"] = AdminApplicationLocalization.Edit_MasterVersion_Info_CantChangeOption;
             }
         }
         <div class="form-group">
@@ -118,31 +121,31 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">References</label>
+            <label class="control-label col-md-2">@ContentLocalization.References</label>
             <div class="col-md-10">
-                @Html.ModalOpenButton("ReferencesModal", "Edit References")
+                @Html.ModalOpenButton("ReferencesModal", AdminApplicationLocalization.Edit_EditReferences)
             </div>
         </div>
         
         <div class="form-group">
-            <label class="control-label col-md-2">Tracklist</label>
+            <label class="control-label col-md-2">@ContentLocalization.Tracklist</label>
             <div class="col-md-10">
-                @Html.ModalOpenButton("TracklistModal", "Edit Tracklist")
+                @Html.ModalOpenButton("TracklistModal", AdminApplicationLocalization.Edit_EditTracklist)
             </div>
         </div>
 
         <div>
             @{
                 MvcHtmlString refEditor = Html.EditorForASet<Release, ReferenceSet, Reference>(model => model.References, "ModelReferences");
-                MvcHtmlString addRefBtn = Html.ButtonForModal("Add Reference", null, "addReferenceBtn");
-                @Html.ModalDialog("ReferencesModal", refEditor, "References", addRefBtn);
+                MvcHtmlString addRefBtn = Html.ButtonForModal(AdminApplicationLocalization.Edit_AddReference, null, "addReferenceBtn");
+                @Html.ModalDialog("ReferencesModal", refEditor, ContentLocalization.References, addRefBtn);
             }
         </div>
         <div>
             @{
                 MvcHtmlString trackEditor = Html.EditorForASet<Release, Tracklist, Track>(model => model.Tracklist, "Tracklist");
-                MvcHtmlString addTrackBtn = Html.ButtonForModal("Add Track", null, "addTrackBtn");
-                @Html.ModalDialog("TracklistModal", trackEditor, "Tracklist", addTrackBtn);
+                MvcHtmlString addTrackBtn = Html.ButtonForModal(AdminApplicationLocalization.Edit_AddTrack, null, "addTrackBtn");
+                @Html.ModalDialog("TracklistModal", trackEditor, ContentLocalization.Tracklist, addTrackBtn);
             }
         </div>
 
@@ -189,7 +192,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-success" />
-                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default", role = "button" })
+                @Html.ActionLink(ApplicationLocalization.Cancel, "Index", null, new { @class = "btn btn-default", role = "button" })
             </div>
         </div>
     </div>
@@ -201,4 +204,4 @@
     @(Html.EditorTemplateFor(model => model.Tracklist.Collection))
 </div>
 
-@Html.BackButtonBar("Back to Releases")
+@Html.BackButtonBar(ApplicationLocalization.View_BackToReleases)

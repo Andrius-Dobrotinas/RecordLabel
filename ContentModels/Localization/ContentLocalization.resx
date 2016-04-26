@@ -237,4 +237,7 @@
   <data name="AttributeType_Genre" xml:space="preserve">
     <value>Genre</value>
   </data>
+  <data name="MediaTypes" xml:space="preserve">
+    <value>Media Types</value>
+  </data>
 </root>

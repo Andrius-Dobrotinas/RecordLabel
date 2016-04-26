@@ -1,4 +1,7 @@
 ﻿@using RecordLabel.Content
+@using RecordLabel.Content.Localization
+@using RecordLabel.Web.Localization
+
 @model Article
 
 @System.Web.Optimization.Styles.Render("~/Css/EditWithImages")
@@ -39,17 +42,17 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">References</label>
+            <label class="control-label col-md-2">@ContentLocalization.References</label>
             <div class="col-md-10">
-                @Html.ModalOpenButton("ReferencesModal", "Edit References")
+                @Html.ModalOpenButton("ReferencesModal", AdminApplicationLocalization.Edit_EditReferences)
             </div>
         </div>
 
         <div>
             @{
                 MvcHtmlString refEditor = Html.EditorForASet<Article, ReferenceSet, Reference>(model => model.References, "ModelReferences");
-                MvcHtmlString addRefBtn = Html.ButtonForModal("Add Reference", null, "addReferenceBtn");
-                @Html.ModalDialog("ReferencesModal", refEditor, "References", addRefBtn);
+                MvcHtmlString addRefBtn = Html.ButtonForModal(AdminApplicationLocalization.Edit_AddReference, null, "addReferenceBtn");
+                @Html.ModalDialog("ReferencesModal", refEditor, ContentLocalization.References, addRefBtn);
             }
         </div>
 
@@ -60,7 +63,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-success" />
-                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default", role = "button" })
+                @Html.ActionLink(ApplicationLocalization.Cancel, "Index", null, new { @class = "btn btn-default", role = "button" })
             </div>
         </div>
     </div>
@@ -70,4 +73,4 @@
 <div id="Templates">
     @(Html.EditorTemplateFor(model => model.References.Collection))
 </div>
-@Html.BackButtonBar("Back to Articles")
+@Html.BackButtonBar(ApplicationLocalization.View_BackToNews)

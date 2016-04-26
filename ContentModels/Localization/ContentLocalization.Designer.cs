@@ -205,6 +205,15 @@ namespace RecordLabel.Content.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Media Types.
+        /// </summary>
+        public static string MediaTypes {
+            get {
+                return ResourceManager.GetString("MediaTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Metadata_Name {

@@ -1,6 +1,6 @@
 ﻿@model LoadMoreBarModel
 
 <div class="row button-bar bottom dark-blanket" id="LoadMore" data-count="@Model.ItemCount" data-batch-size="@Settings.ListItemBatchSize" data-url="/@Model.Controller/@Model.Action" data-source-id="@Model.FilterSourceId">
-    <div class="btn btn-default">Load more...</div>
+    <div class="btn btn-default">@RecordLabel.Web.Localization.ApplicationLocalization.LoadMore</div>
     <img id="loader" src="@Url.Content($"~/{Settings.StaticImageDirectory}/loader.gif")" />
 </div>

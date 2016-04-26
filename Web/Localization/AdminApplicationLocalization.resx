@@ -117,6 +117,48 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Attributes" xml:space="preserve">
+    <value>Attributes</value>
+  </data>
+  <data name="ChooseAnImage" xml:space="preserve">
+    <value>Choose an Image...</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Edit_AddImage" xml:space="preserve">
+    <value>Add Image</value>
+  </data>
+  <data name="Edit_AddNew" xml:space="preserve">
+    <value>Add New</value>
+  </data>
+  <data name="Edit_AddReference" xml:space="preserve">
+    <value>Add Reference</value>
+  </data>
+  <data name="Edit_AddTrack" xml:space="preserve">
+    <value>Add Track</value>
+  </data>
+  <data name="Edit_BackToArtists" xml:space="preserve">
+    <value>Back to Artists</value>
+  </data>
+  <data name="Edit_BackToAttributes" xml:space="preserve">
+    <value>Back to Attributes</value>
+  </data>
+  <data name="Edit_BackToMediaTypes" xml:space="preserve">
+    <value>Back to Media Types</value>
+  </data>
+  <data name="Edit_EditReferences" xml:space="preserve">
+    <value>Edit References</value>
+  </data>
+  <data name="Edit_EditTracklist" xml:space="preserve">
+    <value>Edit Tracklist</value>
+  </data>
+  <data name="Edit_MasterVersion_Info" xml:space="preserve">
+    <value>If checked, this release will be in the Other Versions list for other releases to be used as a primary version</value>
+  </data>
+  <data name="Edit_MasterVersion_Info_CantChangeOption" xml:space="preserve">
+    <value>This option cannot be changed because this release serves as a primary version for other releases. To be able to change this value, you need to remove this association from other releases referencing this one</value>
+  </data>
   <data name="Login_Password" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -125,6 +167,9 @@
   </data>
   <data name="Login_UserName" xml:space="preserve">
     <value>User Name</value>
+  </data>
+  <data name="Modal_OK" xml:space="preserve">
+    <value>OK</value>
   </data>
   <data name="NavSection_Artists" xml:space="preserve">
     <value>Artists</value>

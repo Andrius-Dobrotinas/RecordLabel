@@ -24,7 +24,7 @@
                                     @*<div><span class="text-muted">@(i+1).</span><span>@item.Title</span>
                                         @if (item.Reference != null)
                                         {
-                                            <a style="font-style: italic;" href="@item.Reference.DisplayAs">@item.Reference.Name</a>
+                                            <a style="font-style: italic;" href="@item.Reference.TargetUrl">@item.Reference.Name</a>
                                         }
                                     </div>*@
                                     <div class="track">
@@ -46,7 +46,7 @@
                                                     }
 
                                                 }
-                                                <a href="@item.Reference.DisplayAs" target="_blank" class="glyphicon @icon"></a>
+                                                <a href="@item.Reference.TargetUrl" target="_blank" class="glyphicon @icon"></a>
                                             }
                                         </span>                                  
                                     </div>
@@ -128,7 +128,7 @@
                             @foreach (Reference item in references)
                             {
                                 <aside class="key-value">
-                                    @item.Text:<span><a href="@item.DisplayAs" class="bold left-margin-5">@item.DisplayAs</a></span>
+                                    @item.Text:<span><a href="@item.TargetUrl" class="bold left-margin-5">@item.DisplayTargetAs</a></span>
                                 </aside>
                             }
                         </section>*@
@@ -137,7 +137,7 @@
                             <div class="text-muted">@RecordLabel.Content.Localization.ContentLocalization.References</div>
                             @foreach (Reference item in references)
                             {
-                                <a href="@item.DisplayAs" target="_blank" class="label-my border">@item.Text</a>
+                                <a href="@item.TargetUrl" target="_blank" class="label-my border">@item.Text</a>
                             }
                         </section>
                     }
@@ -167,7 +167,7 @@
                         {
                         <aside class="row frame shadow-box reset-margins col-sm-6 col-md-12 col-lg-6">
                             <div class="embed-responsive aspect-16by9">
-                                <iframe src="@item.DisplayAs" frameborder="0"></iframe>
+                                <iframe src="@item.TargetUrl" frameborder="0"></iframe>
                             </div>
                         </aside>
                         }

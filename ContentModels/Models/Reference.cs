@@ -21,20 +21,29 @@ namespace RecordLabel.Content
         public ReferenceType Type { get; set; }
 
         [NotMapped]
-        [Display(ResourceType = typeof(ContentLocalization), Name = "Reference_DisplayAs")]
-        public string DisplayAs {
+        public string TargetUrl
+        {
             get
             {
                 if (Type == ReferenceType.Youtube)
                 {
                     return GenerateYoutubeLink();
                 }
+                else if ((Type == ReferenceType.Website || Type == ReferenceType.File) &&
+                    !(Target.StartsWith("http") || Target.StartsWith("ftp")))
+                {
+                    return $"http://{Target}";
+                }
                 else
                 {
-                    return Target?.Replace("http://", "").Replace("https://", "");
+                    return Target;
                 }
             }
         }
+
+        [NotMapped]
+        [Display(ResourceType = typeof(ContentLocalization), Name = "Reference_DisplayTargetAs")]
+        public string DisplayTargetAs => Target?.Replace("http://", String.Empty).Replace("https://", String.Empty).Replace("ftp://", String.Empty);
 
         [Display(ResourceType = typeof(ContentLocalization), Name = "Order")]
         public int Order { get; set; }

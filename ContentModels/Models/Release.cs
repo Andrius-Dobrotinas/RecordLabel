@@ -188,15 +188,6 @@ namespace RecordLabel.Content
         /// <param name="releaseDbSet"></param>
         public void LoadOtherVersions(DbSet<Release> releaseDbSet)
         {
-            LoadOtherVersions(releaseDbSet, null);
-        }
-
-        /// <summary>
-        /// Loads all other versions of this release.
-        /// </summary>
-        /// <param name="releaseDbSet"></param>
-        public void LoadOtherVersions(DbSet<Release> releaseDbSet, Func<IQueryable<Release>, IQueryable<Release>> extraOperationsOnSelectedRelease)
-        {
             if (IsMasterVersion == true)
             {
                 OtherVersions = LoadSlaveVersions(releaseDbSet);
@@ -208,6 +199,11 @@ namespace RecordLabel.Content
             }
         }
 
+        /// <summary>
+        /// Loads all releases that have this release as their Master version
+        /// </summary>
+        /// <param name="releaseDbSet"></param>
+        /// <returns></returns>
         private IList<Release> LoadSlaveVersions(DbSet<Release> releaseDbSet)
         {
             return releaseDbSet.Where(item => item.MasterVersionId == this.Id).ToList();

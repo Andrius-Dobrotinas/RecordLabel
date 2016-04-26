@@ -1,4 +1,6 @@
-﻿@model RecordLabel.Content.Metadata.Attribute
+﻿@using RecordLabel.Web.Localization
+
+@model RecordLabel.Content.Metadata.Attribute
 
 @System.Web.Optimization.Styles.Render("~/Css/Edit")
 @System.Web.Optimization.Scripts.Render("~/Js/Metadata/Edit")
@@ -32,11 +34,11 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-success" />
-                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default", role = "button" })
+                @Html.ActionLink(ApplicationLocalization.Cancel, "Index", null, new { @class = "btn btn-default", role = "button" })
             </div>
         </div>
     </div>
 }
 @Html.Partial("DeleteModelButton")
 
-@Html.BackButtonBar("Back to Attributes")
+@Html.BackButtonBar(AdminApplicationLocalization.Edit_BackToAttributes)

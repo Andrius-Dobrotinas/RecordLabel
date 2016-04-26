@@ -1,12 +1,13 @@
 ﻿@using RecordLabel
 @using RecordLabel.Content
+
 @model IEnumerable<RecordLabel.Content.Metadata.Attribute>
 
 @System.Web.Optimization.Styles.Render("~/Css/Admin")
 
 @{
     Layout = "~/Views/Shared/_ListLayout.cshtml";
-    ViewBag.Title = "Attributes";
+    ViewBag.Title = RecordLabel.Web.Localization.AdminApplicationLocalization.Attributes;
 }
 
 <ul class="plain-list">

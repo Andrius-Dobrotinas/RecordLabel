@@ -43,7 +43,7 @@
                         <div class="text-muted">Links</div>
                         @foreach (Reference item in references)
                         {
-                            <a href="@item.DisplayAs" target="_blank" class="label-my border">@item.Text</a>
+                            <a href="@item.TargetUrl" target="_blank" class="label-my border">@item.Text</a>
                         }
                     </section>
                 }
@@ -62,7 +62,7 @@
                     {
                         <aside class="row frame shadow-box reset-margins col-sm-6 col-md-12 col-lg-6">
                             <div class="embed-responsive aspect-16by9">
-                                <iframe src="@item.DisplayAs" frameborder="0"></iframe>
+                                <iframe src="@item.TargetUrl" frameborder="0"></iframe>
                             </div>
                         </aside>
                     }
@@ -84,7 +84,7 @@
                         <div class="text-muted">Links</div>
                         @foreach (Reference item in references)
                         {
-                            <a href="@item.DisplayAs" class="label-my border">@item.Text</a>
+                            <a href="@item.TargetUrl" class="label-my border">@item.Text</a>
                         }
                     </section>
                 }
@@ -101,4 +101,4 @@
         </div>
     </div>
 </article>
-@Html.BackButtonBar("Back to News")
+@Html.BackButtonBar(RecordLabel.Web.Localization.ApplicationLocalization.View_BackToNews)

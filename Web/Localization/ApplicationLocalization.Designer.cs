@@ -61,6 +61,24 @@ namespace RecordLabel.Web.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Artists.
+        /// </summary>
+        public static string Artists {
+            get {
+                return ResourceManager.GetString("Artists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to More News....
         /// </summary>
         public static string Home_MoreNews {
@@ -75,6 +93,15 @@ namespace RecordLabel.Web.Localization {
         public static string Home_NewReleases {
             get {
                 return ResourceManager.GetString("Home_NewReleases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load More.
+        /// </summary>
+        public static string LoadMore {
+            get {
+                return ResourceManager.GetString("LoadMore", resourceCulture);
             }
         }
         
@@ -124,11 +151,38 @@ namespace RecordLabel.Web.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string PageTitle_Error {
+            get {
+                return ResourceManager.GetString("PageTitle_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Releases.
+        /// </summary>
+        public static string Releases {
+            get {
+                return ResourceManager.GetString("Releases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occured in the application.
         /// </summary>
         public static string UnexpectedError {
             get {
                 return ResourceManager.GetString("UnexpectedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back to News.
+        /// </summary>
+        public static string View_BackToNews {
+            get {
+                return ResourceManager.GetString("View_BackToNews", resourceCulture);
             }
         }
         

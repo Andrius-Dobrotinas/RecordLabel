@@ -50,13 +50,7 @@ namespace RecordLabel.Web
 
         protected void Application_AcquireRequestState(object sender, EventArgs e)
         {
-            //Set current culture from session
-            if (HttpContext.Current.Session != null)
-            {
-                CultureInfo culture = HttpContext.Current.Session["Culture"] as CultureInfo ?? CultureInfo.GetCultureInfo(RecordLabel.Localization.DefaultLanguageCode);
-                Thread.CurrentThread.CurrentCulture = culture;
-                Thread.CurrentThread.CurrentUICulture = culture;
-            }
+            Global.SetCurrentThreadCultureFromSession();
         }
     }
 }

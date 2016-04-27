@@ -120,6 +120,9 @@
   <data name="Attributes" xml:space="preserve">
     <value>Attributes</value>
   </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Back to List</value>
+  </data>
   <data name="ChooseAnImage" xml:space="preserve">
     <value>Choose an Image...</value>
   </data>
@@ -159,6 +162,9 @@
   <data name="Edit_MasterVersion_Info_CantChangeOption" xml:space="preserve">
     <value>This option cannot be changed because this release serves as a primary version for other releases. To be able to change this value, you need to remove this association from other releases referencing this one</value>
   </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Log In</value>
+  </data>
   <data name="Login_Password" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -178,7 +184,7 @@
     <value>Attributes</value>
   </data>
   <data name="NavSection_LogOut" xml:space="preserve">
-    <value>LogOut</value>
+    <value>Log Out</value>
   </data>
   <data name="NavSection_MediaTypes" xml:space="preserve">
     <value>MediaTypes</value>

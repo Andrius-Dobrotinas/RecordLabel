@@ -70,6 +70,15 @@ namespace RecordLabel.Web.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back to List.
+        /// </summary>
+        public static string BackToList {
+            get {
+                return ResourceManager.GetString("BackToList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose an Image....
         /// </summary>
         public static string ChooseAnImage {
@@ -187,6 +196,15 @@ namespace RecordLabel.Web.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Log In.
+        /// </summary>
+        public static string LogIn {
+            get {
+                return ResourceManager.GetString("LogIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Login_Password {
@@ -241,7 +259,7 @@ namespace RecordLabel.Web.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LogOut.
+        ///   Looks up a localized string similar to Log Out.
         /// </summary>
         public static string NavSection_LogOut {
             get {

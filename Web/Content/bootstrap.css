@@ -4842,18 +4842,25 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .label,
 .label2,
-.label-my {
+.label-my,
+.label-wrap {
   padding: .2em .6em .3em;
   font-weight: bold;
   line-height: 1;
-  text-align: center;
-  white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25em;
 }
 
+.label,
 .label2,
 .label-my {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.label2,
+.label-my,
+.label-wrap {
   display: inline-block;
 }
 
@@ -4873,14 +4880,17 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .label2[href]:hover,
 .label2[href]:focus,
 .label-my[href]:hover,
-.label-my[href]:focus {
+.label-my[href]:focus,
+.label-wrap[href]:hover,
+.label-wrap[href]:focus {
   text-decoration: none;
   cursor: pointer;
 }
 
 .label:empty,
 .label2:empty,
-.label-my:empty {
+.label-my:empty,
+.label-wrap:empty {
   display: none;
 }
 

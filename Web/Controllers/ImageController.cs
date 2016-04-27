@@ -14,12 +14,14 @@ namespace RecordLabel.Web.Controllers
         /// Returns an image selector/previewer as a partial view
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         public PartialViewResult AddImage()
         {
             return PartialView("~/Views/BaseWithImages/AddImage.cshtml");
         }
 
         [HttpPost]
+        [Authorize]
         public HttpResponseMessage Delete(int id)
         {
             if (id == 0) throw new IndexOutOfRangeException();

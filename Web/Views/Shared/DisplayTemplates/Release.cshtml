@@ -4,7 +4,7 @@
 <header>
     @Html.ActionLink(Model.Artist.Name, "ByArtist", new { id = Model.ArtistId }, new { @class = "title on-top" })
     @*@Html.ActionLink(Model.Artist?.Name, "View", "Artist", new { id = Model.ArtistId }, new { @class = "label invert no-left-pad subtitle on-top" })*@
-    @Html.ActionLink(Model.Title, "View", new { id = Model.Id }, new { @class = "label2 invert no-left-pad subtitle on-top" })
+    @Html.ActionLink(Model.Title, "View", new { id = Model.Id }, new { @class = "label-wrap invert no-left-pad subtitle on-top" })
 </header>
 <div>
     <span class="text-muted on-top versions-menu-trigger">

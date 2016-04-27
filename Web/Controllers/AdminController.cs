@@ -22,12 +22,16 @@ namespace RecordLabel.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(LoginData data)
+        public ActionResult Login(LoginData data, string ReturnUrl)
         {
-           
             if (FormsAuthentication.Authenticate(data.UserName, data.Password))
             {
                 FormsAuthentication.SetAuthCookie(data.UserName, data.RememberMe);
+                if (!String.IsNullOrEmpty(ReturnUrl))
+                {
+                    return Redirect(ReturnUrl);
+                }
+                
                 return RedirectToAction("Index");
             }
             else

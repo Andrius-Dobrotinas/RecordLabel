@@ -73,6 +73,7 @@ namespace RecordLabel.Web.Controllers
             return View("View", entity);
         }
 
+        [Authorize]
         public virtual ActionResult Create()
         {
             PrepareViewBagForCreate();
@@ -84,6 +85,7 @@ namespace RecordLabel.Web.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize]
         public virtual ActionResult Edit(int id)
         {
             TModel model = SelectModel(id);
@@ -100,6 +102,7 @@ namespace RecordLabel.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Create(TModel postedModel)
         {
             return SavePostedModel(postedModel, modelPosted => EntitySet.Add(modelPosted));//(model, modelPosted) => EntitySet.Add(model));
@@ -108,6 +111,7 @@ namespace RecordLabel.Web.Controllers
         delegate void AddChangesToDbContext(TModel postedModel);
 
         [HttpPost]
+        [Authorize]
         public virtual ActionResult Edit(TModel postedModel)
         {
             return SavePostedModel(postedModel, modelPosted =>
@@ -141,6 +145,7 @@ namespace RecordLabel.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public virtual ActionResult Delete(int id)
         {
             TModel model = SelectModelForDeletion(id);

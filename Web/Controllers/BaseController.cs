@@ -44,11 +44,8 @@ namespace RecordLabel.Web.Controllers
         {
             base.OnAuthentication(filterContext);
 
-            //Set Admin mode
-            if (HttpContext.User.Identity.IsAuthenticated == true)
-            {
-                HttpContext.Session.Add("AdminMode", true);
-            }
+            //Set/unset Admin mode
+            HttpContext.Session.Add("AdminMode", HttpContext.User.Identity.IsAuthenticated);
         }
 
         protected override void Dispose(bool disposing)

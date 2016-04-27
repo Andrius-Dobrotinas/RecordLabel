@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 namespace RecordLabel.Web
@@ -42,6 +43,17 @@ namespace RecordLabel.Web
                 lang = RecordLabel.Localization.DefaultLanguageCode;
             }
             HttpContext.Current.Session["Culture"] = CultureInfo.GetCultureInfo(lang);
+        }
+
+        public static void SetCurrentThreadCultureFromSession ()
+        {
+            if (HttpContext.Current.Session != null)
+            {
+                CultureInfo culture = HttpContext.Current.Session["Culture"] as CultureInfo ??
+                    CultureInfo.GetCultureInfo(RecordLabel.Localization.DefaultLanguageCode);
+                Thread.CurrentThread.CurrentCulture = culture;
+                Thread.CurrentThread.CurrentUICulture = culture;
+            }
         }
     }
 }

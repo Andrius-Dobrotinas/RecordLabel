@@ -113,7 +113,7 @@
                         @Html.LabelFor(model => model.OtherVersions, new { @class = "text-muted" }):
                         @foreach (Release item in Model.OtherVersions)
                         {
-                            @Html.ActionLink($"{item.Media.Name} ({item.Date})", "View", new { Id = item.Id }, new { @class = "label-my border" })
+                            @Html.ActionLink($"{item.Media.Name} ({item.Date})", "View", new { Id = item.Id }, new { @class = "label2 invert2 border" })
                         }
                     </section>
                 }
@@ -137,7 +137,7 @@
                             <div class="text-muted">@RecordLabel.Content.Localization.ContentLocalization.References</div>
                             @foreach (Reference item in references)
                             {
-                                <a href="@item.TargetUrl" target="_blank" class="label-my border">@item.Text</a>
+                                <a href="@item.TargetUrl" target="_blank" class="label2 invert2 border">@item.Text</a>
                             }
                         </section>
                     }

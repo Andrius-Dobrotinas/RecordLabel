@@ -240,11 +240,9 @@ a.default-text-style:active {
 
 .label-container .label,
 .label-container .label2,
-.label-container .label-my,
 .label-container .label-wrap,
 .contains-labels .label,
 .contains-labels .label2,
-.contains-labels .label-my,
 .contains-labels .label-wrap {
     margin-top: 5px;
 }
@@ -258,24 +256,22 @@ a.label:hover, a.label:active {
 }*/
 
 /*SECOND VERSION - LINKS*/
-a.label2,
-a.label2:hover,
-a.label2:active,
-a.label2[href]:hover,
-a.label2[href]:active,
-a.label-wrap,
-a.label-wrap:hover,
-a.label-wrap:active,
-a.label-wrap[href]:hover,
-a.label-wrap[href]:active {
+a.label2:not(.invert2),
+a.label2:not(.invert2):hover,
+a.label2:not(.invert2):active,
+a.label2[href]:not(.invert2):hover,
+a.label2[href]:not(.invert2):active,
+a.label-wrap:not(.invert),
+a.label-wrap:not(.invert):hover,
+a.label-wrap:not(.invert):active,
+a.label-wrap[href]:not(.invert):hover,
+a.label-wrap[href]:not(.invert):active {
     color: #008f8f;
     /*color: #428bca;*/
     /* color: #00755e; */
 }
 a.label2:hover,
 a.label2:active,
-a.label-my:hover,
-a.label-my:active,
 a.label-wrap:hover,
 a.label-wrap:active,
 .list-item:hover {

@@ -5,9 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using RecordLabel.Content;
 using System.Data.Entity;
-using RecordLabel.Web.ModelBinding;
 using System.Linq.Expressions;
-using System.Reflection;
 
 namespace RecordLabel.Web.Controllers
 {
@@ -104,15 +102,21 @@ namespace RecordLabel.Web.Controllers
 
         public ActionResult ByArtist(int id)
         {
-            Release[] releases = SelectModels(0, item => item.ArtistId == id); 
+            Release[] releases = SelectModels(0, item => item.ArtistId == id);
             return View("List", releases);
         }
-
+        
         [AjaxOnly]
         public EmptyResult ByArtist(int id, int batch)
         {
             Release[] releases = SelectModels(batch, item => item.ArtistId == id);
             return RenderPartialViewsToResponse(releases);
+        }
+
+        public ActionResult ByAttribute(int id)
+        {
+            Release[] releases = SelectModels(0, item => item.Attributes.Collection.FirstOrDefault(i => i.Id == id) != null); //db.Releases.Include(item => item.Attributes).Where(item => item.Attributes.Any(attr => attr.)
+            return View("List", releases);
         }
 
         protected override Release SelectModel(int id)
@@ -145,10 +149,5 @@ namespace RecordLabel.Web.Controllers
             HttpContext.ApplicationInstance.CompleteRequest();
             return new EmptyResult();
         }
-
-        /*public ActionResult ByAttribute(RecordLabel.Content.Metadata.Attribute model)
-        {
-            db.Releases.Include(item => item.Attributes).Where(item => item.Attributes.Any(attr => attr.)
-        }*/
     }
 }

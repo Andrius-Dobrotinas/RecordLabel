@@ -115,18 +115,6 @@
     //background-color: #f9f9f6;  #f7f7f7; #f9f9f6; whitesmoke;
 }*/
 
-/*VERSIONS MENU*/
-.versions-menu {
-    display: none;
-    position: absolute;
-}
-.versions-menu a {
-    display: block;
-}
-.versions-menu-trigger:hover > .versions-menu {
-    display: inline-table;
-}
-
 
 /*FRAME: SECOND VERSION -- OPTIONAL*/
 .frame, .list-item {
@@ -160,13 +148,6 @@
 /*.list-item a.default-text-style, .list-item a.default-text-style:hover, .list-item a.default-text-style:focus, .list-item a.default-text-style:visited, .list-item a.default-text-style:active {
     color: #303030; #333333;
 }*/
-a.default-text-style,
-a.default-text-style:hover,
-a.default-text-style:focus,
-a.default-text-style:visited,
-a.default-text-style:active {
-    color: #303030; /*#333333;*/
-}
 
 .list-item .title {
     font-size: 24px;
@@ -205,6 +186,15 @@ a.default-text-style:active {
 /*.list-item a, .list-item a:hover, .news-item a, .news-item a:hover {use invert class?
     color: #008f8f; /#008f64;/
 }*/
+
+
+a.default-text-style,
+a.default-text-style:hover,
+a.default-text-style:focus,
+a.default-text-style:visited,
+a.default-text-style:active {
+    color: #303030; /*#333333;*/
+}
 
 
 .default-padding {
@@ -308,6 +298,9 @@ a.label-wrap:active,
     margin-bottom: 20px;
 }
 
+.key-value span.val {
+    font-weight: bold;
+}
 
 /*great for row class*/
 .reset-margins {
@@ -350,18 +343,17 @@ ul.plain-list {
     list-style-type: none;
 }
 
-/*bootstrap extension*/
-.text-muted:hover {
-    color: #303030;
-    cursor: default;
+.h-list-item {
+    margin-right: 5px;
+    font-style:italic;
+}
+.h-list-item::before {
+    margin-right: 0.5em;
+    content: '•';
 }
 
 .mouse-pointer {
     cursor: pointer;
-}
-
-.key-value span.val {
-    font-weight: bold;
 }
 
 .no-left-pad {
@@ -372,8 +364,10 @@ ul.plain-list {
     padding-left: 0.5em;
 }
 
-#loader {
-    display: none;
+/*bootstrap extension*/
+.text-muted:hover {
+    color: #303030;
+    cursor: default;
 }
 
 footer {
@@ -397,6 +391,22 @@ footer,
 
 footer > .container {
     padding-top: 0.5em;
+}
+
+/*SPECIALIZED*/
+#loader {
+    display: none;
+}
+
+.versions-menu {
+    display: none;
+    position: absolute;
+}
+.versions-menu a {
+    display: block;
+}
+.versions-menu-trigger:hover > .versions-menu {
+    display: inline-table;
 }
 
 

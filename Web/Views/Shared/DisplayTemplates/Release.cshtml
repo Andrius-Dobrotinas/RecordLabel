@@ -1,5 +1,6 @@
-﻿@model RecordLabel.Content.Release
-@using RecordLabel.Content;
+﻿@using RecordLabel.Content;
+
+@model Release
 
 <header>
     @Html.ActionLink(Model.Artist.Name, "ByArtist", new { id = Model.ArtistId }, new { @class = "title on-top" })

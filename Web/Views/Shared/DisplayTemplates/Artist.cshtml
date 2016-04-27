@@ -1,116 +1,24 @@
-﻿@model RecordLabel.Content.Artist
-@using RecordLabel.Content;
+﻿@using RecordLabel.Content
+@using RecordLabel.Web.Localization
+
+@model Artist
+
 @{
-    ViewBag.Title = "Artist";
+    ViewBag.Title = ApplicationLocalization.Artists;
 }
 
-@*This pages is under construction since it's unknown how it's supposed to look yet*@
-
-<link rel="stylesheet" type="text/css" href="~/Content/Custom/Lists.css"/>
-
-@*TODO: Take care of styles and move it out to an external file*@
-<style>
-    .list-item-title {
-        font-weight: bold;
-    }
-    .media:hover {
-        background-color: #EFEFEF;
-        /*box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);*/
-        box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
-    }
-
-    .text-uppercase {
-        text-transform: uppercase;
-    }
-
-    .default-text-style {
-      color: #303030 !important;/*#333333;*/
-    }
-
-    .label-info:hover{
-        background-color: #00a0dc;
-    }
-
-    .text-muted:hover {
-        color: #303030;
-    }
-
-    .close ~ .close {
-        padding-left: 2px
-    }
-
-    .right-top-btn {
-        float: right;
-        font-size: 21px;
-        font-weight: bold;
-        line-height: 1;
-        color: #000000;
-        text-shadow: 0 1px 0 #ffffff;
-        opacity: 0.2;
-        filter: alpha(opacity=20);
-    }
-
-    .edit-btn-block {
-        position: absolute;
-        right: 0px;
-        top: 0px;
-    }
-
-    .right-top-btn:hover,
-    .right-top-btn:focus {
-        color: #000000;
-        text-decoration: none;
-        cursor: pointer;
-        opacity: 0.5;
-        filter: alpha(opacity=50);
-    }
-
-    button.right-top-btn {
-        /*padding: 0;*/
-        cursor: pointer;
-        background: transparent;
-        border: 0;
-        -webkit-appearance: none;
-        background-color: #DBDBDB;
-    }
-
-    .children-float-right > * {
-        float: right;
-    }
-
-
-    /*Specific for this page only!*/
-    .h-list-item {
-        margin-right: 5px;
-        font-style:italic;
-    }
-</style>
-
+<header>
+    @Html.ActionLink(Model.Name, "Index", new { id = Model.Id }, new { @class = "title on-top" })
+</header>
 <div>
-    <div style="display: inline-block">
-        <div>
-            <span class="list-item-title">@Html.ActionLink(Model.Name, "Index", new { id = Model.Id })</span>
-        </div>
-    </div>
-    <div style="display: inline-block; vertical-align: top">
-        @if (Model.Attributes?.Collection.Count > 0)
-        {
-            @Html.DisplayFor(model => model.Attributes)
-        }
-    </div>
-</div>
-<div class="text-muted">
-    Releases
     @if (Model.Releases != null)
-            {
-                foreach (Release item in Model.Releases.OrderBy(i => i.Date))
-                {
-            <span class="h-list-item">@Html.ActionLink($"{item.Title} ({item.Date})", "View", "Release", new { id = item.Id }, null)</span>
-        }
+    {
+        <span>@ApplicationLocalization.Releases:</span>
+        <span class="text-muted on-top">
+            @foreach (Release item in Model.Releases.OrderBy(i => i.Date))
+            { 
+                <span class="h-list-item">@Html.ActionLink($"{item.Title} ({item.Date})", "View", "Release", new { id = item.Id }, null)</span>
+            }
+        </span>
     }
-</div>
-<div>
-    <a href="/Artist/View/@Model.Id" class="default-text-style">
-        @Html.Raw(Model.Text)
-    </a>
 </div>

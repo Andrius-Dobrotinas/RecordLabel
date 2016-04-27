@@ -16,6 +16,7 @@ namespace RecordLabel.Web.Controllers
         public ArtistController() : base(new ReleaseContext(), context => context.Artists)
         {
             ItemsPerPage = int.MaxValue;
+            IndexViewName = "~/Views/Shared/List.cshtml";
         }
 
         protected override void PrepareViewBagForCreate()

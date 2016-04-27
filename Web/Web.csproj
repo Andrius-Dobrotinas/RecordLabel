@@ -711,7 +711,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Release\Edit.cshtml" />
     <Content Include="Views\Artist\Edit.cshtml" />
-    <Content Include="Views\Artist\List.cshtml" />
     <Content Include="Views\BaseWithImages\AddImage.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\AttributeSet.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ImageSet.cshtml" />

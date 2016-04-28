@@ -93,32 +93,6 @@ namespace RecordLabel.Web.Controllers
             base.PrepareViewBagForEdit(model);
         }
 
-        [AjaxOnly]
-        public EmptyResult List(int batch)
-        {
-            Release[] releases = SelectModels(batch);
-            return RenderPartialViewsToResponse(releases);
-        }
-
-        public ActionResult ByArtist(int id)
-        {
-            Release[] releases = SelectModels(0, item => item.ArtistId == id);
-            return View("List", releases);
-        }
-        
-        [AjaxOnly]
-        public EmptyResult ByArtist(int id, int batch)
-        {
-            Release[] releases = SelectModels(batch, item => item.ArtistId == id);
-            return RenderPartialViewsToResponse(releases);
-        }
-
-        public ActionResult ByAttribute(int id)
-        {
-            Release[] releases = SelectModels(0, item => item.Attributes.Collection.FirstOrDefault(i => i.Id == id) != null); //db.Releases.Include(item => item.Attributes).Where(item => item.Attributes.Any(attr => attr.)
-            return View("List", releases);
-        }
-
         protected override Release SelectModel(int id)
         {
             DbContext.MediaTypes.Load();
@@ -136,6 +110,54 @@ namespace RecordLabel.Web.Controllers
             releases.ForEach(item => item.LoadOtherVersions(EntitySet));
             DbContext.MediaTypes.Load();
             return releases;
+        }
+
+
+        [AjaxOnly]
+        public EmptyResult List(int batch)
+        {
+            return GetFilteredModelsPartial(batch, null);
+        }
+
+        public ActionResult ByArtist(int id)
+        {
+            return GetFilteredModelsPartial(0, item => item.ArtistId == id);
+        }
+
+        [AjaxOnly]
+        public EmptyResult ByArtist(int id, int batch)
+        {
+            return GetFilteredModelsPartial(batch, item => item.ArtistId == id);
+        }
+
+        public ActionResult ByAttribute(int id)
+        {
+            return GetFilteredModels(0, item => item.Attributes.Collection.FirstOrDefault(i => i.Id == id) != null);
+        }
+
+        [AjaxOnly]
+        public EmptyResult ByAttribute(int id, int batch)
+        {
+            return GetFilteredModelsPartial(batch, item => item.Attributes.Collection.FirstOrDefault(i => i.Id == id) != null);
+        }
+
+
+        /// <summary>
+        /// Returns a view with a batch of models selected using a filter
+        /// </summary>
+        private ActionResult GetFilteredModels(int batch, Expression<Func<Release, bool>> filter)
+        {
+            Release[] releases = SelectModels(batch, filter);
+            return View("List", releases);
+        }
+
+        /// <summary>
+        /// Renders a partial view with a batch of models selected using a filter to the response
+        /// </summary>
+        private EmptyResult GetFilteredModelsPartial(int batch, Expression<Func<Release, bool>> filter)
+        {
+            Release[] releases = SelectModels(batch, filter);
+            return RenderPartialViewsToResponse(releases);
         }
 
         private EmptyResult RenderPartialViewsToResponse(Release[] models)

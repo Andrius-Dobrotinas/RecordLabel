@@ -120,6 +120,9 @@
   <data name="Attributes" xml:space="preserve">
     <value>Attributes</value>
   </data>
+  <data name="Auth_BadCredentials" xml:space="preserve">
+    <value>Bad user name or password</value>
+  </data>
   <data name="BackToList" xml:space="preserve">
     <value>Back to List</value>
   </data>

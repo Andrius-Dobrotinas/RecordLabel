@@ -87,8 +87,10 @@ namespace RecordLabel.Web.ModelBinding
                 postedFile.SaveAs(absoluteFilePath);
                 ImageProcessing.ImageProcessor.ResizeAndWriteFile(postedFile.InputStream, absoluteThumbnFilePath, Settings.ThumbnailWidth, Settings.ThumbnailQualityLevel);
             }
-            catch
+            catch (Exception exception)
             {
+                Logger.LogError(exception, nameof(BaseWithImagesBinder));
+
                 if (File.Exists(absoluteFilePath))
                 {
                     File.Delete(absoluteFilePath);
@@ -98,7 +100,6 @@ namespace RecordLabel.Web.ModelBinding
                     File.Delete(absoluteThumbnFilePath);
                 }
                 return null;
-                //TODO: log this exception
             }
             return image;
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using log4net;
 
 namespace RecordLabel.Web
 {
@@ -7,7 +8,7 @@ namespace RecordLabel.Web
     {
         public override void OnException(ExceptionContext filterContext)
         {
-            //log
+            Logger.LogError(filterContext.Exception);
 
             HandledException handledException = filterContext.Exception as HandledException;
             //If it's not a Handled exception, and we're not in admin mode, just show a generic error message

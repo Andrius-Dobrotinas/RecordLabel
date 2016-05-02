@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using RecordLabel.Web;
 
 namespace RecordLabel.Web.Controllers
 {
@@ -36,7 +35,7 @@ namespace RecordLabel.Web.Controllers
             }
             else
             {
-                ModelState.AddModelError(String.Empty, "Bad user name or password");
+                ModelState.AddModelError(String.Empty, Localization.AdminApplicationLocalization.Auth_BadCredentials);
                 return View();
             }
             

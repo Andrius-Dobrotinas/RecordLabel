@@ -68,9 +68,13 @@ namespace RecordLabel.Web.Controllers
 
         public virtual ActionResult View(int id)
         {
-            TModel entity = SelectModel(id);
-            PrepareViewBagForView(entity);
-            return View("View", entity);
+            TModel model = SelectModel(id);
+            if (EntityExists(model))
+            {
+                PrepareViewBagForView(model);
+                return View("View", model);
+            }
+            else return RedirectToAction("Index");
         }
 
         [Authorize]
@@ -95,10 +99,7 @@ namespace RecordLabel.Web.Controllers
                 PrepareViewBagForEdit(model);
                 return View(EditViewName, model);
             }
-            else
-            {
-                return RedirectToAction("Index");
-            }
+            else return RedirectToAction("Index");
         }
 
         [HttpPost]

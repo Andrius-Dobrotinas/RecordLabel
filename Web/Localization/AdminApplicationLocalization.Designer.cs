@@ -70,6 +70,15 @@ namespace RecordLabel.Web.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bad user name or password.
+        /// </summary>
+        public static string Auth_BadCredentials {
+            get {
+                return ResourceManager.GetString("Auth_BadCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back to List.
         /// </summary>
         public static string BackToList {

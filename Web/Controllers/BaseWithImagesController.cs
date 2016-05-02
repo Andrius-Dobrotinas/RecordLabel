@@ -35,11 +35,11 @@ namespace RecordLabel.Web.Controllers
                     try {
                         ImageHelper.DeleteImagePhysically(file.Item1, file.Item2);
                     }
-                    catch
+                    catch (Exception exception)
                     {
+                        Logger.LogError(exception, nameof(BaseWithImagesController<TModel>));
                         continue;
                         //TODO: inform about the error
-                        //TODO: log this exception
                     }
                 }
             }

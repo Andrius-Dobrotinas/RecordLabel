@@ -1,9 +1,9 @@
 # RecordLabel
 ASP.NET MVC application designed for presentation and management of a record label's release catalogue, news and articles
 
-This is a spare-time project. It's an ASP.NET MVC application designed for presentation and management of a record label's release catalogue, news and articles.
-It has been commissioned by a specific client but then cancelled halfway through when they realized they did not have the required infrastructure to host an ASP.NET-based application.
-Since then, I decided to keep working on this project out of personal interest. Currently, it features the original client-commissioned visual design and structure, but I am going to modify and imporove that in the course further of development.
+It's an ASP.NET MVC application designed for presentation and management of a record label's release catalogue, news and articles (a spare time project).
+It was commissioned by a specific client but then cancelled halfway through when they realized they did not have the required infrastructure to host an ASP.NET-based application.
+I decided to keep working on this project out of personal interest. Currently, it features the original client-commissioned visual design and structure, but I am going to modify and imporove that in the course further of development.
 Used technologies:
 • Written in C#
 • JavaScript/jQuery using the object-oriented approach

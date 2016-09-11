@@ -10,6 +10,6 @@ Used technologies:
 • Bootstrap framework for UX
 
 Some interesting features:
-• Every content entry can contain text in multiple languages
-• Dynamic loading of items in a list
-• Logged-in users see "Edit" buttons to editable content in the same publicly accessible pages.
+• All content entries can contain text in multiple languages
+• Dynamic loading of items in lists
+• Logged-in users (administrators) see "Edit" buttons to editable content in the same publicly accessible pages.

@@ -12,7 +12,7 @@
                     <span style="color: azure">@ApplicationLocalization.Nav_Menu</span>
                 </button>
                 <div>
-                    <a href="Home/Index">
+                    <a href="/Home/Index">
                         <img src="@Url.Content($"~/{Settings.StaticImageDirectory}/{Settings.LogoFileName}")" class="pull-left" style="height: 50px" />
                     </a>
                 </div>
@@ -33,7 +33,7 @@
 
                     <li>@Html.ActionLink(ApplicationLocalization.NavSection_News, "Index", "Articles", new { area = "" }, new { @class = "nav" })</li>
                     <li>@Html.ActionLink(ApplicationLocalization.NavSection_Ordering, "Ordering", "Home", new { area = "" }, new { @class = "nav" })</li>
-                    <li>@Html.ActionLink(ApplicationLocalization.NavSection_Contact, "Index", "Home", new { area = "" }, new { @class = "nav" })</li>
+                    <li>@Html.ActionLink(ApplicationLocalization.NavSection_Contact, "Contact", "Home", new { area = "" }, new { @class = "nav" })</li>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Global.CurrentLanguage <span class="caret"></span></a>

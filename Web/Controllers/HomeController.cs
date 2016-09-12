@@ -27,6 +27,16 @@ namespace RecordLabel.Web.Controllers
             return View(IndexViewName, SelectData());
         }
 
+        public ActionResult Ordering()
+        {
+            return View("ToBeDone");
+        }
+
+        public ActionResult Contact()
+        {
+            return View("ToBeDone");
+        }
+
         private Tuple<Release[], Article[]> SelectData()
         {
             DbContext.MediaTypes.Load();

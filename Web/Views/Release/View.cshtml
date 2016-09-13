@@ -12,7 +12,7 @@
         <section class="col-md-6">
             <div class="sm-margin-right">
                 <section class="row frame shadow-box release-info default-padding">
-                    @Html.DisplayFor(model => model.Cover, "Thumbnail", new { @class = "album-cover" })
+                    @Html.DisplayFor(model => model.Cover, "Thumbnail", new { @class = "album-cover album-cover-thumb" })
                     <div>
                         <div id="tracklist">
                             @if (Model.Tracklist?.Collection.Count > 0)

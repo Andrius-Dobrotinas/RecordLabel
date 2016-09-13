@@ -382,7 +382,8 @@ img {
   max-width: 100%;
 }
 
-.img-rounded {
+.img-rounded,
+.album-cover-thumb > img {
   border-radius: 6px;
 }
 
@@ -805,10 +806,10 @@ pre code {
   clear: both;
 }
 
-.row {
+/*.row {
   margin-right: -15px;
   margin-left: -15px;
-}
+}*/
 
 .row:before,
 .row:after {
@@ -880,8 +881,8 @@ pre code {
 .col-lg-12 {
   position: relative;
   min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
+  /*padding-right: 15px;
+  padding-left: 15px;*/
 }
 
 .col-xs-1,
@@ -947,12 +948,13 @@ pre code {
 }
 
 .container {
+    min-width: 320px;
     max-width: 90%; /*for XS screens*/
 }
 
 @media (min-width: 768px) {
   .container {
-    max-width: 95%; /*750px;*/
+    max-width: 90%; /*750px;*/
   }
   .col-sm-1,
   .col-sm-2,

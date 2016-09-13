@@ -10,15 +10,13 @@
 @System.Web.Optimization.Styles.Render("~/Css/Shared/List")
 @System.Web.Optimization.Scripts.Render("~/Js/Shared/List")
 
-<div class="content">
-    <div class="row" id="TheList">
-        @foreach (BaseWithImages item in Model)
-        {
-            @Html.ListItemWithImage(item, adminMode)
-        }
-        @*<div class="clearfix visible-xs-block"></div> insert this as a line separator to make different height items go to the next line beautifully. to have a beautiful line separation*@
-        @*http://getbootstrap.com/css/#responsive-utilities*@
-    </div>   
+<div class="row" id="TheList">
+    @foreach (BaseWithImages item in Model)
+    {
+        @Html.ListItemWithImage(item, adminMode)
+    }
+    @*<div class="clearfix visible-xs-block"></div> insert this as a line separator to make different height items go to the next line beautifully. to have a beautiful line separation*@
+    @*http://getbootstrap.com/css/#responsive-utilities*@
 </div>
 
 @Html.LoadMoreBar((ViewData["ItemCount"] as int?).Value, (ViewData["SourceId"] as int?))

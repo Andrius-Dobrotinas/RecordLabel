@@ -1,0 +1,17 @@
+﻿@model RecordLabel.Web.ViewModels.ReleaseSmall
+
+@{
+    string modelName = Request.RequestContext.RouteData.Values["controller"] as string;
+}
+<div class="list-item">
+    <a class="thumb1 album-cover-thumb" href="/Release/View/@Model.Release.Id">
+        <img src="@Url.Content($"~/{Model.Release.Cover?.ThumbnailFileName()}")" />
+    </a>
+    @if (Model.AdminMode)
+    {
+        @Html.EditButton(modelName, Model.Release.Id)
+    }
+    <div class="title">@Html.ActionLink(Model.Release.Artist.Name, "ByArtist", "Release", new { Id = Model.Release.ArtistId }, null)</div>
+    <div class="subtitle">@Html.ActionLink(Model.Release.Title, "View", "Release", new { Id = Model.Release.Id }, null)</div>
+    <div class="text-muted">@Model.Release.Media.Name</div>
+</div>

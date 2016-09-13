@@ -705,7 +705,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ApplicationLocalization.resx</DependentUpon>
     </Compile>
-    <Compile Include="Models\LoginData.cs" />
+    <Compile Include="ViewModels\ReleaseSmall.cs" />
+    <Compile Include="ViewModels\ListItemWithImageModel.cs" />
+    <Compile Include="ViewModels\LoginData.cs" />
     <Compile Include="HtmlHelpers\Models\ModalDialogModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -753,6 +755,7 @@
     <Content Include="Views\Shared\DisplayTemplates\Image.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\ToBeDone.cshtml" />
+    <Content Include="Views\Shared\DisplayPartials\ReleaseSmall.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

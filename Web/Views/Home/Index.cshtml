@@ -4,74 +4,66 @@
 @model Tuple<Release[], Article[]>
 
 @System.Web.Optimization.Styles.Render("~/Css/Home/Index")
+<link rel="stylesheet" href="~/Content/Views/Shared/Common.css" />
+<link rel="stylesheet" href="~/Content/Views/Shared/Edit/EditButtons.css" />
 
 @{
-    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    bool adminMode = Global.IsAdminMode;
 }
 
-<div class="container">
-    <div class="row">
-        <section class="col-sm-8 col-xs-12 front-page-main">
+<div class="row">
+    <section class="col-md-6 col-xs-12">
+        <section class="sm-margin-right frame shadow-box">
             <div class="row">
                 <div class="responsive-img-box aspect-16by9">
-                    <img src="@Url.Content($"~/{Model.Item1[0].Cover?.FullFileName()}")" />
-                    <div class="content" name="description">
+                    <img class="img-rounded" src="@Url.Content($"~/{Model.Item1[0].Cover?.FullFileName()}")" />
+                    @*<div class="content" name="description">
                         <div name="desc-container">item.Title</div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
 
             <section class="row new-releases">
-                <div class="title text-muted">@ApplicationLocalization.Home_NewReleases</div>
+                <h1><span class="text-muted">@ApplicationLocalization.Home_NewReleases</span></h1>
                 @foreach (Release item in Model.Item1)
                 {
-                    <div class="item col-xs-4 col-lg-3" data-id="@(item.Id)">
-                        <a class="thumb" href="Release/View/@item.Id">
-                            <img class="highlight-border" src="@Url.Content($"~/{item.Cover?.ThumbnailFileName()}")" />
-                        </a>
-                        <div class="title">@Html.ActionLink(item.Artist.Name, "ByArtist", "Release", new { Id = item.ArtistId }, null)</div>
-                        <div class="subtitle">@Html.ActionLink(item.Title, "View", "Release", new { Id = item.Id }, null)</div>
-                        <div class="text-muted">@item.Media.Name</div>
+                    <div class="item" data-id="@(item.Id)">
+                        @Html.Partial("DisplayPartials/ReleaseSmall", new RecordLabel.Web.ViewModels.ReleaseSmall { Release = item, AdminMode = adminMode })  
                     </div>
                 }
             </section>
         </section>
-
-        @*News*@
-        <section class="col-sm-4 col-xs-12 navigation">
-            <div class="row">
-                <img src="@Url.Content($"~/{Settings.StaticImageDirectory}/{Settings.LogoFileName}")" style="height: 100px" /> @*temporary style*@
-            </div>
-            <section class="row news">
-                <div class="col-xs-12">
-                    <div class="title text-muted"><span>@ApplicationLocalization.NavSection_News</span></div>
-                    <ul class="news">
-                        @foreach (Article item in Model.Item2)
-                        {
-                            <li>
-                                <a href="/Articles/View/@item.Id">@item.Title</a>
-                                @if (item.Type == ArticleType.Article)
-                                {
-                                    <span class="text-muted italic">(@ArticleType.Article.ToString())</span>
-                                }
-                                <span class="text-muted">@item.Date.ToString("yyyy MM dd")</span>
-                            </li>  
-                        }
-                    </ul>
-                    <ul>
-                        <li class="btn menu-btn">@Html.ActionLink(ApplicationLocalization.Home_MoreNews, "Index", "Articles")</li>
-                    </ul>
-                </div>
-            </section>
-            <section class="row">
-                <nav class="col-xs-12">
-                    <ul class="front-page-menu">
-                        <li class="btn menu-btn">@Html.ActionLink(ApplicationLocalization.NavSection_Releases, "Index", "Release")</li>
-                        <li class="btn menu-btn">@Html.ActionLink(ApplicationLocalization.NavSection_Ordering, "Ordering", "Home")</li>
-                        <li class="btn menu-btn">@Html.ActionLink(ApplicationLocalization.NavSection_Contact, "Contact", "Home")</li>
-                    </ul>
-                </nav>
-            </section>
+        <section class="sm-margin-left navigation frame shadow-box">
+            <nav class="row front-page-menu">
+                @Html.ActionLink(ApplicationLocalization.NavSection_Releases, "Index", "Release", new { @class = "menu-btn label2 invert2 border" })
+            </nav>
         </section>
-    </div>
+    </section> 
+
+    @*News*@
+    <section class="col-md-6 col-xs-12 navigation">
+        <section class="sm-margin-left">
+            <div class="row frame shadow-box" id="TheList">
+                <h1><span class="text-muted">@ApplicationLocalization.NavSection_News</span></h1>
+            </div>
+            <div class="row">
+                @foreach (Article item in Model.Item2)
+                {
+                    @Html.ListItemWithImage(new RecordLabel.Web.ViewModels.ListItemWithImageModel { Model = item, AdminMode = adminMode, TargetControllerName = "Articles", ContainerClass = "" });
+                }
+            </div>
+        </section>
+        <section class="sm-margin-left navigation frame shadow-box">
+            <nav class="row front-page-menu">
+                @Html.ActionLink("Load More News", "Ordering", "Home", new { @class = "menu-btn label2 invert2 border" })
+            </nav>
+        </section>
+        <section class="sm-margin-left navigation frame shadow-box">
+            <nav class="row front-page-menu">
+                @Html.ActionLink(ApplicationLocalization.NavSection_Ordering, "Ordering", "Home", new { @class = "menu-btn label2 invert2 border" })
+                @Html.ActionLink(ApplicationLocalization.NavSection_Contact, "Contact", "Home", new { @class = "menu-btn label2 invert2 border" })
+            </nav>
+        </section>
+    </section>
 </div>

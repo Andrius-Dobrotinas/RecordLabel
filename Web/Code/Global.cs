@@ -12,6 +12,7 @@ namespace RecordLabel.Web
 {
     public static class Global
     {
+        // TODO: maybe use something like ThreadStatic here?
         public static bool IsAdminMode
         {
             get

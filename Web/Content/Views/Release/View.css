@@ -1,0 +1,36 @@
+﻿/*RELEASE PAGE VIEW*/
+
+.release-page .release-info,
+.article {
+    padding-top: 20px;
+}
+.album-cover {
+    /*width: 100%;*/
+    padding-right: 1em;
+}
+.album-cover img {
+    width: 100%;
+}
+
+.release-page .release-info {
+    display: flex;
+}
+.release-page .release-info .thumb1 {
+    padding-right: 20px;
+}
+.release-page .release-info span.glyphicon {
+    padding-left: 0.3em;
+}
+
+#tracklist {
+    /*display: table*/
+}
+#tracklist .track {
+    display: table-row;
+}
+#tracklist .track > span {
+    display: table-cell;
+}
+#tracklist .track > span:first-child {
+    padding-right: 0.3em;
+}

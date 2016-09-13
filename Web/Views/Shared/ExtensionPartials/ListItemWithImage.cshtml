@@ -1,30 +1,31 @@
 ﻿@using RecordLabel
 @using RecordLabel.Content
-@model Tuple<BaseWithImages, bool>
+@model RecordLabel.Web.ViewModels.ListItemWithImageModel
 @*Model.Item2 == tells whether it is an admin mode*@
 
 @{
     Layout = null;
-    string modelName = Request.RequestContext.RouteData.Values["controller"] as string;
+    string modelName = Model.TargetControllerName ?? Request.RequestContext.RouteData.Values["controller"] as string;
     ViewBag.Title = modelName;
+    string containerClass = Model.ContainerClass != null ? Model.ContainerClass : "col-lg-4 col-sm-6 list-cell";
 }
 
-<div class="col-lg-4 col-sm-6 list-cell">
+<div class="@containerClass">
     <div class="list-item">
         <article>
-            <a href="/@modelName/View/@Model.Item1.Id">
-                @Html.DisplayFor(model => model.Item1.Cover, "Thumbnail", new { @class = "thumb1" })
+            <a href="/@modelName/View/@Model.Model.Id">
+                @Html.DisplayFor(model => model.Model.Cover, "Thumbnail", new { @class = "thumb1 album-cover-thumb" })
             </a>
 
             <div class="body">
-                @if (Model.Item2)
+                @if (Model.AdminMode)
                 {
-                    @Html.EditButton(modelName, Model.Item1.Id)
+                    @Html.EditButton(modelName, Model.Model.Id)
                 }
-                @Html.DisplayFor(model => model.Item1)
+                @Html.DisplayFor(model => model.Model)
             </div>
         </article>
-        <a href="/@modelName/View/@Model.Item1.Id">
+        <a href="/@modelName/View/@Model.Model.Id">
             <div class="list-item-front-panel"></div>
         </a>
     </div>

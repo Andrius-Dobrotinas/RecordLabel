@@ -121,7 +121,7 @@ namespace RecordLabel.Web.Controllers
 
         public ActionResult ByArtist(int id)
         {
-            return GetFilteredModelsPartial(0, item => item.ArtistId == id);
+            return GetFilteredModels(0, item => item.ArtistId == id);
         }
 
         [AjaxOnly]
@@ -165,7 +165,7 @@ namespace RecordLabel.Web.Controllers
             ViewResult[] views = new ViewResult[models.Length];
             for (int i = 0; i < views.Length; i++)
             {
-                views[i] = View("ExtensionPartials/ListItemWithImage", new Tuple<BaseWithImages, bool>(models[i] as BaseWithImages, Global.IsAdminMode));
+                views[i] = View("ExtensionPartials/ListItemWithImage", new ViewModels.ListItemWithImageModel { Model = models[i] as BaseWithImages, AdminMode = Global.IsAdminMode });
                 views[i].ExecuteResult(this.ControllerContext);
             }
             HttpContext.ApplicationInstance.CompleteRequest();

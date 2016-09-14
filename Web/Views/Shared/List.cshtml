@@ -1,5 +1,4 @@
-﻿@using RecordLabel
-@using RecordLabel.Content;
+﻿@using RecordLabel.Content;
 @model IEnumerable<BaseWithImages>
 
 @{
@@ -19,4 +18,4 @@
     @*http://getbootstrap.com/css/#responsive-utilities*@
 </div>
 
-@Html.LoadMoreBar((ViewData["ItemCount"] as int?).Value, (ViewData["SourceId"] as int?))
+@Html.LoadMoreBar(ViewData.GetValue<int>("ItemCount"), ViewData.GetValueNullable<int>("SourceId"))

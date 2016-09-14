@@ -681,6 +681,7 @@
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\ReleaseController.cs" />
     <Compile Include="Code\ModelBinders\AttributeModelBinder.cs" />
+    <Compile Include="Extensions\CommonExtensions.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

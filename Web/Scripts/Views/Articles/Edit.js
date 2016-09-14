@@ -1,5 +1,5 @@
-﻿/// <reference path="../../jquery-1.10.2.intellisense.js" />
-/// <reference path="../../jquery-1.10.2.js" />
+﻿/// <reference path="../../jquery-2.2.3.intellisense.js" />
+/// <reference path="../../jquery-2.2.3.js" />
 /// <reference path="../../_vs2012.intellisense.js" />
 
 /// <reference path="../../Custom/Templates.js" />

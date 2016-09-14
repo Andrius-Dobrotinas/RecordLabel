@@ -86,6 +86,7 @@ namespace RecordLabel.Content
 
         /// <summary>
         /// A list of all releases (excluding this one) related through the Master version, populated by calling LoadOtherVersions
+        /// TODO: create a view model and separate this stuff from this model. This does not belong here
         /// </summary>    
         [NotMapped]
         [Display(ResourceType = typeof(ContentLocalization), Name = "Release_OtherVersions")]

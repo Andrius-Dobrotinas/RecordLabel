@@ -31,7 +31,7 @@ namespace RecordLabel.Web.Controllers
                     return Redirect(ReturnUrl);
                 }
                 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             else
             {

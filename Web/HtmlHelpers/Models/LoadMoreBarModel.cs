@@ -15,7 +15,7 @@ namespace RecordLabel.Web
         public int ItemCount { get; set; }
         public int? FilterSourceId { get; set; }
 
-        public LoadMoreBarModel(string action, string controller, int itemCount, int? filterSourceId)
+        public LoadMoreBarModel(string action, string controller, int itemCount, int? filterSourceId = null)
         {
             Action = action;
             Controller = controller;

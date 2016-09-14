@@ -187,7 +187,7 @@ namespace RecordLabel.Web.Controllers
                 initialQuery = EntitySet;
             }
 
-            TModel[] models = BatchedListModelQuery(initialQuery, batch).ToArray(); // QueryModelsInBatches(initialQuery, batch).ToArray();
+            TModel[] models = BatchedListModelQuery(initialQuery, batch).ToArray();
             ViewBag.ItemCount = initialQuery.Count();
             return models;
         }

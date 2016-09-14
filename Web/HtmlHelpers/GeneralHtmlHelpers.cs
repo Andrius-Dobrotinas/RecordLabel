@@ -16,9 +16,9 @@ namespace RecordLabel.Web
         /// </summary>
         /// <param name="helper"></param>
         /// <param name="totalItemCount">A total number of items of a given type in the database</param>
-        /// <param name="filterSourceId">And Id of the model used to filter out items in the list (optional - only if filtered)</param>
+        /// <param name="filterSourceId">An Id of the model used to filter out items in the list (optional - only if filtered)</param>
         /// <returns></returns>
-        public static MvcHtmlString LoadMoreBar(this HtmlHelper helper, int totalItemCount, int? filterSourceId)
+        public static MvcHtmlString LoadMoreBar(this HtmlHelper helper, int totalItemCount, int? filterSourceId = null)
         {
             if (totalItemCount > Settings.ListItemBatchSize)
             {

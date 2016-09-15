@@ -11,11 +11,14 @@ namespace RecordLabel.Web.Controllers
 {
     public sealed class ReleaseController : BaseWithImagesController<Release>
     {
+        protected override string ListViewTitle => Localization.ApplicationLocalization.List_Releases;
+
         public ReleaseController() : base(new ReleaseContext(), context => context.Releases)
         {
             ListModelQuery = initQuery => initQuery.Include(entity => entity.Artist); //init.Include(entity => entity.Images).Include(entity => entity.Artist);
             CompleteModelQuery = initQuery => ListModelQuery(initQuery).Include(entity => entity.References).Include(entity => entity.MasterVersion).Include(entity => entity.Descriptions).Include(entity => entity.Tracklist);
             IndexViewName = "~/Views/Shared/List.cshtml";
+            GetItemHtmlForAjax = (model) => View("ExtensionPartials/ListItemWithImage", new ViewModels.ListItemWithImageModel { Model = model as BaseWithImages, AdminMode = Global.IsAdminMode });
         }
 
         protected override void OnModelValidation(Release postedModel)
@@ -142,25 +145,9 @@ namespace RecordLabel.Web.Controllers
         }
 
 
-        /// <summary>
-        /// Returns a view with a batch of models selected using a filter
-        /// </summary>
-        private ActionResult GetFilteredModels(int batch, Expression<Func<Release, bool>> filter)
-        {
-            Release[] releases = SelectModels(batch, filter);
-            return View("List", releases);
-        }
+        
 
-        /// <summary>
-        /// Renders a partial view with a batch of models selected using a filter to the response
-        /// </summary>
-        private EmptyResult GetFilteredModelsPartial(int batch, Expression<Func<Release, bool>> filter)
-        {
-            Release[] releases = SelectModels(batch, filter);
-            return RenderPartialViewsToResponse(releases);
-        }
-
-        private EmptyResult RenderPartialViewsToResponse(Release[] models)
+        /*private EmptyResult RenderPartialViewsToResponse(Release[] models)
         {
             ViewResult[] views = new ViewResult[models.Length];
             for (int i = 0; i < views.Length; i++)
@@ -170,6 +157,6 @@ namespace RecordLabel.Web.Controllers
             }
             HttpContext.ApplicationInstance.CompleteRequest();
             return new EmptyResult();
-        }
+        }*/
     }
 }

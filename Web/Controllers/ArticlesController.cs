@@ -5,12 +5,13 @@ using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 using RecordLabel.Content;
-using RecordLabel.Web.ModelBinding;
 
 namespace RecordLabel.Web.Controllers
 {
     public class ArticlesController : BaseWithAttributesController<Article>
     {
+        protected override string ListViewTitle => Localization.ApplicationLocalization.List_Articles;
+
         public ArticlesController() : base(new ReleaseContext(), context => context.Articles)
         {
             ListModelQuery = initQuery => initQuery.Include(entity => entity.Titles);

@@ -97,6 +97,24 @@ namespace RecordLabel.Web.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to News &amp; Articles.
+        /// </summary>
+        public static string List_Articles {
+            get {
+                return ResourceManager.GetString("List_Articles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Releases.
+        /// </summary>
+        public static string List_Releases {
+            get {
+                return ResourceManager.GetString("List_Releases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Load More.
         /// </summary>
         public static string LoadMore {

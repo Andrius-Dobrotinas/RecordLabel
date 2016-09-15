@@ -129,6 +129,12 @@
   <data name="Home_NewReleases" xml:space="preserve">
     <value>New Releases</value>
   </data>
+  <data name="List_Articles" xml:space="preserve">
+    <value>News &amp; Articles</value>
+  </data>
+  <data name="List_Releases" xml:space="preserve">
+    <value>Releases</value>
+  </data>
   <data name="LoadMore" xml:space="preserve">
     <value>Load More</value>
   </data>

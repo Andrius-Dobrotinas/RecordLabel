@@ -19,6 +19,8 @@ namespace RecordLabel.Web.Controllers
         private DbSet<TModel> entitySet;
         public DbSet<TModel> EntitySet => entitySet;
 
+        protected virtual string ListViewTitle => "";
+
         protected int ItemsPerPage { get; set; }
 
         protected delegate IQueryable<TModel> OrderByDelegate(IQueryable<TModel> initialQuery);
@@ -43,6 +45,8 @@ namespace RecordLabel.Web.Controllers
         /// </summary>
         protected Func<IQueryable<TModel>, IQueryable<TModel>> CompleteModelQuery { get; set; }
 
+        protected Func<TModel, ViewResult> GetItemHtmlForAjax { get; set; }
+
         public EntityBaseController(ReleaseContext dbContext, Func<ReleaseContext, DbSet<TModel>> entitySet) : base (dbContext)
         {
             db = dbContext;
@@ -62,7 +66,7 @@ namespace RecordLabel.Web.Controllers
 
         public virtual ActionResult List()
         {
-            ViewBag.Title = typeof(TModel).Name;
+            ViewBag.Title = ListViewTitle;
             return View(IndexViewName, SelectModels(0));
         }
 
@@ -205,6 +209,37 @@ namespace RecordLabel.Web.Controllers
         protected virtual TModel SelectModelForDeletion(int id)
         {
             return SelectModel(id);
+        }
+
+
+        /// <summary>
+        /// Returns a view with a batch of models selected using a filter
+        /// </summary>
+        protected virtual ActionResult GetFilteredModels(int batch, Expression<Func<TModel, bool>> filter)
+        {
+            TModel[] items = SelectModels(batch, filter);
+            return View("List", items);
+        }
+
+        /// <summary>
+        /// Renders a partial view with a batch of models selected using a filter to the response
+        /// </summary>
+        protected virtual EmptyResult GetFilteredModelsPartial(int batch, Expression<Func<TModel, bool>> filter)
+        {
+            TModel[] items = SelectModels(batch, filter);
+            return RenderPartialViewsToResponse(items);
+        }
+
+        protected virtual EmptyResult RenderPartialViewsToResponse(TModel[] models)
+        {
+            ViewResult[] views = new ViewResult[models.Length];
+            for (int i = 0; i < views.Length; i++)
+            {
+                views[i] = GetItemHtmlForAjax(models[i]);
+                views[i].ExecuteResult(this.ControllerContext);
+            }
+            HttpContext.ApplicationInstance.CompleteRequest();
+            return new EmptyResult();
         }
 
         /// <summary>

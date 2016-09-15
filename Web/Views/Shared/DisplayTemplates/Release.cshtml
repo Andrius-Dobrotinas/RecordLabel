@@ -7,21 +7,21 @@
     @Html.ActionLink(Model.Title, "View", new { id = Model.Id }, new { @class = "label-wrap invert no-left-pad subtitle on-top" })
 </header>
 <div>
-    <span class="text-muted on-top versions-menu-trigger">
+    <span class="text-muted on-top versions-menu-trigger @(Model.OtherVersions.Count > 0 ? "badge" : "")">
         @Model.Media.Name
         
-            @{
-                if (Model.OtherVersions.Count > 0)           
+        @{
+            if (Model.OtherVersions.Count > 0)           
+            {
+                <span class="versions-menu frame">
+                @Html.ActionLink($"{Model.Media.Name} ({Model.CatalogueNumber})", "View", new { id = Model.Id }, new { @class = "label2" })
+                @foreach (Release item in Model.OtherVersions)
                 {
-                    <span class="versions-menu frame">
-                    @Html.ActionLink($"{Model.Media.Name} ({Model.CatalogueNumber})", "View", new { id = Model.Id }, new { @class = "label2" })
-                    @foreach (Release item in Model.OtherVersions)
-                    {
-                        @Html.ActionLink($"{item.Media.Name} ({item.CatalogueNumber})", "View", new { id = item.Id }, new { @class = "label2" })
-                    }
-                    </span>
+                    @Html.ActionLink($"{item.Media.Name} ({item.CatalogueNumber})", "View", new { id = item.Id }, new { @class = "label2" })
                 }
+                </span>
             }
+        }
         
     </span>
     <span class="text-muted on-top">@Model.CatalogueNumber</span>

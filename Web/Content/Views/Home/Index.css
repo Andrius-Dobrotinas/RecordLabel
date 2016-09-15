@@ -16,6 +16,10 @@ section.new-releases .item {
 section.new-releases .list-item {
     height: 100%;
     width: 100%;
+    background-color: transparent;
+}
+section.new-releases .list-item:hover {
+    background-color: white;
 }
 section.new-releases {
     text-align: center;
@@ -24,7 +28,6 @@ section.new-releases {
 }
 @media (max-width: 558px) {
     section.new-releases {
-        
         zoom: 60%
     }
 }

@@ -7,7 +7,7 @@ using System.Web.Security;
 
 namespace RecordLabel.Web.Controllers
 {
-    public class AdminController : BaseController
+    public class ManagementController : BaseController
     {
         [Authorize]
         public override ActionResult Index()
@@ -35,7 +35,7 @@ namespace RecordLabel.Web.Controllers
             }
             else
             {
-                ModelState.AddModelError(String.Empty, Localization.AdminApplicationLocalization.Auth_BadCredentials);
+                ModelState.AddModelError(String.Empty, Localization.ManagementApplicationLocalization.Auth_BadCredentials);
                 return View();
             }
             

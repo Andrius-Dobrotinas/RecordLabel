@@ -45,6 +45,9 @@ namespace RecordLabel.Web.Controllers
         /// </summary>
         protected Func<IQueryable<TModel>, IQueryable<TModel>> CompleteModelQuery { get; set; }
 
+        /// <summary>
+        /// Delegate for returning ViewResult for a given model requested via Ajax
+        /// </summary>
         protected Func<TModel, ViewResult> GetItemHtmlForAjax { get; set; }
 
         public EntityBaseController(ReleaseContext dbContext, Func<ReleaseContext, DbSet<TModel>> entitySet) : base (dbContext)

@@ -52,14 +52,14 @@
         <div class="form-group">
             <label class="control-label col-md-2">@ContentLocalization.References</label>
             <div class="col-md-10">
-                @Html.ModalOpenButton("ReferencesModal", AdminApplicationLocalization.Edit_EditReferences)
+                @Html.ModalOpenButton("ReferencesModal", ManagementApplicationLocalization.Edit_EditReferences)
             </div>
         </div>
 
         <div>
             @{
                 MvcHtmlString refEditor = Html.EditorForASet<Artist, ReferenceSet, Reference>(model => model.References, "ModelReferences");
-                MvcHtmlString addRefBtn = Html.ButtonForModal(AdminApplicationLocalization.Edit_AddReference, null, "addReferenceBtn");
+                MvcHtmlString addRefBtn = Html.ButtonForModal(ManagementApplicationLocalization.Edit_AddReference, null, "addReferenceBtn");
                 @Html.ModalDialog("ReferencesModal", refEditor, ContentLocalization.References, addRefBtn);
             }
         </div>
@@ -83,4 +83,4 @@
     @(Html.EditorTemplateFor(model => model.References.Collection))
 </div>
 
-@Html.BackButtonBar(AdminApplicationLocalization.Edit_BackToArtists)
+@Html.BackButtonBar(ManagementApplicationLocalization.Edit_BackToArtists)

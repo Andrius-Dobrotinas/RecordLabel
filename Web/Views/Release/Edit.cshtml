@@ -79,12 +79,12 @@
 
             Dictionary<string, object> htmlAttributesForIsMasterVersion = new Dictionary<string, object>();
             htmlAttributesForIsMasterVersion.Add("class", "checkbox");
-            htmlAttributesForIsMasterVersion.Add("title", AdminApplicationLocalization.Edit_MasterVersion_Info);
+            htmlAttributesForIsMasterVersion.Add("title", ManagementApplicationLocalization.Edit_MasterVersion_Info);
 
             if (primaryVersionDisabled == true)
             {
                 htmlAttributesForIsMasterVersion.Add("disabled", String.Empty);
-                htmlAttributesForIsMasterVersion["title"] = AdminApplicationLocalization.Edit_MasterVersion_Info_CantChangeOption;
+                htmlAttributesForIsMasterVersion["title"] = ManagementApplicationLocalization.Edit_MasterVersion_Info_CantChangeOption;
             }
         }
         <div class="form-group">
@@ -123,28 +123,28 @@
         <div class="form-group">
             <label class="control-label col-md-2">@ContentLocalization.References</label>
             <div class="col-md-10">
-                @Html.ModalOpenButton("ReferencesModal", AdminApplicationLocalization.Edit_EditReferences)
+                @Html.ModalOpenButton("ReferencesModal", ManagementApplicationLocalization.Edit_EditReferences)
             </div>
         </div>
         
         <div class="form-group">
             <label class="control-label col-md-2">@ContentLocalization.Tracklist</label>
             <div class="col-md-10">
-                @Html.ModalOpenButton("TracklistModal", AdminApplicationLocalization.Edit_EditTracklist)
+                @Html.ModalOpenButton("TracklistModal", ManagementApplicationLocalization.Edit_EditTracklist)
             </div>
         </div>
 
         <div>
             @{
                 MvcHtmlString refEditor = Html.EditorForASet<Release, ReferenceSet, Reference>(model => model.References, "ModelReferences");
-                MvcHtmlString addRefBtn = Html.ButtonForModal(AdminApplicationLocalization.Edit_AddReference, null, "addReferenceBtn");
+                MvcHtmlString addRefBtn = Html.ButtonForModal(ManagementApplicationLocalization.Edit_AddReference, null, "addReferenceBtn");
                 @Html.ModalDialog("ReferencesModal", refEditor, ContentLocalization.References, addRefBtn);
             }
         </div>
         <div>
             @{
                 MvcHtmlString trackEditor = Html.EditorForASet<Release, Tracklist, Track>(model => model.Tracklist, "Tracklist");
-                MvcHtmlString addTrackBtn = Html.ButtonForModal(AdminApplicationLocalization.Edit_AddTrack, null, "addTrackBtn");
+                MvcHtmlString addTrackBtn = Html.ButtonForModal(ManagementApplicationLocalization.Edit_AddTrack, null, "addTrackBtn");
                 @Html.ModalDialog("TracklistModal", trackEditor, ContentLocalization.Tracklist, addTrackBtn);
             }
         </div>

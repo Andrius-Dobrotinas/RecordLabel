@@ -143,20 +143,5 @@ namespace RecordLabel.Web.Controllers
         {
             return GetFilteredModelsPartial(batch, item => item.Attributes.Collection.FirstOrDefault(i => i.Id == id) != null);
         }
-
-
-        
-
-        /*private EmptyResult RenderPartialViewsToResponse(Release[] models)
-        {
-            ViewResult[] views = new ViewResult[models.Length];
-            for (int i = 0; i < views.Length; i++)
-            {
-                views[i] = View("ExtensionPartials/ListItemWithImage", new ViewModels.ListItemWithImageModel { Model = models[i] as BaseWithImages, AdminMode = Global.IsAdminMode });
-                views[i].ExecuteResult(this.ControllerContext);
-            }
-            HttpContext.ApplicationInstance.CompleteRequest();
-            return new EmptyResult();
-        }*/
     }
 }

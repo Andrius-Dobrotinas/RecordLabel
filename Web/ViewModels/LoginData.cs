@@ -10,14 +10,14 @@ namespace RecordLabel.Web
     public class LoginData
     {
         [Required]
-        [Display(ResourceType = typeof(AdminApplicationLocalization), Name = "Login_UserName")]
+        [Display(ResourceType = typeof(ManagementApplicationLocalization), Name = "Login_UserName")]
         public string UserName { get; set; }
 
         [Required]
-        [Display(ResourceType = typeof(AdminApplicationLocalization), Name = "Login_Password")]
+        [Display(ResourceType = typeof(ManagementApplicationLocalization), Name = "Login_Password")]
         public string Password { get; set; }
 
-        [Display(ResourceType = typeof(AdminApplicationLocalization), Name = "Login_RememberMe")]
+        [Display(ResourceType = typeof(ManagementApplicationLocalization), Name = "Login_RememberMe")]
         public bool RememberMe { get; set; }
     }
 }

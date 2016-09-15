@@ -40,8 +40,8 @@ namespace RecordLabel.Web
                 .Include("~/Content/Views/Shared/List.css")
                 .Include("~/Content/Views/Shared/Edit/EditButtons.css"));
 
-            bundles.Add(new StyleBundle("~/Css/Admin")
-                .Include("~/Content/Views/Shared/Admin.css"));
+            bundles.Add(new StyleBundle("~/Css/Management")
+                .Include("~/Content/Views/Shared/Management.css"));
 
             bundles.Add(new StyleBundle("~/Css/Home/Index")
                 .Include("~/Content/Views/Home/Index.css")

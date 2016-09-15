@@ -176,7 +176,7 @@
     <Content Include="Content\Views\Shared\ModalImageViewer.css" />
     <Content Include="Content\Views\Home\Index.css" />
     <Content Include="Content\Views\Articles\View.css" />
-    <Content Include="Content\Views\Shared\Admin.css" />
+    <Content Include="Content\Views\Shared\Management.css" />
     <Content Include="Content\Views\Shared\Common.css" />
     <Content Include="Content\Views\Shared\Edit\EditButtons.css" />
     <Content Include="Content\Views\Shared\Edit\ImageSet.css" />
@@ -667,7 +667,7 @@
     <Compile Include="Code\ModelBinders\IKnowIfImEmptyBinder.cs" />
     <Compile Include="Code\Settings.cs" />
     <Compile Include="Code\ViewRelated\RazorViewEngineForCs.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ManagementController.cs" />
     <Compile Include="Controllers\ArtistController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\EntityBaseController.cs" />
@@ -696,8 +696,8 @@
     <Compile Include="HtmlHelpers\GeneralHtmlHelpers.cs" />
     <Compile Include="Code\Enums\ViewMode.cs" />
     <Compile Include="HtmlHelpers\Models\LoadMoreBarModel.cs" />
-    <Compile Include="Localization\AdminApplicationLocalization.Designer.cs">
-      <DependentUpon>AdminApplicationLocalization.resx</DependentUpon>
+    <Compile Include="Localization\ManagementApplicationLocalization.Designer.cs">
+      <DependentUpon>ManagementApplicationLocalization.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -745,8 +745,8 @@
     <Content Include="Views\Shared\EditorTemplates\Reference.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Track.cshtml" />
     <Content Include="Views\Shared\_BaseLayout.cshtml" />
-    <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Management\Login.cshtml" />
+    <Content Include="Views\Management\Index.cshtml" />
     <Content Include="Views\Shared\_ListLayout.cshtml" />
     <Content Include="Views\Shared\ExtensionPartials\LoadMoreBar.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Image.cshtml" />
@@ -793,9 +793,9 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Localization\AdminApplicationLocalization.resx">
+    <EmbeddedResource Include="Localization\ManagementApplicationLocalization.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AdminApplicationLocalization.Designer.cs</LastGenOutput>
+      <LastGenOutput>ManagementApplicationLocalization.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\ApplicationLocalization.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

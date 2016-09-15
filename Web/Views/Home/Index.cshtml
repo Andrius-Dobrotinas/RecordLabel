@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="~/Content/Views/Shared/Common.css" />
 <link rel="stylesheet" href="~/Content/Views/Shared/Edit/EditButtons.css" />
 
+<script src="~/Scripts/Custom/LoadMore.js"></script>
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     bool adminMode = Global.IsAdminMode;
@@ -34,20 +36,15 @@
                 }
             </section>
         </section>
-        <section class="sm-margin-left navigation frame shadow-box">
-            <nav class="row front-page-menu">
-                @Html.ActionLink(ApplicationLocalization.NavSection_Releases, "Index", "Release", new { @class = "menu-btn label2 invert2 border" })
-            </nav>
-        </section>
     </section> 
 
     @*News*@
     <section class="col-md-6 col-xs-12 navigation">
         <section class="sm-margin-left">
-            <div class="row frame shadow-box" id="TheList">
+            <div class="row frame shadow-box">
                 <h1><span class="text-muted">@ApplicationLocalization.NavSection_News</span></h1>
             </div>
-            <div class="row">
+            <div class="row" id="TheList">
                 @foreach (Article item in Model.Item2)
                 {
                     @Html.ListItemWithImage(new RecordLabel.Web.ViewModels.ListItemWithImageModel { Model = item, AdminMode = adminMode, TargetControllerName = "Articles", ContainerClass = "" });
@@ -56,13 +53,13 @@
         </section>
         <section class="sm-margin-left navigation frame shadow-box">
             <nav class="row front-page-menu">
-                @Html.ActionLink("Load More News", "Ordering", "Home", new { @class = "menu-btn label2 invert2 border" })
+                @Html.ActionLink("Load More News", "Ordering", "Home", new { @class = "btn btn-default" })
             </nav>
         </section>
         <section class="sm-margin-left navigation frame shadow-box">
             <nav class="row front-page-menu">
-                @Html.ActionLink(ApplicationLocalization.NavSection_Ordering, "Ordering", "Home", new { @class = "menu-btn label2 invert2 border" })
-                @Html.ActionLink(ApplicationLocalization.NavSection_Contact, "Contact", "Home", new { @class = "menu-btn label2 invert2 border" })
+                @Html.ActionLink(ApplicationLocalization.NavSection_Ordering, "Ordering", "Home", new { @class = "btn btn-default" })
+                @Html.ActionLink(ApplicationLocalization.NavSection_Contact, "Contact", "Home", new { @class = "btn btn-default" })
             </nav>
         </section>
     </section>

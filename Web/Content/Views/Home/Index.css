@@ -60,6 +60,9 @@ section.navigation .menu-btn {
     padding-left: 20px;
     padding-right: 20px;
 }
-.front-page-menu > *:not(:last-child) {
+.front-page-menu > a {
+    width: 100%;
+}
+.front-page-menu > a:not(:last-child) {
     margin-bottom: 0.2em;
 }

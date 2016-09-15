@@ -124,7 +124,7 @@
     <value>Cancel</value>
   </data>
   <data name="Home_MoreNews" xml:space="preserve">
-    <value>More News...</value>
+    <value>More News &amp; Articles...</value>
   </data>
   <data name="Home_NewReleases" xml:space="preserve">
     <value>New Releases</value>
@@ -142,7 +142,7 @@
     <value>Contact</value>
   </data>
   <data name="NavSection_News" xml:space="preserve">
-    <value>News</value>
+    <value>News &amp; Articles</value>
   </data>
   <data name="NavSection_Ordering" xml:space="preserve">
     <value>Ordering</value>
@@ -163,7 +163,7 @@
     <value>An error occured in the application</value>
   </data>
   <data name="View_BackToNews" xml:space="preserve">
-    <value>Back to News</value>
+    <value>Back to News &amp; Articles</value>
   </data>
   <data name="View_BackToReleases" xml:space="preserve">
     <value>Back to Releases</value>

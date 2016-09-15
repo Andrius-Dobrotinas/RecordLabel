@@ -79,7 +79,7 @@ namespace RecordLabel.Web.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to More News....
+        ///   Looks up a localized string similar to More News &amp; Articles....
         /// </summary>
         public static string Home_MoreNews {
             get {
@@ -142,7 +142,7 @@ namespace RecordLabel.Web.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to News.
+        ///   Looks up a localized string similar to News &amp; Articles.
         /// </summary>
         public static string NavSection_News {
             get {
@@ -196,7 +196,7 @@ namespace RecordLabel.Web.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Back to News.
+        ///   Looks up a localized string similar to Back to News &amp; Articles.
         /// </summary>
         public static string View_BackToNews {
             get {

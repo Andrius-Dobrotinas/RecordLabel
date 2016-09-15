@@ -78,11 +78,15 @@
 }
 
 @media (min-width: 768px) {
-    .col-md-6 > .sm-margin-right {
+    .col-md-6 > .sm-margin-right,
+    .col-md-7 > .sm-margin-right,
+    .col-md-8 > .sm-margin-right {
         margin-right: 2px;
     }
 
-    .col-md-6 > .sm-margin-left {
+    .col-md-6 > .sm-margin-left,
+    .col-md-5 > .sm-margin-left,
+    .col-md-4 > .sm-margin-left {
         margin-left: 2px;
     }
 }

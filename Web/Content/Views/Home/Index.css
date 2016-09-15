@@ -19,8 +19,15 @@ section.new-releases .list-item {
 }
 section.new-releases {
     text-align: center;
+    overflow: hidden;
+    height: 260px;
 }
-
+@media (max-width: 558px) {
+    section.new-releases {
+        
+        zoom: 60%
+    }
+}
 section.new-releases .item .title {
     text-transform: uppercase;
     font-size: 1.2em;

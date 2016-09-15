@@ -4,10 +4,7 @@
 @model Tuple<Release[], Article[]>
 
 @System.Web.Optimization.Styles.Render("~/Css/Home/Index")
-<link rel="stylesheet" href="~/Content/Views/Shared/Common.css" />
-<link rel="stylesheet" href="~/Content/Views/Shared/Edit/EditButtons.css" />
-
-<script src="~/Scripts/Custom/LoadMore.js"></script>
+@System.Web.Optimization.Scripts.Render("~/Css/Shared/List")
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,19 +12,58 @@
 }
 
 <div class="row">
-    <section class="col-md-6 col-xs-12">
+    <section class="col-md-7 col-xs-12">
         <section class="sm-margin-right frame shadow-box">
-            <div class="row">
+            @*<div class="row">
                 <div class="responsive-img-box aspect-16by9">
                     <img class="img-rounded" src="@Url.Content($"~/{Model.Item1[0].Cover?.FullFileName()}")" />
-                    @*<div class="content" name="description">
+                    <div class="content" name="description">
                         <div name="desc-container">item.Title</div>
-                    </div>*@
+                    </div>
                 </div>
+            </div>*@
+
+            <div id="releaseCarousel" class="carousel slide responsive-img-box aspect-16by9" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    @{{
+                        Release item;
+                        for (int i = 0; i < Model.Item1.Length; i++)
+                        {
+                            item = Model.Item1[i];
+                            <li data-target="#releaseCarousel" data-slide-to="@item.Id" class="@(i == 0 ? "active" : "")"></li>
+                        }
+                    } }
+                </ol>
+
+                <div class="carousel-inner" role="listbox">
+                    @{{
+                        Release item;
+                        for (int i = 0; i < Model.Item1.Length; i++)
+                        {
+                            item = Model.Item1[i];
+                            <div class="item @(i == 0 ? "active" : "")">
+                                <a href="/Release/View/@item.Id">
+                                    <img src="@Url.Content($"~/{item.Cover?.FullFileName()}")" alt="@item.Title">
+                                </a>
+                            </div>
+                         }
+                    } }
+                </div>
+
+                <a class="left carousel-control" href="#releaseCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#releaseCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
 
+            <h1 class="row">
+                <span class="text-muted">@ApplicationLocalization.Home_NewReleases</span>
+            </h1>
             <section class="row new-releases">
-                <h1><span class="text-muted">@ApplicationLocalization.Home_NewReleases</span></h1>
                 @foreach (Release item in Model.Item1)
                 {
                     <div class="item" data-id="@(item.Id)">
@@ -39,7 +75,7 @@
     </section> 
 
     @*News*@
-    <section class="col-md-6 col-xs-12 navigation">
+    <section class="col-md-5 col-xs-12 navigation">
         <section class="sm-margin-left">
             <div class="row frame shadow-box">
                 <h1><span class="text-muted">@ApplicationLocalization.NavSection_News</span></h1>
@@ -53,13 +89,14 @@
         </section>
         <section class="sm-margin-left navigation frame shadow-box">
             <nav class="row front-page-menu">
-                @Html.ActionLink("Load More News", "Ordering", "Home", new { @class = "btn btn-default" })
+                @*TODO: make it load news dynamically on this page*@
+                @Html.ActionLink("More News", "Index", "Articles", null, new { @class = "btn btn-default" })
             </nav>
         </section>
         <section class="sm-margin-left navigation frame shadow-box">
             <nav class="row front-page-menu">
-                @Html.ActionLink(ApplicationLocalization.NavSection_Ordering, "Ordering", "Home", new { @class = "btn btn-default" })
-                @Html.ActionLink(ApplicationLocalization.NavSection_Contact, "Contact", "Home", new { @class = "btn btn-default" })
+                @Html.ActionLink(ApplicationLocalization.NavSection_Ordering, "Ordering", "Home", null, new { @class = "btn btn-default" })
+                @Html.ActionLink(ApplicationLocalization.NavSection_Contact, "Contact", "Home", null, new { @class = "btn btn-default" })
             </nav>
         </section>
     </section>

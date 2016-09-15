@@ -45,7 +45,9 @@ namespace RecordLabel.Web
 
             bundles.Add(new StyleBundle("~/Css/Home/Index")
                 .Include("~/Content/Views/Home/Index.css")
-                .Include("~/Content/Views/Shared/Media.css"));
+                .Include("~/Content/Views/Shared/Media.css")
+                .Include("~/Content/Views/Shared/Common.css")
+                .Include("~/Content/Views/Shared/Edit/EditButtons.css"));
 
             //Scripts
             bundles.Add(new ScriptBundle("~/Js/Articles/View")

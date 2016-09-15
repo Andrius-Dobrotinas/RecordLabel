@@ -2,17 +2,17 @@
 /// <reference path="../jquery-2.2.3.js" />
 /// <reference path="../../_vs2012.intellisense.js" />
 
-$(function () {
-    new LoadMore("#LoadMore", "#TheList");
-});
-
 /**
  * description Responsible for loading more results to the list
- * @param {string} jQuery selector
- * @param {string} jQuery selector
+ * @param {string} loadButton jQuery selector for an Html element that will function as button
+ * @param {string} destintionList jQuery selector for an Html element that will be used as container for new items 
  */
 LoadMore = function (loadButton, destintionList) {
     this.srcElement = $(loadButton);
+
+    // Store this object with the source element
+    //this.srcElement.data("object", this); --> TODO: think if I should do this
+
     this.list = $(destintionList);
     this.loader = $("#loader", this.srcElement);
     this.button = $("div", this.srcElement);

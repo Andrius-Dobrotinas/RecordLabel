@@ -20,10 +20,22 @@ namespace RecordLabel.Web
         /// <returns></returns>
         public static MvcHtmlString LoadMoreBar(this HtmlHelper helper, int totalItemCount, int? filterSourceId = null)
         {
+            return LoadMoreBar(helper, () => helper.ViewContext.RequestContext.RouteData.Values["action"] as string,
+                () => helper.ViewContext.RequestContext.RouteData.Values["controller"] as string,
+                totalItemCount, filterSourceId);
+        }
+
+        public static MvcHtmlString LoadMoreBar(this HtmlHelper helper, string action, string controller, int totalItemCount, int? filterSourceId = null)
+        {
+            return LoadMoreBar(helper, () => action, () => controller, totalItemCount, filterSourceId);
+        }
+
+        private static MvcHtmlString LoadMoreBar(HtmlHelper helper, Func<string> getActionName, Func<string> getControllerName, int totalItemCount, int? filterSourceId = null)
+        {
             if (totalItemCount > Settings.ListItemBatchSize)
             {
-                string controller = helper.ViewContext.RequestContext.RouteData.Values["controller"] as string;
-                string action = helper.ViewContext.RequestContext.RouteData.Values["action"] as string;
+                string action = getActionName();
+                string controller = getControllerName();
                 if (String.IsNullOrEmpty(action) || action.Equals("index", StringComparison.OrdinalIgnoreCase))
                 {
                     action = "List"; //redirect to List action

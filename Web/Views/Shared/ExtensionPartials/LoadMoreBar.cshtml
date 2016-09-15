@@ -1,6 +1,15 @@
 ﻿@model LoadMoreBarModel
 
-<div class="row button-bar bottom dark-blanket" id="LoadMore" data-count="@Model.ItemCount" data-batch-size="@Settings.ListItemBatchSize" data-url="/@Model.Controller/@Model.Action" data-source-id="@Model.FilterSourceId">
+<div class="row button-bar bottom dark-blanket" id="@Model.ButtonId" data-count="@Model.ItemCount" data-batch-size="@Settings.ListItemBatchSize" data-url="/@Model.Controller/@Model.Action" data-source-id="@Model.FilterSourceId">
     <div class="btn btn-default">@RecordLabel.Web.Localization.ApplicationLocalization.LoadMore</div>
     <img id="loader" src="@Url.Content($"~/{Settings.StaticImageDirectory}/loader.gif")" />
 </div>
+
+<script>
+    $(function () {
+        @* TODO: Should I place it in an external JS file?...  Just thinking of the best solution*@
+        $("#@Model.ButtonId").data("object", new LoadMore("#@Model.ButtonId", "#TheList")); @*TODO: retrieve List id from the model if I keep this script here.
+                                                                           If I don't, add List id as data-attr to Html and retrieve the value
+                                                                           on LoadMore object instantiation, or something*@
+    });
+</script>

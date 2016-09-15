@@ -1,4 +1,4 @@
-# RecordLabel
+﻿# RecordLabel
 ASP.NET MVC application designed for presentation and management of a record label's release catalogue, news and articles
 
 It was commissioned by a specific client but then cancelled halfway through when they realized they did not have the required infrastructure to host an ASP.NET-based application. I decided to keep working on this project out of personal interest.
@@ -13,3 +13,13 @@ Some interesting features:
 • All content entries can contain text in multiple languages
 • Dynamic loading of items in lists
 • Logged-in users (administrators) see "Edit" buttons to editable content in the same publicly accessible pages.
+
+
+
+TODO:
+• The whole HTTPS stuff
+• Use some framework for dynamically adding items (list results with ajax calls / items in edit mode)
+• Take care of XSS
+• Fix styling of Login form
+• Work on edit forms
+...and more

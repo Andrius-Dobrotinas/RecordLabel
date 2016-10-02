@@ -36,9 +36,9 @@ namespace RecordLabel.Web
         /// <param name="modalId">Id of a modal dialog to open</param>
         /// <param name="buttonText">Button text</param>
         /// <returns></returns>
-        public static MvcHtmlString ModalOpenButton(this HtmlHelper helper, string modalId, string buttonText)
+        public static MvcHtmlString ModalOpenButton(this HtmlHelper helper, string modalId, string buttonText, string cssClass = null)
         {
-            return helper.Button(buttonText, null, null, new { data_toggle = "modal", data_target = $"#{modalId}" }, false);
+            return helper.Button(buttonText, null, null, new { data_toggle = "modal", data_target = $"#{modalId}", @class = cssClass }, false);
         }
     }
 }

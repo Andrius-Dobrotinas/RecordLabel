@@ -69,6 +69,7 @@ namespace RecordLabel.Web
                 .Include("~/Scripts/Views/Articles/Edit.js")
                 .Include("~/Scripts/Views/Shared/Edit/Edit.js")
                 .Include("~/Scripts/Views/Shared/Edit/InitImageUploader.js")
+                .Include("~/Scripts/Custom/UploadManager.js")
                 .Include("~/Scripts/Custom/ImageUploader.js")
                 .Include("~/Scripts/Custom/UploaderEditButtons.js")
                 .Include("~/Scripts/Custom/Templates.js"));
@@ -82,6 +83,7 @@ namespace RecordLabel.Web
                 .Include("~/Scripts/Views/Release/Edit.js")
                 .Include("~/Scripts/Views/Shared/Edit/Edit.js")
                 .Include("~/Scripts/Views/Shared/Edit/InitImageUploader.js")
+                .Include("~/Scripts/Custom/UploadManager.js")
                 .Include("~/Scripts/Custom/ImageUploader.js")
                 .Include("~/Scripts/Custom/UploaderEditButtons.js")
                 .Include("~/Scripts/Custom/Templates.js"));
@@ -92,6 +94,7 @@ namespace RecordLabel.Web
                 .Include("~/Scripts/ckeditor/ckeditor.js")
                 .Include("~/Scripts/Views/Shared/Edit/Edit.js")
                 .Include("~/Scripts/Views/Shared/Edit/InitImageUploader.js")
+                .Include("~/Scripts/Custom/UploadManager.js")
                 .Include("~/Scripts/Custom/ImageUploader.js")
                 .Include("~/Scripts/Custom/UploaderEditButtons.js"));
 

@@ -6872,3 +6872,11 @@ td.visible-print {
     display: none !important;
   }
 }
+
+/*fix form edit controls*/
+.form-group > label + div > input:not([type=hidden]),
+.form-group > label + div > select,
+.form-group > label + div > button,
+.form-group > label + div > *:first-child {
+    margin-left: 5px;
+}

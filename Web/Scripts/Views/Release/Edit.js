@@ -15,37 +15,10 @@ $(function () {
     tracklist.AttachToAll();
 
     new Versions("IsMasterVersion", "MasterVersionId");
-
-
-    //Initialize Date spinners
-    function spinnerCallback(spinner, event, ui) {
-        if (ui.value > 2099) {
-            spinner.spinner("value", 1950);
-            return false;
-        } else if (ui.value < 1950) {
-            spinner.spinner("value", 2099);
-            return false;
-        }
-    }
-    $("#Date").spinner({
-        spin: function (event, ui) {
-            return spinnerCallback($(this), event, ui);
-        }
-    });
-    $("#DateRecorded").spinner({
-        spin: function (event, ui) {
-            return spinnerCallback($(this), event, ui);
-        }
-    });
 });
 
 /*Versions menu and IsMasterVersion checkbox*/
 Versions = function (sourceId, targetId) {
-    /*this.source = $(sourceInputSelector);
-    this.target = $(targetInputSelector);
-    this.source.change(function (event, data) {
-        me.target.prop("disabled", this.checked);
-    });*/
     var me = this;
     this.source = document.getElementById(sourceId);
     this.target = document.getElementById(targetId);

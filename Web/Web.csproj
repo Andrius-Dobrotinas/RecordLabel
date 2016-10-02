@@ -444,6 +444,7 @@
     <Content Include="Scripts\ckeditor\styles.js" />
     <Content Include="Scripts\Custom\unused\AutoHide.js" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\Custom\UploadManager.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />

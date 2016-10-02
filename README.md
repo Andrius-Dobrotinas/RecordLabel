@@ -25,4 +25,8 @@ TODO:
 • Work on edit forms
 • Sort out CSS classes
 • Review HTML element sizes
+• Release Edit: Finish references styling (and make their order changeable) + Finish tracklist styling (make their order changeable too) + Make Add Image to add new image purely-front in end, just like with references.
+• Decide on the best way to pass data to javascript while rendering views
+• Move image processing and saving from the binder into the controller
+
 ...and more

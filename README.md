@@ -17,9 +17,12 @@ Some interesting features:
 
 
 TODO:
+• Extract and separate view models from content models
 • The whole HTTPS stuff
-• Use some framework for dynamically adding items (list results with ajax calls / items in edit mode)
+• Use some framework to dynamically add items (list results with ajax calls / items in edit mode)
 • Take care of XSS
 • Fix styling of Login form
 • Work on edit forms
+• Sort out CSS classes
+• Review HTML element sizes
 ...and more

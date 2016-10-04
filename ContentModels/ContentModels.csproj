@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\OneToOneRelationship.cs" />
+    <Compile Include="DbContextHelper.cs" />
     <Compile Include="Enums\ImageType.cs" />
     <Compile Include="Exceptions\EntityInUseException.cs" />
     <Compile Include="Extensions\DbSetExtensions.cs" />

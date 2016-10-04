@@ -115,7 +115,7 @@ namespace RecordLabel.Content
             CatalogueNumber = source.CatalogueNumber;
             PrintStatus = source.PrintStatus;
             IsMasterVersion = source.IsMasterVersion;
-            //MasterVersionId = source.MasterVersionId;
+            MasterVersionId = source.MasterVersionId;
             MasterVersion = source.MasterVersion;
             
             MediaId = source.MediaId;
@@ -142,6 +142,8 @@ namespace RecordLabel.Content
             ReferenceSet.UpdateSet(this, model => model.References, source.References, dbContext);
 
             base.UpdateModel(dbContext, sourceModel);
+
+            AttributeSet.UpdateSet<Release>(this, model => model.Attributes, source.Attributes, dbContext);
         }
 
         //TODO

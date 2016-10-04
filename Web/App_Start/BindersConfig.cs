@@ -13,8 +13,8 @@ namespace RecordLabel.Web
         public static void RegisterBinders(ModelBinderDictionary binders)
         {
             binders.Add(typeof(Artist), new ArtistBinder());
-            binders.Add(typeof(Release), new ReleaseBinder());
             binders.Add(typeof(Article), new BaseWithImagesBinder());
+            binders.Add(typeof(Release), new ReleaseBinder());
 
             //Binders that return null for these types so that they could be easily removed from their respective sets
             binders.Add(typeof(Reference), new IKnowIfImEmptyBinder());

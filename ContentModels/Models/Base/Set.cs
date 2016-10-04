@@ -68,11 +68,11 @@ namespace RecordLabel.Content
 
         public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
         {  
-            IList<T> itemsToRemove = Collection.UpdateCollectionByIds(((Set<T>)sourceModel).Collection, dbContext);
+            IList<T> itemsToRemove = Collection.UpdateCollectionByIds(((Set<T>)sourceModel).Collection, dbContext, !OneToOneRelationship);
             if (itemsToRemove.Count > 0)
             {
                 DeleteItems(itemsToRemove, dbContext);
-            }
+            }       
         }
 
         /// <summary>
@@ -107,13 +107,9 @@ namespace RecordLabel.Content
         /// Tells whether to permanently delete items contained within this set from the database
         /// </summary>
         /// <returns></returns>
-        private static bool DeleteItemsFromTheContext
-        {
-            get
-            {
-                return typeof(T).GetCustomAttribute(typeof(OneToOneRelationshipAttribute)) != null;
-            }
-        }
+        private static bool OneToOneRelationship => typeof(T).IsDefined(typeof(OneToOneRelationshipAttribute));
+
+        private static bool DeleteItemsFromTheContext => OneToOneRelationship;
 
         public bool IsEmpty
         {

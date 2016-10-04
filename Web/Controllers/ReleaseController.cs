@@ -25,6 +25,9 @@ namespace RecordLabel.Web.Controllers
         {
             base.OnModelValidation(postedModel);
 
+            // TODO: validate MasterVersion (check if the Id corresponds to any release with IsMasterVersion == true
+            // TODO: review and implement other validations
+
             //Make sure IsMasterVersion has a valid value
             if (postedModel.IsMasterVersion == true)
             {

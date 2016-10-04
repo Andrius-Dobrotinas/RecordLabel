@@ -22,9 +22,10 @@ namespace RecordLabel.Web.ModelBinding
         {
             Release model = (Release)base.BindModel(controllerContext, bindingContext);
 
-            if (model.MasterVersionId.HasValue && model.MasterVersionId.Value > 0)
+            // Remove MasterVersionId if it's 0 because that means it doesn't refer to any master release
+            if (model.MasterVersionId.HasValue && model.MasterVersionId.Value == 0)
             {
-                model.MasterVersion = ((IHasDbContext<ReleaseContext>)controllerContext.Controller).DbContext.Releases.First(item => item.Id == model.MasterVersionId);
+                model.MasterVersionId = null;
             }
             return model;
         }

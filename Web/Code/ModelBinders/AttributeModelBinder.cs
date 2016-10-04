@@ -15,13 +15,17 @@ namespace RecordLabel.Web.ModelBinding
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             object model = base.BindModel(controllerContext, bindingContext);
-
-            ReleaseContext dbContext = ((IHasDbContext<ReleaseContext>)controllerContext.Controller).DbContext;
+            
+            // Create an AttributeSet with the posted attribute Ids
             NameValueCollection form = controllerContext.HttpContext.Request.Form;
             if (form.AllKeys.Contains("AttributeIds"))
             {
-                int[] ids = form.GetValues("AttributeIds").Select(item => int.Parse(item)).ToArray();
-                ((BaseWithAttributes)model).Attributes = new AttributeSet(dbContext.Attributes.Where(item => ids.Contains(item.Id)).ToArray());
+                var attributes = form.GetValues("AttributeIds")
+                    .Select(item => int.Parse(item))
+                    .Select(id => new Content.Metadata.Attribute { Id = id })
+                    .ToList();
+
+                ((BaseWithAttributes)model).Attributes = new AttributeSet(attributes);
             }
 
             return model;

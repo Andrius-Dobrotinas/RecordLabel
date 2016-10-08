@@ -70,11 +70,11 @@ namespace RecordLabel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lithuani.
+        ///   Looks up a localized string similar to Japanese.
         /// </summary>
-        internal static string Enum_Lithuanian {
+        internal static string Enum_Japanese {
             get {
-                return ResourceManager.GetString("Enum_Lithuanian", resourceCulture);
+                return ResourceManager.GetString("Enum_Japanese", resourceCulture);
             }
         }
     }

@@ -135,7 +135,7 @@ namespace RecordLabel.Content.Configurations
                 Artist = artist1,
                 Title = "Raw Power",
                 //References = refSet,
-                Date = 2014, //DateTime.Now,
+                Date = 2014,
                 Media = mediaFLAC,
                 MasterVersion = release1,
                 CatalogueNumber = "FLAC322",
@@ -239,7 +239,7 @@ namespace RecordLabel.Content.Configurations
         private static LocalStringSet createLocalStringSet(ReleaseContext db, string en, string loc2)
         {
             var locen = new LocalString() { Text = en };
-            var loclt = new LocalString() { Language = Language.Lithuanian, Text = loc2 };
+            var loclt = new LocalString() { Language = Language.Japanese, Text = loc2 };
             List<LocalString> locoLection = new List<LocalString>() { locen, loclt };
 
             return db.LocalStringSet.Add(new LocalStringSet() { Collection = locoLection });

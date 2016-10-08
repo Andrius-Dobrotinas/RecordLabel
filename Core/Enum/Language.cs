@@ -8,8 +8,8 @@ namespace RecordLabel
         [Display(ResourceType = typeof(LocalizationResource), Name = "Enum_English")]
         English = 0,
 
-        [LanugageCode("lt")]
-        [Display(ResourceType = typeof(LocalizationResource), Name = "Enum_Lithuanian")]
-        Lithuanian = 1
+        [LanugageCode("jp")]
+        [Display(ResourceType = typeof(LocalizationResource), Name = "Enum_Japanese")]
+        Japanese = 1
     }
 }

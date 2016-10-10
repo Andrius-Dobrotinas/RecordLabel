@@ -15,7 +15,6 @@ namespace RecordLabel.Web.Controllers
     /// <typeparam name="TModel"></typeparam>
     public abstract class EntityBaseController<TModel> : BaseController where TModel : Base
     {
-        private ReleaseContext db;
         private DbSet<TModel> entitySet;
         public DbSet<TModel> EntitySet => entitySet;
 
@@ -52,8 +51,7 @@ namespace RecordLabel.Web.Controllers
 
         public EntityBaseController(ReleaseContext dbContext, Func<ReleaseContext, DbSet<TModel>> entitySet) : base (dbContext)
         {
-            db = dbContext;
-            this.entitySet = entitySet(DbContext);
+            this.entitySet = entitySet(DbContext.Context);
             ModelOrderBy = init => init.OrderBy(item => item.Id);
             ListModelQuery = initQuery => initQuery;
             CompleteModelQuery = initQuery => ListModelQuery(initQuery);
@@ -141,7 +139,7 @@ namespace RecordLabel.Web.Controllers
             if (!ModelState.IsValid)
             {
                 TModel model = SelectModel(postedModel.Id);
-                model.UpdateModel(DbContext, postedModel);
+                DbContext.UpdateModel(model, postedModel);
                 PrepareViewBagForEdit(model);
                 return View(EditViewName, postedModel);
             }
@@ -271,7 +269,7 @@ namespace RecordLabel.Web.Controllers
 
         protected virtual void OnModelDelete(TModel model)
         {
-            model.Delete(DbContext);
+            model.Delete(DbContext.Context);
         }
 
         protected virtual void PrepareViewBagForCreate()

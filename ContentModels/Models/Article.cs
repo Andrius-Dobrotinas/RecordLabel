@@ -32,14 +32,6 @@ namespace RecordLabel.Content
         [Display(ResourceType = typeof(ContentLocalization), Name = "References")]
         public ReferenceSet References { get; set; }
 
-        public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
-        {
-            Article source = (Article)sourceModel;
-            LocalStringSet.UpdateSet<Article>(this, m => m.Titles, source.Titles, dbContext);
-            ReferenceSet.UpdateSet(this, model => model.References, source.References, dbContext);
-            base.UpdateModel(dbContext, sourceModel);            
-        }
-
         public override void Delete(ReleaseContext dbContext)
         {
             Titles?.Delete(dbContext);

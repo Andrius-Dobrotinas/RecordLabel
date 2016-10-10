@@ -38,16 +38,6 @@ namespace RecordLabel.Content
         [Display(ResourceType = typeof(ContentLocalization), Name = "References")]
         public ReferenceSet References { get; set; }
 
-        public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
-        {
-            base.UpdateModel(dbContext, sourceModel);
-
-            Artist model = (Artist)sourceModel;
-            Name = model.Name;
-            Releases.UpdateCollection(model.Releases);
-            References.UpdateModel(dbContext, model.References);
-        }
-
         public override void Delete(ReleaseContext dbContext)
         {
             if (Releases.Count > 0)

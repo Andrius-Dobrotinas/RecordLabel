@@ -23,6 +23,8 @@ namespace RecordLabel.Content
         {
             Track source = (Track)sourceModel;
             Title = source.Title;
+
+            // TODO: check
             if (Reference != null)
             {
                 if (source.Reference != null)

@@ -15,10 +15,9 @@ namespace RecordLabel.Web.Controllers
     /// <summary>
     /// Base controller with database context
     /// </summary>
-    public abstract class BaseController : Controller, IHasDbContext<ReleaseContext>
+    public abstract class BaseController : Controller
     {
-        private ReleaseContext db;
-        public ReleaseContext DbContext => db;
+        protected IContextWrapper<ReleaseContext> DbContext { get; private set; }
 
         protected string IndexViewName { get;set; }
         protected string EditViewName { get; set; }
@@ -33,7 +32,7 @@ namespace RecordLabel.Web.Controllers
 
         public BaseController(ReleaseContext dbContext)
         {
-            db = dbContext;
+            DbContext = new ContextWrapper<ReleaseContext>(dbContext);
             IndexViewName = "List";
             EditViewName = "Edit";
         }

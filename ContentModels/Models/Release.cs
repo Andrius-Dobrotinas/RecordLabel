@@ -23,16 +23,21 @@ namespace RecordLabel.Content
 
         [Display(ResourceType = typeof(ContentLocalization), Name = "Release_Subtitle")]
         public string Subtitle { get; set; }
+
         [Display(ResourceType = typeof(ContentLocalization), Name = "Release_Date")]
         [Range(1950, 2099)]
         public short? Date { get; set; }
+
         [Display(ResourceType = typeof(ContentLocalization), Name = "DateRecorded")]
         [Range(1950, 2099)]
         public short? DateRecorded { get; set; }
+
         [Display(ResourceType = typeof(ContentLocalization), Name = "Playtime")]
         public short? Playtime { get; set; }
+
         [Display(ResourceType = typeof(ContentLocalization), Name = "MusicBy")]
         public string MusicBy { get; set; }
+
         [Display(ResourceType = typeof(ContentLocalization), Name = "LyricsBy")]
         public string LyricsBy { get; set; }
 
@@ -101,50 +106,6 @@ namespace RecordLabel.Content
             }
         }
         private IList<Release> otherVersions;
-
-        public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
-        {
-            Release source = (Release)sourceModel;
-            Title = source.Title;
-            Subtitle = source.Subtitle;
-            Date = source.Date;
-            DateRecorded = source.DateRecorded;
-            Playtime = source.Playtime;
-            MusicBy = source.MusicBy;
-            LyricsBy = source.LyricsBy;
-            CatalogueNumber = source.CatalogueNumber;
-            PrintStatus = source.PrintStatus;
-            IsMasterVersion = source.IsMasterVersion;
-            MasterVersionId = source.MasterVersionId;
-            MasterVersion = source.MasterVersion;
-            
-            MediaId = source.MediaId;
-            //Check if the property itself has changed
-            if (source.Media != null && source.Media != Media) //non-nullable
-            {
-                Media = source.Media;
-            }
-
-            ArtistId = source.ArtistId;
-            //Check if the property itself has changed
-            if (source.Artist != null && source.Artist != Artist) //non-nullable
-            {
-                Artist = source.Artist;
-            }
-
-            //Descriptions
-            LocalStringSet.UpdateSet<Release>(this, m => m.Descriptions, source.Descriptions, dbContext);
-
-            //Tracklist
-            Tracklist.UpdateSet(this, model => model.Tracklist, source.Tracklist, dbContext);
-
-            //References
-            ReferenceSet.UpdateSet(this, model => model.References, source.References, dbContext);
-
-            base.UpdateModel(dbContext, sourceModel);
-
-            AttributeSet.UpdateSet<Release>(this, model => model.Attributes, source.Attributes, dbContext);
-        }
 
         //TODO
         public override void Delete(ReleaseContext dbContext)

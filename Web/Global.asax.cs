@@ -28,7 +28,7 @@ namespace RecordLabel.Web
 
 #if (true == false)
             //Reinitialize the database with test data
-            Database.SetInitializer(new Content.Configurations.DropCreateAndSeedInitializer<ReleaseContext>());
+            System.Data.Entity.Database.SetInitializer(new Content.Configurations.DropCreateAndSeedInitializer<RecordLabel.Content.ReleaseContext>());
 #endif
         }
 

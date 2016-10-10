@@ -39,9 +39,9 @@ namespace RecordLabel.Web.Controllers
 
         private Tuple<Release[], Article[]> SelectData()
         {
-            DbContext.MediaTypes.Load();
-            Release[] releases = DbContext.Releases.OrderBy(item => item.Id).Take(3).Include(entity => entity.Images).Include(entity => entity.Artist).ToArray();
-            Article[] news = DbContext.Articles.OrderBy(item => item.Date).Take(3).Include(entity => entity.Titles).ToArray();
+            DbContext.Set<RecordLabel.Content.Metadata.MediaType>().Load();
+            Release[] releases = DbContext.Set<Release>().OrderBy(item => item.Id).Take(3).Include(entity => entity.Images).Include(entity => entity.Artist).ToArray();
+            Article[] news = DbContext.Set<Article>().OrderBy(item => item.Date).Take(3).Include(entity => entity.Titles).ToArray();
             return new Tuple<Release[], Article[]>(releases, news);
         }
 

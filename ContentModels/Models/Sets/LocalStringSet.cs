@@ -16,38 +16,6 @@ namespace RecordLabel.Content
             Collection?.FirstOrDefault(item => item.Language == RecordLabel.Localization.DefaultLanguage)?.Text ??
             Collection.FirstOrDefault(item => !String.IsNullOrEmpty(item.Text))?.Text;
         
-        public override void UpdateModel(ReleaseContext dbContext, object newModel)
-        {
-            //Update Collection items with values from newModel and Add new items from newModel
-            //Collection items are updated by values from newModel's items that have a corresponding language
-            IList<Language> newKeys = new List<Language>(); //a List containing newModel's LocalString Languages
-            foreach (LocalString newItem in ((Set<LocalString>)newModel).Collection)
-            {
-                LocalString itemInCollection = Collection.SingleOrDefault(entity => entity.Language == newItem.Language);
-                if (itemInCollection == null)
-                {
-                    Collection.Add(newItem);
-                }
-                else
-                {
-                    //Update existing item
-                    itemInCollection.UpdateModel(dbContext, newItem);
-                }
-                newKeys.Add(newItem.Language);
-            }
-
-            //Remove items that are not present in the newModel
-            IList<LocalString> itemsToRemove = new List<LocalString>();
-            foreach (LocalString item in Collection)
-            {
-                if (newKeys.Contains(item.Language) == false)
-                {
-                    itemsToRemove.Add(item);
-                }
-            }
-            ((List<LocalString>)Collection).RemoveAll(item => itemsToRemove.Contains(item));
-        }
-
         public bool ValuesEqual(LocalStringSet localization)
         {
             foreach (var item in typeof(Language).GetEnumValues())
@@ -67,7 +35,7 @@ namespace RecordLabel.Content
         public override void Delete(ReleaseContext dbContext)
         {
             //LocalStrings are automatically deleted when detached from the set due to EntityFramework magic
-            Collection.RemoveAllItems();
+            Collection.Clear();
 
             base.Delete(dbContext);
         }

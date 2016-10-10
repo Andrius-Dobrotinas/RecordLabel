@@ -17,7 +17,7 @@ namespace RecordLabel.Content
 
         public void RemoveAllItems()
         {
-            Collection.RemoveAllItems();
+            Collection.Clear();
         }
 
         /// <summary>

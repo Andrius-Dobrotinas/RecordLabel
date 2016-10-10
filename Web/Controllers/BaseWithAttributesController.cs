@@ -21,13 +21,13 @@ namespace RecordLabel.Web.Controllers
             //Currently, there are only two types of attributes
             if (typeof(TModel).GetCustomAttributes(typeof(UsesGenreAttribute), true).Any() == false)
             {
-                return DbContext.Attributes.Where(item => item.Type == AttributeType.Attribute).ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name);
+                return DbContext.Set<RecordLabel.Content.Metadata.Attribute>().Where(item => item.Type == AttributeType.Attribute).ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name);
             }
             else
             {
                 SelectListGroup attributeGroup = new SelectListGroup() { Name = "Attribures" };
                 SelectListGroup genreGroup = new SelectListGroup() { Name = "Genres" };
-                return DbContext.Attributes.ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name, item => (item.Type == AttributeType.Attribute) ? attributeGroup : genreGroup);
+                return DbContext.Set<RecordLabel.Content.Metadata.Attribute>().ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name, item => (item.Type == AttributeType.Attribute) ? attributeGroup : genreGroup);
             }
         }
 
@@ -36,13 +36,13 @@ namespace RecordLabel.Web.Controllers
             //Currently, there are only two types of attributes
             if (typeof(TModel).GetCustomAttributes(typeof(UsesGenreAttribute), true).Any() == false)
             {
-                return DbContext.Attributes.Where(item => item.Type == AttributeType.Attribute).ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name, item => model?.Attributes?.Collection?.Contains(item) ?? false);
+                return DbContext.Set<RecordLabel.Content.Metadata.Attribute>().Where(item => item.Type == AttributeType.Attribute).ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name, item => model?.Attributes?.Collection?.Contains(item) ?? false);
             }
             else
             {
                 SelectListGroup attributeGroup = new SelectListGroup() { Name = "Attribures" };
                 SelectListGroup genreGroup = new SelectListGroup() { Name = "Genres" };
-                return DbContext.Attributes.ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name, item => model?.Attributes?.Collection?.Contains(item) ?? false, item => (item.Type == AttributeType.Attribute) ? attributeGroup : genreGroup);
+                return DbContext.Set<RecordLabel.Content.Metadata.Attribute>().ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name, item => model?.Attributes?.Collection?.Contains(item) ?? false, item => (item.Type == AttributeType.Attribute) ? attributeGroup : genreGroup);
             }
         }
 

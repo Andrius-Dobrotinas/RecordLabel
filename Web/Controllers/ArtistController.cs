@@ -21,13 +21,13 @@ namespace RecordLabel.Web.Controllers
 
         protected override void PrepareViewBagForCreate()
         {
-            ViewBag.ReleaseIds = DbContext.Releases.ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Title);
+            ViewBag.ReleaseIds = DbContext.Set<Release>().ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Title);
             base.PrepareViewBagForCreate();
         }
 
         protected override void PrepareViewBagForEdit(Artist model)
         {
-            ViewBag.ReleaseIds = DbContext.Releases.ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Title, item => model?.Releases?.Contains(item) ?? false);
+            ViewBag.ReleaseIds = DbContext.Set<Release>().ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Title, item => model?.Releases?.Contains(item) ?? false);
             base.PrepareViewBagForEdit(model);
         }
     }

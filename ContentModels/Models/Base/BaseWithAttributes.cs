@@ -12,10 +12,11 @@ namespace RecordLabel.Content
     {
         public virtual AttributeSet Attributes { get; set; }
 
+        // TODO: remove
         public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
         {
             AttributeSet attributes = ((BaseWithAttributes)sourceModel).Attributes;
-            AttributeSet.UpdateSet(this, model => model.Attributes, attributes, dbContext);
+            //AttributeSet.UpdateSet(this, model => model.Attributes, attributes, dbContext);
 
             base.UpdateModel(dbContext, sourceModel);
         }

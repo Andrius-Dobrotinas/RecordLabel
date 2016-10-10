@@ -30,7 +30,8 @@ namespace RecordLabel.Content
         /// <param name="sourceModel">Model whose property values to copy to this model</param>
         public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
         {
-            LocalStringSet.UpdateSet<Base>(this, m => m.Localization, ((Base)sourceModel).Localization, dbContext);
+            // TODO: remove this whole method
+            //LocalStringSet.UpdateSet<Base>(this, m => m.Localization, ((Base)sourceModel).Localization, dbContext);
         }
 
         public override void Delete(ReleaseContext dbContext)

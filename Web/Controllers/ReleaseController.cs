@@ -49,8 +49,8 @@ namespace RecordLabel.Web.Controllers
 
         protected override void PrepareViewBagForCreate()
         {
-            ViewBag.ArtistId = DbContext.Artists.ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name);
-            ViewBag.MediaId = DbContext.MediaTypes.ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Text);
+            ViewBag.ArtistId = DbContext.Set<Artist>().ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name);
+            ViewBag.MediaId = DbContext.Set<Content.Metadata.MediaType>().ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Text);
 
             SelectListItem[] primaryVersions = EntitySet.Where(item => item.IsMasterVersion == true).ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => $"{item.Title} ({item.Media.Name}, {item.CatalogueNumber}, {item.Date})");
             if (primaryVersions.Length > 0)
@@ -64,8 +64,8 @@ namespace RecordLabel.Web.Controllers
 
         protected override void PrepareViewBagForEdit(Release model)
         {
-            ViewBag.ArtistId = DbContext.Artists.ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name, item => model.ArtistId == item.Id);
-            ViewBag.MediaId = DbContext.MediaTypes.ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Text, item => model.MediaId == item.Id);
+            ViewBag.ArtistId = DbContext.Set<Artist>().ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Name, item => model.ArtistId == item.Id);
+            ViewBag.MediaId = DbContext.Set<Content.Metadata.MediaType>().ToArray().ToListOfSelectListItems(item => item.Id.ToString(), item => item.Text, item => model.MediaId == item.Id);
           
             //If this is a IsMasterVersion version and there are slave versions, don't load Other versions dropdown menu
             if ((model.IsMasterVersion && EntitySet.Any(item => item.MasterVersionId == model.Id)))// model.MasterVersion.Any(); ?
@@ -101,7 +101,7 @@ namespace RecordLabel.Web.Controllers
 
         protected override Release SelectModel(int id)
         {
-            DbContext.MediaTypes.Load();
+            DbContext.Set<Content.Metadata.MediaType>().Load();
             return base.SelectModel(id);
         }
 
@@ -114,7 +114,7 @@ namespace RecordLabel.Web.Controllers
         {
             Release[] releases = base.SelectModels(batch, filter);
             releases.ForEach(item => item.LoadOtherVersions(EntitySet));
-            DbContext.MediaTypes.Load();
+            DbContext.Set<Content.Metadata.MediaType>().Load();
             return releases;
         }
 

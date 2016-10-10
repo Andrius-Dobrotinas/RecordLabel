@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace RecordLabel.Content
 {
+    [OneToOneRelationshipAttribute]
     public class LocalString : EntityBase, IKnowIfImEmpty, IValueComparable<LocalString>
     {
         [NotMapped]
@@ -30,6 +31,7 @@ namespace RecordLabel.Content
             }
         }
 
+        // TODO: remove
         public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
         {
             Text = (sourceModel as LocalString)?.Text;

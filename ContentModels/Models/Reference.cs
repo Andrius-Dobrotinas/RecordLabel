@@ -48,15 +48,6 @@ namespace RecordLabel.Content
         [Display(ResourceType = typeof(ContentLocalization), Name = "Order")]
         public int Order { get; set; }
 
-        public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
-        {
-            base.UpdateModel(dbContext, sourceModel);
-
-            Reference source = (Reference)sourceModel;
-            Target = source.Target;
-            Type = source.Type;
-        }
-
         public bool ValuesEqual(Reference reference)
         {
             return reference != null &&

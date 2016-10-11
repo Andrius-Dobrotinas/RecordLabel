@@ -93,8 +93,8 @@ namespace RecordLabel.Content
                     .Select(p => p.NavigationalProperty)).ToArray();
 
 
-            // Update collection properties (UNUSED... for the time being)
-            /*PropertyInfo[] collectionProperties = properties.Except(setProperties).Except(foreignKeyProperties)
+            // Update collection properties (UNUSED)
+            PropertyInfo[] collectionProperties = properties.Except(setProperties).Except(foreignKeyProperties)
                 .Where(prop => prop.PropertyType.IsGenericType && prop.PropertyType.GetGenericTypeDefinition() == typeof(IList<>)
                 // TODO: some day write a function that recursively searches for a generic interface definition
                 ).ToArray();
@@ -107,7 +107,7 @@ namespace RecordLabel.Content
                 // Update collection values
                 InvokeGenericMethod(typeof(CollectionExtensions), "UpdateCollection", property.PropertyType.GetGenericArguments(),
                     BindingFlags.Static | BindingFlags.Public, new object[] { value, newValue }, null);
-            }*/
+            }
 
 
             // Regular properties

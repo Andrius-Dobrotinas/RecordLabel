@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace RecordLabel.Content
 {
+    /// <summary>
+    /// Updates models of Set of T type
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public static class SetUpdater<T>
         where T : EntityBase, IValueComparable<T>
     {
@@ -45,17 +49,17 @@ namespace RecordLabel.Content
                 else
                 {
                     //Add/Remove items
-                    UpdateModel(targetSet, newSet, dbContext, isOneToOneRelationship);
+                    UpdateSetItems(targetSet, newSet, dbContext, isOneToOneRelationship);
                 }
             }
         }
 
-        private static void UpdateModel(Set<T> targetModel, Set<T> sourceModel, ContextWrapper<ReleaseContext> dbContext, bool isOneToOneRelationship)
+        private static void UpdateSetItems(Set<T> targetModel, Set<T> sourceModel, ContextWrapper<ReleaseContext> dbContext, bool isOneToOneRelationship)
         {
             // An exception for LocalStringSet because
             if (typeof(T) == typeof(LocalString))
             {
-                RecordLabel.Content.LocalStringSetUpdater.UpdateModel(dbContext.Context, targetModel as LocalStringSet, sourceModel as LocalStringSet);
+                RecordLabel.Content.LocalStringSetUpdater.UpdateModel(targetModel as LocalStringSet, sourceModel as LocalStringSet);
             }
             else
             {
@@ -102,65 +106,3 @@ namespace RecordLabel.Content
         }
     }
 }
-
-
-
-/// <summary>
-/// Deletes the set from the database within the supplied context
-/// </summary>
-/// <param name="dbContext"></param>
-/*public static void Delete(ReleaseContext dbContext, Set<T> targetModel)
-{
-    //Delete collection items from the database
-    DeleteItems(targetModel.Collection, dbContext);
-
-    dbContext.Entry(targetModel).State = System.Data.Entity.EntityState.Deleted;
-}*/
-
-
-
-/// <summary>
-/// Updates Set-typed property of a given model. Takes care of null values
-/// </summary>
-/// <typeparam name="TModel"></typeparam>
-/// <param name="model"></param>
-/// <param name="property"></param>
-/// <param name="newSet"></param>
-/// <param name="dbContext"></param>
-//public static void UpdateSet<TModel>(TModel model, Expression<Func<TModel, Set<T>>> property, Set<T> newSet, ReleaseContext dbContext) where TModel : IHasASet<T>
-//{
-//    //Get reference to the Set property
-//    MemberExpression mex = (MemberExpression)property.Body;
-//    PropertyInfo setProperty = (PropertyInfo)mex.Member;
-
-
-//    Set<T> sourceSet = (Set<T>)setProperty.GetValue(model);
-
-//    if (!(newSet?.Collection?.Count > 0))
-//    {
-//        //Remove the whole set and do nothing
-//        if (sourceSet != null)
-//        {
-//            sourceSet.Delete(dbContext);
-//        }
-//    }
-//    else //Add/Remove items
-//    {
-//        if (sourceSet == null)
-//        {
-//            //Add all items
-//            setProperty.SetValue(model, newSet);
-//        }
-//        else
-//        {
-//            //Add/Remove items
-//            sourceSet.UpdateModel(dbContext, newSet);
-
-//            /*IList<T> itemsToRemove = sourceSet.Collection.UpdateCollectionByIds(newSet.Collection, dbContext);
-//            if (itemsToRemove.Count > 0) //&& DeleteItemsFromTheContext
-//            {
-//                DeleteItems(itemsToRemove, dbContext);
-//            }*/
-//        }
-//    }
-//}

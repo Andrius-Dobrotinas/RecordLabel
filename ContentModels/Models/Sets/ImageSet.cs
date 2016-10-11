@@ -25,6 +25,7 @@ namespace RecordLabel.Content
         /// </summary>
         public void SortAndOrderSequential()
         {
+            // TODO: sort this ugly cast out.
             ((List<Image>)Collection).Sort((first, second) => first.Order.CompareTo(second.Order));
 
             //Set sequential order values
@@ -41,12 +42,6 @@ namespace RecordLabel.Content
                 item.Delete(dbContext);
             }
             base.Delete(dbContext);
-        }
-
-        //Not using this yet
-        public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
-        {
-            throw new NotImplementedException();
         }
     }
 }

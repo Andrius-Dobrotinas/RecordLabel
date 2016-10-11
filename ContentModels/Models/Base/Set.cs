@@ -23,12 +23,6 @@ namespace RecordLabel.Content
         }
         private IList<T> collection { get; set; }
 
-        // TODO: remove
-        public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool IsEmpty
         {
             get

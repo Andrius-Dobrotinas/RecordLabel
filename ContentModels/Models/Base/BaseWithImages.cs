@@ -48,7 +48,8 @@ namespace RecordLabel.Content
             throw new NotImplementedException("do you even need it?");//TODO: remove this method?
         }
 
-        public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
+        // TODO: remove and probably write an other specific "Updater"
+        /*public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
         {
             ImageSet imageSet = ((BaseWithImages)sourceModel).Images;
             if (imageSet?.Collection?.Count > 0)
@@ -57,7 +58,7 @@ namespace RecordLabel.Content
             }
 
             base.UpdateModel(dbContext, sourceModel);
-        }
+        }*/
 
         public override void Delete(ReleaseContext dbContext)
         {

@@ -32,14 +32,15 @@ namespace RecordLabel.Content
             base.Delete(dbContext);
         }
 
-        public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
+        // TODO
+        /*public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
         {
             Image model = (Image)sourceModel;
             Order = model.Order;
             Name = model.Name;
             Type = model.Type;
             FileName = model.FileName;
-        }
+        }*/
 
         //Not using this yet
         bool IValueComparable<Image>.ValuesEqual(Image compareTo)

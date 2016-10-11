@@ -19,29 +19,6 @@ namespace RecordLabel.Content
         [Display(ResourceType = typeof(ContentLocalization), Name = "Reference")]
         public virtual Reference Reference { get; set; }
 
-        public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
-        {
-            Track source = (Track)sourceModel;
-            Title = source.Title;
-
-            // TODO: check
-            if (Reference != null)
-            {
-                if (source.Reference != null)
-                {
-                    Reference.UpdateModel(dbContext, source.Reference);
-                }
-                else
-                {
-                    Reference.Delete(dbContext);
-                }
-            }
-            else
-            {
-                Reference = source.Reference;
-            }
-        }
-
         public bool ValuesEqual(Track track)
         {
             return track != null &&

@@ -23,17 +23,6 @@ namespace RecordLabel.Content
         [Display(ResourceType = typeof(ContentLocalization), Name = "Base_Text")]
         public string Text => Localization?.Text;
         
-        /// <summary>
-        /// Updates this model with to match the state of sourceModel
-        /// </summary>
-        /// <param name="dbContext">Database context which to perform changes in</param>
-        /// <param name="sourceModel">Model whose property values to copy to this model</param>
-        public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
-        {
-            // TODO: remove this whole method
-            //LocalStringSet.UpdateSet<Base>(this, m => m.Localization, ((Base)sourceModel).Localization, dbContext);
-        }
-
         public override void Delete(ReleaseContext dbContext)
         {
             Localization?.Delete(dbContext);

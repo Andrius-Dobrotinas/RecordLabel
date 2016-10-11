@@ -9,12 +9,6 @@ namespace RecordLabel.Content.Metadata
         public AttributeType Type { get; set; }
         public virtual IList<AttributeSet> AttributeSets { get; set; }
 
-        public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
-        {
-            base.UpdateModel(dbContext, sourceModel);
-            Type = ((Attribute)sourceModel).Type;
-        }
-
         //TODO
         public override void Delete(ReleaseContext dbContext)
         {

@@ -31,12 +31,6 @@ namespace RecordLabel.Content
             }
         }
 
-        // TODO: remove
-        public override void UpdateModel(ReleaseContext dbContext, object sourceModel)
-        {
-            Text = (sourceModel as LocalString)?.Text;
-        }
-
         bool IValueComparable<LocalString>.ValuesEqual(LocalString compareTo)
         {
             return compareTo != null &&

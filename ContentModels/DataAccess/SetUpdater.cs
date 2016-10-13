@@ -84,7 +84,7 @@ namespace RecordLabel.Content
                      },
                      (itemsToRemove) =>
                      {
-                         DeleteFromContext(itemsToRemove, dbContext.Context, isOneToOneRelationship);
+                         DeleteFromContext(itemsToRemove, dbContext, isOneToOneRelationship);
                      });
             }
         }
@@ -94,14 +94,23 @@ namespace RecordLabel.Content
         /// </summary>
         /// <param name="itemsToRemove"></param>
         /// <param name="dbContext"></param>
-        private static void DeleteFromContext(IList<T> itemsToRemove, ReleaseContext dbContext, bool isOneToOneRelationship)
+        private static void DeleteFromContext(IList<T> itemsToRemove, ContextWrapper<ReleaseContext> context, bool isOneToOneRelationship)
         {
             if (isOneToOneRelationship)
             {
                 foreach (T item in itemsToRemove.ToArray())
                 {
-                    item.Delete(dbContext);
+                    //context.DeleteModel(item);
+                    context.Context.Entry(item).State = EntityState.Deleted;
                 }
+            }
+        }
+
+        public static void DeleteSetItems(Set<T> set, ContextWrapper<ReleaseContext> context)
+        {
+            if (set.Collection?.Count > 0)
+            {
+                DeleteFromContext(set.Collection, context, typeof(T).IsDefined(typeof(OneToOneRelationshipAttribute)));
             }
         }
     }

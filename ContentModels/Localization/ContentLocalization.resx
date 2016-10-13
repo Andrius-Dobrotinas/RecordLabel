@@ -171,7 +171,7 @@
   <data name="Reference_Target" xml:space="preserve">
     <value>Target</value>
   </data>
-  <data name="Reference_DisplayAs" xml:space="preserve">
+  <data name="Reference_DisplayTargetAs" xml:space="preserve">
     <value>Display As</value>
   </data>
   <data name="Reference_Type" xml:space="preserve">

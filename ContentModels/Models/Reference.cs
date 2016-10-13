@@ -7,8 +7,26 @@ using RecordLabel.Content.Localization;
 
 namespace RecordLabel.Content
 {
+    public class TrackReference : ReferenceBase
+    {
+        public int TrackId { get; set; }
+        public Track Track { get; set; }
+
+        /*public override bool ValuesEqual(TrackReference reference)
+        {
+            return base.ValuesEqual(reference);
+        }*/
+    }
+
+    public class Reference : ReferenceBase
+    {
+        [ForeignKey("Set")]
+        public int SetId { get; set; }
+        public ReferenceSet Set { get; set; }
+    }
+
     [OneToOneRelationship]
-    public class Reference : Base, IKnowIfImEmpty, IValueComparable<Reference>
+    public abstract class ReferenceBase : Base, IKnowIfImEmpty, IValueComparable<ReferenceBase>
     {
         public static string YoutubeLinkBase { get; set; }
 
@@ -48,7 +66,7 @@ namespace RecordLabel.Content
         [Display(ResourceType = typeof(ContentLocalization), Name = "Order")]
         public int Order { get; set; }
 
-        public bool ValuesEqual(Reference reference)
+        public virtual bool ValuesEqual(ReferenceBase reference)
         {
             return reference != null &&
                 Target == reference.Target &&

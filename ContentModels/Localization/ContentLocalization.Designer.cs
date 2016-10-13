@@ -288,9 +288,9 @@ namespace RecordLabel.Content.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Display As.
         /// </summary>
-        public static string Reference_DisplayAs {
+        public static string Reference_DisplayTargetAs {
             get {
-                return ResourceManager.GetString("Reference_DisplayAs", resourceCulture);
+                return ResourceManager.GetString("Reference_DisplayTargetAs", resourceCulture);
             }
         }
         

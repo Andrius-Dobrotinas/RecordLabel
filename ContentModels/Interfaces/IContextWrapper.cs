@@ -14,5 +14,8 @@ namespace RecordLabel.Content
         DbSet<T> Set<T>() where T : class;
 
         void UpdateModel<TModel>(TModel model, TModel newState) where TModel : EntityBase;
+
+        //void DeleteModel<TModel>(TModel model) where TModel : EntityBase;
+        void DeleteModel(object model);
     }
 }

@@ -17,7 +17,7 @@ namespace RecordLabel.Content
         [ForeignKey("Reference")]
         public int? ReferenceId { get; set; }
         [Display(ResourceType = typeof(ContentLocalization), Name = "Reference")]
-        public virtual Reference Reference { get; set; }
+        public virtual TrackReference Reference { get; set; }
 
         public bool ValuesEqual(Track track)
         {

@@ -34,7 +34,7 @@ namespace RecordLabel.Content
 
         public override void Delete(ReleaseContext dbContext)
         {
-            //LocalStrings are automatically deleted when detached from the set due to EntityFramework magic
+            //LocalStrings are automatically deleted when detached from the set thanks to the EntityFramework magic
             Collection.Clear();
 
             base.Delete(dbContext);

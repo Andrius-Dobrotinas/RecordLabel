@@ -206,8 +206,8 @@ namespace RecordLabel.Content.Configurations
             release1.Tracklist = new Tracklist();
             release1.Tracklist.Collection.Add(new Track()
             {
-                Title = "Search And Destroy",
-                Reference = reference_Stooges
+                Title = "Search And Destroy"/*,
+                Reference = reference_Stooges*/
             });
             release1.Tracklist.Collection.Add(new Track()
             {

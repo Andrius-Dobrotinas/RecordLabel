@@ -12,6 +12,6 @@
         <span class="text-muted input-group-addon">@(Model?.Reference?.Text)</span>:<span class="val label form-control"><a href="@(Model?.Reference?.TargetUrl)">@(Model?.Reference?.DisplayTargetAs)</a></span> <div class="glyphicon"><button type="button" class="glyphicon-pencil btn btn-default" onclick="editreference(this);"></button></div>
     </div>
     <div class="reference-edit simply-hide frame col-md-10">
-        @Html.EditorFor(model => model.Reference)
+        @Html.EditorFor(model => model.Reference, "Reference")
     </div>
 </div>

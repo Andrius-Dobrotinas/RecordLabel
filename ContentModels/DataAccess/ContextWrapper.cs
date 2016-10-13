@@ -13,6 +13,12 @@ namespace RecordLabel.Content
     {
         public TContext Context { get; }
 
+        /// <summary>
+        /// Returns all public instance properties omitting key property (because cannot be changed) and those that are not mapped
+        /// </summary>
+        protected Func<Type, IQueryable<PropertyInfo>> GetProperties => (type) => type.GetProperties().AsQueryable().Where(p => p.CanWrite) // have a setter
+                .Where(p => !p.IsDefined(typeof(NotMappedAttribute)) && !p.IsDefined(typeof(KeyAttribute)));
+
         public ContextWrapper(TContext context)
         {
             Context = context;
@@ -44,21 +50,10 @@ namespace RecordLabel.Content
         {
             //TODO: handle deletion of References (get exception now)
 
-            // Select all public properties skipping key property which can't be changed and those that are not mapped
-            PropertyInfo[] properties = typeof(TModel).GetProperties()
-                .Where(p => p.CanWrite) // have a setter
-                .Where(p => !p.IsDefined(typeof(NotMappedAttribute)) && !p.IsDefined(typeof(KeyAttribute)))
-                .ToArray();
+            PropertyInfo[] properties = GetProperties(typeof(TModel)).ToArray();
 
             // Select all properties that implement ISet<>
-            var setPropertyDefinitions = properties
-                .Select(prop => new
-                {
-                    Property = prop,
-                    Definition = prop.PropertyType.GetInterfaces()
-                        .FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ISet<>))
-                })
-                .Where(p => p.Definition != null).ToArray();
+            var setPropertyDefinitions = GetSetProperties(properties);
 
             // Update all properties that implement ISet<>
             foreach (var property in setPropertyDefinitions)
@@ -160,7 +155,7 @@ namespace RecordLabel.Content
 
         protected object InvokeGenericMethod(Type classType, Type[] classGenericTypeArguments, string methodName, Type[] methodGenericTypeArguments, BindingFlags methodBindingFlags, object[] methodArguments, object targetObject)
         {
-            // I could probably implement cache so not to invoke this everytime
+            // I could probably implement cache so not to invoke this every time
             var genericType = classType.MakeGenericType(classGenericTypeArguments);
 
             return InvokeGenericMethod(genericType, methodName, methodGenericTypeArguments, methodBindingFlags, methodArguments, targetObject);
@@ -169,8 +164,35 @@ namespace RecordLabel.Content
         protected object InvokeGenericMethod(Type classType, string methodName, Type[] methodGenericTypeArguments, BindingFlags methodBindingFlags, object[] methodArguments, object targetObject)
         {
             var method = classType.GetMethod(methodName, methodBindingFlags);
-            var genericMethod = method.MakeGenericMethod(methodGenericTypeArguments);
-            return genericMethod.Invoke(targetObject, methodArguments);
+            if (methodGenericTypeArguments?.Length > 0)
+                method = method.MakeGenericMethod(methodGenericTypeArguments);
+            return method.Invoke(targetObject, methodArguments);
+        }
+
+        protected PropertyGenericTypeDefinition[] GetSetProperties(IEnumerable<PropertyInfo> properties)
+        {
+            var fyck = properties
+                .Select(prop => new PropertyGenericTypeDefinition
+                {
+                    Property = prop,
+                    Definition = prop.PropertyType.GetInterfaces()
+                        .FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ISet<>))
+                });
+
+            return properties
+                .Select(prop => new PropertyGenericTypeDefinition
+                {
+                    Property = prop,
+                    Definition = prop.PropertyType.GetInterfaces()
+                        .FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ISet<>))
+                })
+                .Where(p => p.Definition != null).ToArray();
+        }
+
+        protected struct PropertyGenericTypeDefinition
+        {
+            public PropertyInfo Property;
+            public Type Definition;
         }
 
         protected struct ForeignKeyProperty
@@ -179,7 +201,30 @@ namespace RecordLabel.Content
             public PropertyInfo NavigationalProperty;
         }
 
+        //public void DeleteModel<TModel>(TModel model) where TModel : EntityBase
+        public void DeleteModel(object model) 
+        {
+            var setInterface = model.GetType().GetInterfaces().Where(t => t.IsGenericType).Select(t => new { Type = t, GenericTypeDefinition = t.GetGenericTypeDefinition() }).SingleOrDefault(t => t.GenericTypeDefinition == typeof(ISet<>));
+
+            if (setInterface != null)
+            {
+                var genericArg = setInterface.Type.GetGenericArguments().SingleOrDefault();
+
+                InvokeGenericMethod(typeof(SetUpdater<>), new Type[] { genericArg }, "DeleteSetItems", null, BindingFlags.Static | BindingFlags.Public, new object[] { model, this }, null);
+            }
+
+            foreach (var property in proeprties)//GetProperties(typeof(TModel))))
+            {
+                object entity = property.Property.GetValue(model);
+                if (entity == null) continue;
+                DeleteModel(entity);
+            }
+
+            Context.Entry(model).State = EntityState.Deleted;
+        }
+
         
+
         #region IDisposable Support
         public bool IsDisposed { get; protected set; } = false;
 

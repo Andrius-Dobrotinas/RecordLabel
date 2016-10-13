@@ -158,7 +158,8 @@ namespace RecordLabel.Web.Controllers
 
             if (EntityExists(model))
             {
-                OnModelDelete(model);
+                //OnModelDelete(model);
+                DbContext.DeleteModel(model);
                 DbContext.SaveChanges();
             }
             return RedirectToAction("Index");

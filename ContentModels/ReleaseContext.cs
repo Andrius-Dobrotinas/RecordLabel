@@ -35,10 +35,10 @@ namespace RecordLabel.Content
 
             modelBuilder.Entity<AttributeSet>().HasMany(x => x.Collection).WithMany(x => x.AttributeSets).Map(x => x.ToTable("AttributeMap", "JoinTables"));
             modelBuilder.Entity<LocalStringSet>().HasMany(x => x.Collection).WithRequired(y => y.LocalizationObject).WillCascadeOnDelete();
-
-            modelBuilder.Entity<Release>().HasOptional<LocalStringSet>(x => x.Descriptions).WithOptionalPrincipal();
-            modelBuilder.Entity<Release>().HasOptional<LocalStringSet>(x => x.Localization).WithOptionalPrincipal();
-            modelBuilder.Entity<Artist>().HasOptional<LocalStringSet>(x => x.Localization).WithOptionalPrincipal();
+            modelBuilder.Entity<Release>().HasOptional(x => x.Tracklist).WithRequired().WillCascadeOnDelete();// x => x.release).WillCascadeOnDelete();
+            modelBuilder.Entity<Tracklist>().HasMany(x => x.Collection).WithRequired().WillCascadeOnDelete();
+            modelBuilder.Entity<Track>().HasOptional(x => x.Reference).WithRequired(x => x.Track).WillCascadeOnDelete();           
+            modelBuilder.Entity<ReferenceSet>().HasMany(x => x.Collection).WithRequired(x => x.Set).WillCascadeOnDelete();
         }
     }
 }

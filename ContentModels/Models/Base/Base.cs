@@ -1,32 +1,25 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using RecordLabel.Content.Localization;
+﻿using System;
+using System.Collections.Generic;
 
-namespace RecordLabel.Content
+namespace RecordLabel.Data.Models
 {
     /// <summary>
-    /// A base class for all database entities with a localized text property
+    /// Base class for all database entities with a localized text property
     /// </summary>
-    public abstract class Base : FirstBase, IHasASet<LocalString>
+    public abstract class Base<TLocalizedString> : FirstBase, IHasASet<TLocalizedString>
+        where TLocalizedString : LocalizedStringBase
     {
-        /// <summary>
-        /// Main property for localized text
-        /// </summary>
-        [ForeignKey("Localization")]
-        public int? LocalizationId { get; set; }
-        public virtual LocalStringSet Localization { get; set; }
-
-        /// <summary>
-        /// Text from localization in current (or, if not available, default) language 
-        /// </summary>
-        [NotMapped]
-        [Display(ResourceType = typeof(ContentLocalization), Name = "Base_Text")]
-        public string Text => Localization?.Text;
-        
-        public override void Delete(ReleaseContext dbContext)
+        public virtual IList<TLocalizedString> LocalizedText
         {
-            Localization?.Delete(dbContext);
-            base.Delete(dbContext);
+            get
+            {
+                return collection ?? (collection = new List<TLocalizedString>());
+            }
+            set
+            {
+                collection = value;
+            }
         }
+        private IList<TLocalizedString> collection { get; set; }
     }
 }

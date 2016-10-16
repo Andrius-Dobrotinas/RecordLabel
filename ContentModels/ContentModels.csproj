@@ -7,7 +7,7 @@
     <ProjectGuid>{6812841D-4973-44B3-A2A7-0C2B487A5FF6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RecordLabel.Content</RootNamespace>
+    <RootNamespace>RecordLabel.Data</RootNamespace>
     <AssemblyName>ReleaseData</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -55,52 +55,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\OneToOneRelationship.cs" />
-    <Compile Include="DataAccess\ContextWrapper.cs" />
     <Compile Include="Enums\ImageType.cs" />
     <Compile Include="Exceptions\EntityInUseException.cs" />
     <Compile Include="Extensions\DbSetExtensions.cs" />
     <Compile Include="Extensions\ModelExtensions.cs" />
-    <Compile Include="DataAccess\LocalizationSetUpdater.cs" />
-    <Compile Include="Interfaces\IContextWrapper.cs" />
-    <Compile Include="Interfaces\ISet.cs" />
     <Compile Include="Localization\ContentLocalization.Designer.cs">
       <DependentUpon>ContentLocalization.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Models\Artist.cs" />
+    <Compile Include="Models\ReferenceBase.cs" />
+    <Compile Include="Models\TrackReference.cs" />
+    <Compile Include="Models\MainContent\Artist.cs" />
+    <Compile Include="Models\MainContent\MainContent.cs" />
     <Compile Include="Models\Base\EntityBase.cs" />
-    <Compile Include="Models\Sets\AttributeSet.cs" />
+    <Compile Include="Models\LocalizedStrings\MediaTypeLocalizedString.cs" />
+    <Compile Include="Models\LocalizedStrings\MetadataLocalizedString.cs" />
+    <Compile Include="Models\LocalizedStrings\LocalizedString.cs" />
     <Compile Include="Attributes\UsesGenre.cs" />
     <Compile Include="Models\Base\FirstBase.cs" />
     <Compile Include="Models\Base\Base.cs" />
     <Compile Include="Enums\ArticleType.cs" />
     <Compile Include="Enums\ReferenceType.cs" />
     <Compile Include="Exceptions\LocalizationEmptyException.cs" />
-    <Compile Include="Enums\AttributeType.cs" />
+    <Compile Include="Enums\MetadataType.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Reference.cs" />
-    <Compile Include="Models\Base\BaseWithAttributes.cs" />
     <Compile Include="Models\Base\BaseWithImages.cs" />
     <Compile Include="Configurations\DropCreateAndSeedInitializer.cs" />
-    <Compile Include="Configurations\ReleaseConfiguration.cs" />
     <Compile Include="Models\Sets\ImageSet.cs" />
-    <Compile Include="Models\Sets\LocalStringSet.cs" />
-    <Compile Include="Models\Base\Metadata.cs" />
     <Compile Include="Models\Image.cs" />
-    <Compile Include="Models\Sets\ReferenceSet.cs" />
     <Compile Include="ReleaseContext.cs" />
     <Compile Include="Enums\PrintStatus.cs" />
-    <Compile Include="Models\Release.cs" />
-    <Compile Include="Models\Metadata\MediaType.cs" />
+    <Compile Include="Models\MainContent\Release.cs" />
+    <Compile Include="Models\MediaType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Metadata\Attribute.cs" />
-    <Compile Include="Models\LocalString.cs" />
-    <Compile Include="Models\Base\Set.cs" />
+    <Compile Include="Models\Metadata.cs" />
+    <Compile Include="Models\LocalizedStrings\LocalizedStringBase.cs" />
     <Compile Include="Models\Track.cs" />
-    <Compile Include="Models\Sets\Tracklist.cs" />
-    <Compile Include="DataAccess\SetUpdater.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -123,7 +115,9 @@
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

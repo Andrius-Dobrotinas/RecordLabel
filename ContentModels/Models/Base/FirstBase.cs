@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-using System.Data.Entity;
 
-namespace RecordLabel.Content
+namespace RecordLabel.Data.Models
 {
     /// <summary>
     /// Database entity class with Id as a primary key

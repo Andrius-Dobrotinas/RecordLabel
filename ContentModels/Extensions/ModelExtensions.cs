@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RecordLabel.Content
+namespace RecordLabel.Data.Models
 {
-    public static class ModelExtensions
-    {
-        public static ImageType DetermineImageType(this BaseWithImages model)
-        {
-            string typeName = model.GetType().Name;
-            return typeof(ImageType).GetEnumValues().Cast<ImageType>().FirstOrDefault(item => item.ToString() == typeName);
-        }
-    }
+    //public static class ModelExtensions
+    //{
+    //    public static ImageType DetermineImageType(this BaseWithImages model)
+    //    {
+    //        string typeName = model.GetType().Name;
+    //        return typeof(ImageType).GetEnumValues().Cast<ImageType>().FirstOrDefault(item => item.ToString() == typeName);
+    //    }
+    //}
 }

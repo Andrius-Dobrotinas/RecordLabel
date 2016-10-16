@@ -1,4 +1,4 @@
-﻿namespace RecordLabel.Content
+﻿namespace RecordLabel.Data.Models
 {
     /// <summary>
     /// Image types is used to determine image storage location

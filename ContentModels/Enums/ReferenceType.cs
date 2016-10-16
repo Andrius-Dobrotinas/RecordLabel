@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using RecordLabel.Content.Localization;
+using RecordLabel.Data.Localization;
 
-namespace RecordLabel.Content
+namespace RecordLabel.Data.Models
 {
     public enum ReferenceType
     {

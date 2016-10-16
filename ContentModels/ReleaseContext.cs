@@ -1,44 +1,74 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using RecordLabel.Data.Models;
 
-namespace RecordLabel.Content
+namespace RecordLabel.Data
 {
     //[DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
     public class ReleaseContext : DbContext
     {
+        public DbSet<MainContent> ContentEntries { get; set; }
         public DbSet<Release> Releases { get; set; }
         public DbSet<Artist> Artists { get; set; }
-        public DbSet<AttributeSet> AttributeSets { get; set; }
-        public DbSet<Metadata.MediaType> MediaTypes { get; set; }
-        public DbSet<Metadata.Attribute> Attributes { get; set; }
-        public DbSet<ImageSet> ImageSets { get; set; }
-        public DbSet<Image> Images { get; set; }
-        public DbSet<LocalStringSet> LocalStringSet { get; set; }
-        public DbSet<Reference> References { get; set; }
-        public DbSet<ReferenceSet> ReferenceSets { get; set; }
-        public DbSet<Track> Tracks { get; set; }
-        public DbSet<Tracklist> Tracklists { get; set; }
         public DbSet<Article> Articles { get; set; }
+        public DbSet<MediaType> MediaTypes { get; set; }
+        public DbSet<Metadata> Metadata { get; set; }
+        public DbSet<Reference> References { get; set; }
+        public DbSet<Track> Tracks { get; set; }
+        public DbSet<TrackReference> TrackReferences { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.Configurations.Add(new Configurations.ReleaseConfiguration());
-            modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.OneToManyCascadeDeleteConvention>();
-            //modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.ManyToManyCascadeDeleteConvention>();
 
-            modelBuilder.Entity<AttributeSet>().HasMany(x => x.Collection).WithMany(x => x.AttributeSets).Map(x => x.ToTable("AttributeMap", "JoinTables"));
-            modelBuilder.Entity<LocalStringSet>().HasMany(x => x.Collection).WithRequired(y => y.LocalizationObject).WillCascadeOnDelete();
-            modelBuilder.Entity<Release>().HasOptional(x => x.Tracklist).WithRequired().WillCascadeOnDelete();// x => x.release).WillCascadeOnDelete();
-            modelBuilder.Entity<Tracklist>().HasMany(x => x.Collection).WithRequired().WillCascadeOnDelete();
-            modelBuilder.Entity<Track>().HasOptional(x => x.Reference).WithRequired(x => x.Track).WillCascadeOnDelete();           
-            modelBuilder.Entity<ReferenceSet>().HasMany(x => x.Collection).WithRequired(x => x.Set).WillCascadeOnDelete();
+            modelBuilder.Entity<MainContent>()
+                .HasMany(x => x.Metadata)
+                .WithMany(x => x.Targets)
+                .Map(x => x.ToTable("Metadata", "JoinTables"));
+
+            modelBuilder.Entity<MainContent>()
+                .HasMany(x => x.LocalizedText)
+                .WithRequired(x => x.TargetObject)
+                .WillCascadeOnDelete();
+
+            modelBuilder.Entity<Metadata>()
+                .HasMany(x => x.LocalizedText)
+                .WithRequired(x => x.TargetObject)
+                .WillCascadeOnDelete();
+
+            modelBuilder.Entity<MediaType>()
+                .HasMany(x => x.LocalizedText)
+                .WithRequired(x => x.TargetObject)
+                .WillCascadeOnDelete();
+
+            modelBuilder.Entity<MainContent>()
+                .HasMany(x => x.References)
+                .WithMany(x => x.Owners)
+                .Map(x => x.ToTable("References", "JoinTables"));
+
+            modelBuilder.Entity<Reference>()
+                .ToTable("MainContent", "References");
+
+            modelBuilder.Entity<Track>()
+                .HasOptional(x => x.Reference)
+                .WithRequired(x => x.Track)
+                .WillCascadeOnDelete();
+
+            modelBuilder.Entity<TrackReference>()
+                .HasRequired(x => x.Track)
+                .WithOptional(x => x.Reference);
+
+            modelBuilder.Entity<Release>().ToTable("Releases");
+            modelBuilder.Entity<Artist>().ToTable("Artists");
+            modelBuilder.Entity<Article>().ToTable("Articles");
+            modelBuilder.Entity<Metadata>().ToTable("Metadata");
+            //modelBuilder.Entity<MediaType>().ToTable("MediaTypes");
+
+            modelBuilder.Entity<LocalizedString>().ToTable("MainContent", "LocalizedStrings");
+            modelBuilder.Entity<MediaTypeLocalizedString>().ToTable("MediaTypes", "LocalizedStrings");
+            modelBuilder.Entity<MetadataLocalizedString>().ToTable("Metadata", "LocalizedStrings");
         }
     }
 }

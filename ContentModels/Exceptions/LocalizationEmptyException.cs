@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RecordLabel.Content
+namespace RecordLabel.Data.Models
 {
     public class LocalizationEmptyException : Exception
     {

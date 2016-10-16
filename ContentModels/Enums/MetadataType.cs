@@ -1,9 +1,9 @@
-﻿using RecordLabel.Content.Localization;
+﻿using RecordLabel.Data.Localization;
 using System.ComponentModel.DataAnnotations;
 
-namespace RecordLabel.Content.Metadata
+namespace RecordLabel.Data.Models
 {
-    public enum AttributeType
+    public enum MetadataType
     {
         [Display(ResourceType = typeof(ContentLocalization), Name = "AttributeType_Attribute")]
         Attribute = 0,

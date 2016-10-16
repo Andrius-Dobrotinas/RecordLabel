@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RecordLabel.Content.Localization {
+namespace RecordLabel.Data.Localization {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace RecordLabel.Content.Localization {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RecordLabel.Content.Localization.ContentLocalization", typeof(ContentLocalization).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RecordLabel.Data.Localization.ContentLocalization", typeof(ContentLocalization).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

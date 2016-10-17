@@ -84,6 +84,12 @@ namespace RecordLabel.Data.Models.Configurations
                 LocalizedText = createLocalizedStrings<MetadataLocalizedString>(db,
                     "Classic Rock", "クラシック・ロック")
             };
+            var metadata3 = new Metadata
+            {
+                Type = MetadataType.Attribute,
+                LocalizedText = createLocalizedStrings<MetadataLocalizedString>(db,
+                    "Heavy Metal", "M.H.")
+            };
 
             metadata1.Targets.Add(artist1);
             metadata1.Targets.Add(release1);
@@ -93,6 +99,7 @@ namespace RecordLabel.Data.Models.Configurations
 
             db.Metadata.Add(metadata1);
             db.Metadata.Add(metadata2);
+            db.Metadata.Add(metadata3);
 
             db.SaveChanges();
 
@@ -107,13 +114,18 @@ namespace RecordLabel.Data.Models.Configurations
             db.SaveChanges();
 
             var track3 = new Track { Title = "Gotcha!" };
-            var trackReference3 = new TrackReference { Target = "http://www.youtube.com", Type = ReferenceType.Youtube };
-            track3.Reference = trackReference3;
+            track3.Reference = new TrackReference { Target = "http://www.youtube.com", Type = ReferenceType.Youtube };;
 
             release1.Tracks.Add(track3);
 
             db.SaveChanges();
 
+
+            // REFERENCES
+            var reference1 = new Reference { Target = "http://www.metallica.com", Order = 20, Type = ReferenceType.File };
+            release1.References.Add(reference1);
+
+            db.SaveChanges();
 
             base.Seed(db);
         }

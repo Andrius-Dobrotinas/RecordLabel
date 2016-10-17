@@ -5,7 +5,7 @@ namespace RecordLabel.Data.Models
 {
     public class Reference : ReferenceBase
     {
-        public virtual IList<MainContent> Owners
+        /*public virtual IList<MainContent> Owners
         {
             get
             {
@@ -15,7 +15,9 @@ namespace RecordLabel.Data.Models
             {
                 owners = value;
             }
-        }
+        }*/
+
+        public MainContent Owner { get; set; }
 
         private IList<MainContent> owners;
     }

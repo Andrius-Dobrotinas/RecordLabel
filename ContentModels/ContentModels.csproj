@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\CascadeOnDeleteAttribute.cs" />
     <Compile Include="Enums\ImageType.cs" />
     <Compile Include="Exceptions\EntityInUseException.cs" />
     <Compile Include="Extensions\DbSetExtensions.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Models\Metadata.cs" />
     <Compile Include="Models\LocalizedStrings\LocalizedStringBase.cs" />
     <Compile Include="Models\Track.cs" />
+    <Compile Include="Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

@@ -45,11 +45,14 @@ namespace RecordLabel.Data
 
             modelBuilder.Entity<MainContent>()
                 .HasMany(x => x.References)
-                .WithMany(x => x.Owners)
-                .Map(x => x.ToTable("References", "JoinTables"));
+                .WithRequired(x => x.Owner);
 
             modelBuilder.Entity<Reference>()
                 .ToTable("MainContent", "References");
+
+            modelBuilder.Entity<MainContent>()
+                .HasMany(x => x.Tracks)
+                .WithRequired(x => x.MainContent);
 
             modelBuilder.Entity<Track>()
                 .HasOptional(x => x.Reference)
@@ -58,7 +61,8 @@ namespace RecordLabel.Data
 
             modelBuilder.Entity<TrackReference>()
                 .HasRequired(x => x.Track)
-                .WithOptional(x => x.Reference);
+                .WithOptional(x => x.Reference)
+                .WillCascadeOnDelete(); // For some reason this doesn't work in this case
 
             modelBuilder.Entity<Release>().ToTable("Releases");
             modelBuilder.Entity<Artist>().ToTable("Artists");

@@ -18,6 +18,7 @@ namespace RecordLabel.Data.Models
         }
         private IList<Metadata> metadata { get; set; }
 
+        [CascadeOnDelete]
         public virtual IList<Reference> References
         {
             get
@@ -31,6 +32,7 @@ namespace RecordLabel.Data.Models
         }
         private IList<Reference> reference { get; set; }
 
+        [CascadeOnDelete]
         public virtual IList<Track> Tracks
         {
             get

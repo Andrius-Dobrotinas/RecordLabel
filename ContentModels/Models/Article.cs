@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using RecordLabel.Data.Localization;
 
 namespace RecordLabel.Data.Models
 {

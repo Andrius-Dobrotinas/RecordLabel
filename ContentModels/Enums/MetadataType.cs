@@ -1,4 +1,4 @@
-﻿using RecordLabel.Data.Localization;
+﻿using RecordLabel.okay.Localization;
 using System.ComponentModel.DataAnnotations;
 
 namespace RecordLabel.Data.Models

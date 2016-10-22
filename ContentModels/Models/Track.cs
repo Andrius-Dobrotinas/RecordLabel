@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using RecordLabel.Data.Localization;
+using RecordLabel.okay.Localization;
 
 namespace RecordLabel.Data.Models
 {

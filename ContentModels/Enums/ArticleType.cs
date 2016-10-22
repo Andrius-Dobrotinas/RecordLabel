@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using RecordLabel.Data.Localization;
+using RecordLabel.okay.Localization;
 
 namespace RecordLabel.Data.Models
 {

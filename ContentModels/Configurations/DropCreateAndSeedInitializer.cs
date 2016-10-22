@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using RecordLabel.Data.Context;
 
 namespace RecordLabel.Data.Models.Configurations
 {
@@ -130,7 +131,7 @@ namespace RecordLabel.Data.Models.Configurations
             base.Seed(db);
         }
 
-        private static List<TLocalization> createLocalizedStrings<TLocalization>(ReleaseContext db, string en, string loc2) where TLocalization : LocalizedStringBase, new()
+        public static List<TLocalization> createLocalizedStrings<TLocalization>(ReleaseContext db, string en, string loc2) where TLocalization : LocalizedStringBase, new()
         {
             var list = new List<TLocalization>();
 

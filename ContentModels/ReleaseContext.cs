@@ -9,6 +9,15 @@ namespace RecordLabel.Data.Context
     //[DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
     public class ReleaseContext : DbContext
     {
+        public ReleaseContext() : base()
+        {
+
+        }
+        public ReleaseContext(string connectionString) : base(connectionString)
+        {
+
+        }
+
         public DbSet<MainContent> ContentEntries { get; set; }
         public DbSet<Release> Releases { get; set; }
         public DbSet<Artist> Artists { get; set; }

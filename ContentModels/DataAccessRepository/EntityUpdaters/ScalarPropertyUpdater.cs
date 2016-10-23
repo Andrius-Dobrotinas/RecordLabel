@@ -30,6 +30,8 @@ namespace RecordLabel.Data.ok
                  * In other words, it won't say it could not find TModel with the supplied Id, it will find a "sibling"
                  * entity with that Id (if it exists) and try to cast it. */
                 TModel originalModel = dbContext.Set<TModel>().Find(model.Id);
+                if (originalModel == null)
+                    throw new KeyNotFoundException($"Entity of type \"{typeof(TModel)}\" with a key value \"{model.Id}\" not found in the context");
                 dbContext.Entry(originalModel).CurrentValues.SetValues(model);
                 return originalModel;
             }

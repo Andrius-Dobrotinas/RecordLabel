@@ -116,9 +116,9 @@ namespace RecordLabel.Data.ok
             where TCollectionItem : class, IHasId
         {
             if (targetCollection == null)
-                throw ArgumentNullException(nameof(targetCollection));
+                throw new ArgumentNullException(nameof(targetCollection));
             if (newCollection == null)
-                throw ArgumentNullException(nameof(newCollection));
+                throw new ArgumentNullException(nameof(newCollection));
 
             // Get all entries New collection that are not present in the Target collection (to add them to the Target collection)
             var newEntries = newCollection.Where(entry => targetCollection.Where(source => source.Id == entry.Id).FirstOrDefault() == null).ToArray();
@@ -154,6 +154,7 @@ namespace RecordLabel.Data.ok
 
             // Add entries that don't exist in the Target collection
             if (newEntries.Length > 0)
+            { 
                 {
                     foreach (var entry in newEntries)
                     {

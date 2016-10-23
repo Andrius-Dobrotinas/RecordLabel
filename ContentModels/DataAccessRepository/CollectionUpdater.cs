@@ -8,13 +8,7 @@ using RecordLabel.Data.ok;
 
 namespace RecordLabel.Data.ok
 {
-    public interface ICollectionUpdater<TModel>
-    {
-        // Updates .... any object type that has the same property (name- and type-wise)
-        void UpdateCollection<TCollectionItem>(PropertyInfo propertyInfo, EntityPropertyInfo property, object sourceModel,
-            IRecursiveEntityUpdater entityUpdater, bool modelIsNew)
-            where TCollectionItem : class, IHasId;
-    }
+    // TODO: refactor methods that require both PropertyInfo and EntityPropertyInfo because the latter contains the former
 
     public class CollectionUpdater<TModel> : ICollectionUpdater<TModel>
     {

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentModels", "ContentModels\ContentModels.csproj", "{6812841D-4973-44B3-A2A7-0C2B487A5FF6}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{48F46B5A-4665-40BF-8779-52CB06411FA3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageProcessing", "ImageProcessing\ImageProcessing.csproj", "{3EB20F73-7B6B-4FAF-8EAA-1F0FF6BA518F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryTests", "RepositoryTests\RepositoryTests.csproj", "{26AB778E-1B9A-4FFC-847E-25C87E6E6391}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{3EB20F73-7B6B-4FAF-8EAA-1F0FF6BA518F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EB20F73-7B6B-4FAF-8EAA-1F0FF6BA518F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EB20F73-7B6B-4FAF-8EAA-1F0FF6BA518F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26AB778E-1B9A-4FFC-847E-25C87E6E6391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26AB778E-1B9A-4FFC-847E-25C87E6E6391}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26AB778E-1B9A-4FFC-847E-25C87E6E6391}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26AB778E-1B9A-4FFC-847E-25C87E6E6391}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

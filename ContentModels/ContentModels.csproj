@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\CascadeOnDeleteAttribute.cs" />
+    <Compile Include="DataAccessRepository\ICollectionMerger.cs" />
     <Compile Include="DataAccessRepository\ICollectionUpdater.cs" />
     <Compile Include="DataAccessRepository\EntityUpdaters\NavUpdater.cs" />
     <Compile Include="DataAccessRepository\EntityUpdaters\ScalarPropertyUpdater.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="DataAccessRepository\RuntimeUpdater.cs" />
     <Compile Include="DataAccessRepository\DbContextReflector.cs" />
     <Compile Include="DataAccessRepository\CollectionUpdater.cs" />
+    <Compile Include="DataAccessRepository\CollectionMerger.cs" />
     <Compile Include="Enums\ImageType.cs" />
     <Compile Include="Exceptions\EntityInUseException.cs" />
     <Compile Include="Extensions\DbSetExtensions.cs" />

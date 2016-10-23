@@ -12,14 +12,16 @@ namespace RecordLabel.Data.ok
 
     public class CollectionUpdater<TModel> : ICollectionUpdater<TModel>
     {
-        protected readonly DbContext dbContext;
+        protected readonly DbContext DbContext;
         protected readonly TModel Model;
+        protected ICollectionMerger CollectionMerger { get; }
         //public bool DisableCascadeOnDeleteBehavior // TODO
 
-        public CollectionUpdater(DbContext dbContext, TModel model)
+        public CollectionUpdater(DbContext dbContext, TModel model, ICollectionMerger collectionMerger)
         {
-            this.dbContext = dbContext;
+            this.DbContext = dbContext;
             this.Model = model;
+            this.CollectionMerger = collectionMerger;
         }
 
         /*public void UpdateCollection(Expression<Func<TModel, IList<TCollectionItem>>> property, object sourceModel)
@@ -58,9 +60,9 @@ namespace RecordLabel.Data.ok
 
             foreach (var entry in newCollection)
             {
-                dbContext.Entry(entry).State = entityState;
-                /* TODO: in case of ReferencedEntityIsDependent == false, make sure that all entry.navigation properties ar 
-                 * detached from the context. Or, even better, don't load them in the first place.
+                DbContext.Entry(entry).State = entityState;
+                /* TODO some day: in case of ReferencedEntityIsDependent == false, make sure that all entry.navigation 
+                 * properties ar detached from the context. Or, even better, don't load them in the first place.
                  * In my situation, I don't have this issue, but it would be a good idea to make this thing work in all cases. */
             }
         }
@@ -78,105 +80,70 @@ namespace RecordLabel.Data.ok
 
                 if (targetCollection?.Count > 0)
                 {
-                    RemoveItemsCollection(targetCollection, targetCollection, removeFromContext);
-                    //targetSet.Clear();
+                    RemoveFromCollection(targetCollection, targetCollection, removeFromContext);
                 }
             }
             else
             {
-                // Add/Update/Remove entries
-
                 if (!(targetCollection.Count > 0))
                 {
                     // Add all entries to the set
+
                     propertyInfo.SetValue(Model, newCollection);
 
-                    /* If referenced entity type is not dependent (can exist without this entity), Attach them to the 
+                    /* If referenced entity type is not dependent (can exist without this entity), Attach entries to the 
                      * context so that EF does not think they are new and does not Add them to the context */
                     if (!property.ReferencedEntityIsDependent)
                     {
                         foreach (var entry in newCollection)
                         {
-                            dbContext.Set<TCollectionItem>().Attach(entry);
+                            DbContext.Set<TCollectionItem>().Attach(entry);
                         }
                     }
                 }
                 else
                 {
-                    AddUpdateRemoveCollectionEntries(property, targetCollection, newCollection, entityUpdater, removeFromContext);
-                }
-            }
-        }
+                    // Add/Update (or Attach, if entities are not dependent upon the model) / Remove entries
 
-        /// <summary>
-        /// Adds, updates or removes entries from the Target collection based on values in the New collection using the primary key
-        /// </summary>
-        protected void AddUpdateRemoveCollectionEntries<TCollectionItem>(EntityPropertyInfo property, IList<TCollectionItem> targetCollection,
-            IList<TCollectionItem> newCollection, IRecursiveEntityUpdater entityUpdater, bool removeFromContext)
-            where TCollectionItem : class, IHasId
-        {
-            if (targetCollection == null)
-                throw new ArgumentNullException(nameof(targetCollection));
-            if (newCollection == null)
-                throw new ArgumentNullException(nameof(newCollection));
-
-            // Get all entries New collection that are not present in the Target collection (to add them to the Target collection)
-            var newEntries = newCollection.Where(entry => targetCollection.Where(source => source.Id == entry.Id).FirstOrDefault() == null).ToArray();
-
-            // Get all Target collection entries that are not present in the New collection (to remove them from the Target collection)
-            var entriesToRemove = targetCollection.Where(entry => newCollection.Where(newItem => newItem.Id == entry.Id).FirstOrDefault() == null).ToArray();
-
-            if (entriesToRemove.Length > 0)
-            {
-                RemoveItemsCollection<TCollectionItem>(targetCollection, entriesToRemove, removeFromContext);
-            }
-
-            // Update pre-existing entries in Target collection
-            var target = targetCollection.ToArray();
-            for (int i = 0; i < target.Length; i++)
-            {
-                TCollectionItem newState = newCollection.Where(newItem => newItem.Id == target[i].Id).SingleOrDefault();
-
-                if (!property.ReferencedEntityIsDependent)
-                {
-                    if (target[i].Id == default(int))
-                        throw new InvalidOperationException("Entity is new (does not have an Id), therefore it cannot be attached"); // TODO: create new Ex type
-                    dbContext.Set<TCollectionItem>().Attach(target[i]);
-                }
-                else
-                {
-                    /* Since model containing targetCollection is a EF proxy, and the entry gets removed from the list when 
-                        * SetValues is invoked on the entry in UpdateModelProperties, this is supposed to re-add the entry
-                        * to the list. */ // TODO: see if there is a better way to solve this issue
-                    targetCollection.Add(entityUpdater.UpdateEntity(newState, entityUpdater));
-                }
-            }
-
-            // Add entries that don't exist in the Target collection
-            if (newEntries.Length > 0)
-            { 
-                {
-                    foreach (var entry in newEntries)
-                    {
-                        if (!property.ReferencedEntityIsDependent)
+                    var updatedCollection = new CollectionMerger().MergeCollections(targetCollection, newCollection,
+                        (original, newState) =>
                         {
-                            dbContext.Set<TCollectionItem>().Attach(entry);
-                        }
-                        targetCollection.Add(entry);
-                    }
+                            if (!property.ReferencedEntityIsDependent)
+                            {
+                                DbContext.Set<TCollectionItem>().Attach(original);
+                                return original;
+                            }
+                            else
+                            {
+                                return entityUpdater.UpdateEntity(newState, entityUpdater);
+                            }
+                        },
+                        newEntry =>
+                        {
+                            if (!property.ReferencedEntityIsDependent)
+                            {
+                                DbContext.Set<TCollectionItem>().Attach(newEntry);
+                            }
+                            return newEntry;
+                        },
+                        entriesToRemove => RemoveFromCollection<TCollectionItem>(targetCollection, entriesToRemove, removeFromContext));
+
+                    /* Set new collection to the model because the original Target collection gets modified
+                     * (entries are removed) when updating entries via EntityFramework SetValues method */
+                    property.PropertyInfo.SetValue(Model, updatedCollection);
                 }
             }
         }
-
-        protected void RemoveItemsCollection<TCollectionItem>(IList<TCollectionItem> targetCollection, IList<TCollectionItem> entriesToRemove, bool removeFromContext)
+        
+        protected void RemoveFromCollection<TCollectionItem>(IList<TCollectionItem> targetCollection, IList<TCollectionItem> entriesToRemove, bool removeFromContext)
             where TCollectionItem : class, IHasId
         {
-            foreach (TCollectionItem entry in entriesToRemove.ToArray())
+            if (removeFromContext)
             {
-                targetCollection.Remove(entry);
-                if (removeFromContext)
+                // ToArray in order to prevent collection from changing while enumerating
+                foreach (TCollectionItem entry in entriesToRemove.ToArray())
                 {
-                    dbContext.Entry(entry).State = EntityState.Deleted;
+                    DbContext.Entry(entry).State = EntityState.Deleted;
                 }
             }
         }

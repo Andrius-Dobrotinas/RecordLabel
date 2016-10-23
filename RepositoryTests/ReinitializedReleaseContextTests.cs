@@ -14,7 +14,7 @@ namespace RepositoryTests
     /// Context is reinitialized with fresh test data before testing
     /// </summary>
     [TestClass]
-    public class ReinitializedContextTests
+    public class ReinitializedReleaseContextTests
     {
         private static string connectionString = "UnitTestReinitializableConnection";
 

@@ -59,7 +59,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CollectionMergerTests.cs" />
-    <Compile Include="ReinitializedContextTests.cs" />
+    <Compile Include="ReinitializedReleaseContextTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

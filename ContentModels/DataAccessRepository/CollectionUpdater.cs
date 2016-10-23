@@ -12,7 +12,7 @@ namespace RecordLabel.Data.ok
     {
         // Updates .... any object type that has the same property (name- and type-wise)
         void UpdateCollection<TCollectionItem>(PropertyInfo propertyInfo, EntityPropertyInfo property, object sourceModel,
-            IEntityUpdater entityUpdater, bool modelIsNew)
+            IRecursiveEntityUpdater entityUpdater, bool modelIsNew)
             where TCollectionItem : class, IHasId;
     }
 
@@ -35,7 +35,7 @@ namespace RecordLabel.Data.ok
         }*/
 
         public void UpdateCollection<TCollectionItem>(PropertyInfo propertyInfo, EntityPropertyInfo property, object sourceModel,
-            IEntityUpdater entityUpdater, bool modelIsNew)
+            IRecursiveEntityUpdater entityUpdater, bool modelIsNew)
             where TCollectionItem : class, IHasId
         {
             if (modelIsNew)
@@ -72,7 +72,7 @@ namespace RecordLabel.Data.ok
         }
 
         protected void UpdateCollection<TCollectionItem>(PropertyInfo propertyInfo, EntityPropertyInfo property, 
-            IList<TCollectionItem> targetCollection, IList<TCollectionItem> newCollection, IEntityUpdater entityUpdater)
+            IList<TCollectionItem> targetCollection, IList<TCollectionItem> newCollection, IRecursiveEntityUpdater entityUpdater)
             where TCollectionItem : class, IHasId
         {
             bool removeFromContext = property.ReferencedEntityIsDependent && 
@@ -118,7 +118,7 @@ namespace RecordLabel.Data.ok
         /// Adds, updates or removes entries from the Target collection based on values in the New collection using the primary key
         /// </summary>
         protected void AddUpdateRemoveCollectionEntries<TCollectionItem>(EntityPropertyInfo property, IList<TCollectionItem> targetCollection,
-            IList<TCollectionItem> newCollection, IEntityUpdater entityUpdater, bool removeFromContext)
+            IList<TCollectionItem> newCollection, IRecursiveEntityUpdater entityUpdater, bool removeFromContext)
             where TCollectionItem : class, IHasId
         {
             if (newCollection == null || newCollection.Count == 0)

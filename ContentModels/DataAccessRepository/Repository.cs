@@ -28,8 +28,10 @@ namespace RecordLabel.Data.ok
         public virtual void SaveModel(TModel model)
         {
             var reflector = new DbContextReflector(DbContext, "RecordLabel.Data.Models");
-            IEntityUpdater updater = new EntityUpdater(DbContext, reflector);
-            updater.UpdateEntity<TModel>(model, new NavUpdater(DbContext, reflector));            
+            IEntityUpdater scalarUpdater = new ScalarPropertyUpdater(DbContext);
+            IRecursiveEntityUpdater updater = new EntityUpdater(DbContext, scalarUpdater, reflector);
+            IRecursiveEntityUpdater navUpdater = new NavUpdater(DbContext, scalarUpdater, reflector);
+            updater.UpdateEntity<TModel>(model, navUpdater);
         }
 
         public void SaveChanges()
@@ -40,19 +42,33 @@ namespace RecordLabel.Data.ok
 
     public interface IEntityUpdater
     {
-        TEntity UpdateEntity<TEntity>(TEntity model, IEntityUpdater updater) where TEntity : class, IHasId;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="model"></param>
+        /// <returns>Returns an updated entity if an existing entity has been updated, or originally supplied entity if the entity is new</returns>
+        TEntity UpdateEntity<TEntity>(TEntity model) where TEntity : class, IHasId;
     }
 
-    public class NavUpdater : EntityUpdater
+    public interface IRecursiveEntityUpdater : IEntityUpdater
     {
-        public NavUpdater(DbContext dbContext, DbContextReflector reflector) : base(dbContext, reflector)
+        TEntity UpdateEntity<TEntity>(TEntity model, IRecursiveEntityUpdater updater) where TEntity : class, IHasId;
+    }
+
+    public class NavUpdater : EntityUpdaterBase
+    {
+        protected DbContextReflector Reflector { get; }
+
+        public NavUpdater(DbContext dbContext, IEntityUpdater scalarEntityUpdater, DbContextReflector reflector)
+            : base(dbContext, scalarEntityUpdater)
         {
-            
+            this.Reflector = reflector;
         }
 
-        protected override void UpdateAllNavigationProperties<TEntity>(TEntity updatedModel, TEntity model, IEntityUpdater entityUpdater, bool modelIsNew)
+        protected override void UpdateAllNavigationProperties<TEntity>(TEntity updatedModel, TEntity model, IRecursiveEntityUpdater entityUpdater, bool modelIsNew)
         {
-            EntityPropertyInfo[] navigationProperties = reflector.GetDependentNavigationProperties(typeof(TEntity));
+            EntityPropertyInfo[] navigationProperties = Reflector.GetDependentNavigationProperties(typeof(TEntity));
 
             var modelUpdater = new GenericModelUpdater<TEntity>();
             foreach (var property in navigationProperties)
@@ -67,34 +83,19 @@ namespace RecordLabel.Data.ok
         }
     }
 
-    public class EntityUpdater : IEntityUpdater
+    public class EntityUpdater : EntityUpdaterBase
     {
-        protected DbContext DbContext { get; }
-        protected DbContextReflector reflector { get; }
+        protected DbContextReflector Reflector { get; }
 
-        public EntityUpdater(DbContext dbContext, DbContextReflector reflector)
+        public EntityUpdater(DbContext dbContext, IEntityUpdater scalarPropertyUpdater, DbContextReflector reflector)
+            : base(dbContext, scalarPropertyUpdater)
         {
-            this.DbContext = dbContext;
-            this.reflector = reflector;
+            this.Reflector = reflector;
         }
 
-        public TEntity UpdateEntity<TEntity>(TEntity model, IEntityUpdater updater)
-            where TEntity : class, IHasId
+        protected override void UpdateAllNavigationProperties<TEntity>(TEntity updatedModel, TEntity model, IRecursiveEntityUpdater entityUpdater, bool isNew)
         {
-            DbContextReflector reflector = new DbContextReflector(DbContext, "RecordLabel.Data.Models");
-            ScalarPropertyUpdater scalarPropertyUpdater = new ScalarPropertyUpdater(DbContext);
-
-            TEntity updatedModel = scalarPropertyUpdater.UpdateModelProperties<TEntity>(model);
-            
-            UpdateAllNavigationProperties(updatedModel, model, updater, !(updatedModel == model));
-
-            return updatedModel;
-        }
-
-        protected virtual void UpdateAllNavigationProperties<TEntity>(TEntity updatedModel, TEntity model, IEntityUpdater entityUpdater, bool isNew)
-            where TEntity : class, IHasId
-        {
-            EntityPropertyInfo[] collectionProperties = reflector.GetCollectionNavigationProperties(typeof(TEntity)); // make it work like <TModel>
+            EntityPropertyInfo[] collectionProperties = Reflector.GetCollectionNavigationProperties(typeof(TEntity)); // make it work like <TModel>
 
             var collectionUpdater = new GenericCollectionUpdater<TEntity>(new CollectionUpdater<TEntity>(DbContext, updatedModel));
             foreach (var property in collectionProperties)
@@ -107,10 +108,42 @@ namespace RecordLabel.Data.ok
         }
     }
 
+    public abstract class EntityUpdaterBase : IRecursiveEntityUpdater
+    {
+        protected DbContext DbContext { get; }
+        protected IEntityUpdater ScalarPropertyUpdater { get; }
+
+        public EntityUpdaterBase(DbContext dbContext, IEntityUpdater scalarPropertyUpdater)
+        {
+            this.DbContext = dbContext;
+            this.ScalarPropertyUpdater = scalarPropertyUpdater;
+        }
+
+        public TEntity UpdateEntity<TEntity>(TEntity model, IRecursiveEntityUpdater updater)
+            where TEntity : class, IHasId
+        {
+            // Update scalar properties
+            TEntity updatedModel = UpdateEntity<TEntity>(model);
+            
+            UpdateAllNavigationProperties(updatedModel, model, updater, updatedModel == model);
+
+            return updatedModel;
+        }
+
+        public TEntity UpdateEntity<TEntity>(TEntity model)
+            where TEntity : class, IHasId
+        {
+            return ScalarPropertyUpdater.UpdateEntity<TEntity>(model);
+        }
+
+        protected abstract void UpdateAllNavigationProperties<TEntity>(TEntity updatedModel, TEntity model, IRecursiveEntityUpdater entityUpdater, bool isNew)
+            where TEntity : class, IHasId;
+    }
+
     public delegate Func<DbContext> ModelPropertyUpdaterFactory<TModel>(DbContext dbContext);
 
 
-    public class ScalarPropertyUpdater
+    public class ScalarPropertyUpdater : IEntityUpdater
     {
         protected readonly DbContext dbContext;
 
@@ -119,8 +152,7 @@ namespace RecordLabel.Data.ok
             this.dbContext = dbContext;
         }
 
-
-        public TModel UpdateModelProperties<TModel>(TModel model) where TModel : class, IHasId
+        public TModel UpdateEntity<TModel>(TModel model) where TModel : class, IHasId
         {
             // If adding new entity
             if (model.Id == default(int))

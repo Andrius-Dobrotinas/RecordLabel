@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Collections.Generic;
 using RecordLabel.Data.Models;
 
-namespace RecordLabel.Data
+namespace RecordLabel.Data.Context
 {
     //[DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
     public class ReleaseContext : DbContext

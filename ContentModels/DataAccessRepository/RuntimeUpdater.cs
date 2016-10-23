@@ -9,9 +9,9 @@ namespace RecordLabel.Data
 {
     public class GenericModelUpdater<TModel> where TModel : class, IHasId
     {
-        public void UpdateProperty(EntityPropertyInfo property, TModel newModel, IEntityUpdater entityUpdater)
+        public void UpdateProperty(EntityPropertyInfo property, TModel newModel, IRecursiveEntityUpdater entityUpdater)
         {
-            GenericMethodInvoker.InvokeGenericMethod(typeof(IEntityUpdater), nameof(IEntityUpdater.UpdateEntity),
+            GenericMethodInvoker.InvokeGenericMethod(typeof(IRecursiveEntityUpdater), nameof(IRecursiveEntityUpdater.UpdateEntity),
                 new Type[] { property.PropertyInfo.PropertyType },
                 GenericMethodInvoker.DefaultPublicInstanceBindingFlags,
                 new object[] { property.PropertyInfo.GetValue(newModel), entityUpdater },

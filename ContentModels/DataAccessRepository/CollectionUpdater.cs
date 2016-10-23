@@ -115,50 +115,45 @@ namespace RecordLabel.Data.ok
             IList<TCollectionItem> newCollection, IRecursiveEntityUpdater entityUpdater, bool removeFromContext)
             where TCollectionItem : class, IHasId
         {
-            if (newCollection == null || newCollection.Count == 0)
+            if (targetCollection == null)
+                throw ArgumentNullException(nameof(targetCollection));
+            if (newCollection == null)
+                throw ArgumentNullException(nameof(newCollection));
+
+            // Get all entries New collection that are not present in the Target collection (to add them to the Target collection)
+            var newEntries = newCollection.Where(entry => targetCollection.Where(source => source.Id == entry.Id).FirstOrDefault() == null).ToArray();
+
+            // Get all Target collection entries that are not present in the New collection (to remove them from the Target collection)
+            var entriesToRemove = targetCollection.Where(entry => newCollection.Where(newItem => newItem.Id == entry.Id).FirstOrDefault() == null).ToArray();
+
+            if (entriesToRemove.Length > 0)
             {
-                if (targetCollection.Count > 0)
+                RemoveItemsCollection<TCollectionItem>(targetCollection, entriesToRemove, removeFromContext);
+            }
+
+            // Update pre-existing entries in Target collection
+            var target = targetCollection.ToArray();
+            for (int i = 0; i < target.Length; i++)
+            {
+                TCollectionItem newState = newCollection.Where(newItem => newItem.Id == target[i].Id).SingleOrDefault();
+
+                if (!property.ReferencedEntityIsDependent)
                 {
-                    RemoveItemsCollection(targetCollection, targetCollection, removeFromContext);
-                    //targetCollection.Clear();
+                    if (target[i].Id == default(int))
+                        throw new InvalidOperationException("Entity is new (does not have an Id), therefore it cannot be attached"); // TODO: create new Ex type
+                    dbContext.Set<TCollectionItem>().Attach(target[i]);
+                }
+                else
+                {
+                    /* Since model containing targetCollection is a EF proxy, and the entry gets removed from the list when 
+                        * SetValues is invoked on the entry in UpdateModelProperties, this is supposed to re-add the entry
+                        * to the list. */ // TODO: see if there is a better way to solve this issue
+                    targetCollection.Add(entityUpdater.UpdateEntity(newState, entityUpdater));
                 }
             }
-            else
-            {
-                // Get a list of entries to add to the target collection
-                var newEntries = newCollection.Where(entry => targetCollection.Where(source => source.Id == entry.Id).FirstOrDefault() == null).ToArray();
 
-                // Remove all entries that are not present in the new collection from the target collection
-                var entriesToRemove = targetCollection.Where(entry => newCollection.Where(newItem => newItem.Id == entry.Id).FirstOrDefault() == null).ToArray();
-
-                if (entriesToRemove.Length > 0)
-                {
-                    RemoveItemsCollection<TCollectionItem>(targetCollection, entriesToRemove, removeFromContext);
-                }
-
-                // Update each entry in target collection
-                var target = targetCollection.ToArray();
-                for (int i = 0; i < target.Length; i++)
-                {
-                    TCollectionItem newState = newCollection.Where(newItem => newItem.Id == target[i].Id).SingleOrDefault();
-
-                    if (!property.ReferencedEntityIsDependent)
-                    {
-                        if (target[i].Id == default(int))
-                            throw new InvalidOperationException("Entity is new (does not have an Id), therefore it cannot be attached"); // TODO: create new Ex type
-                        dbContext.Set<TCollectionItem>().Attach(target[i]);
-                    }
-                    else
-                    {
-                        /* Since model containing targetCollection is a EF proxy, and the entry gets removed from the list when 
-                         * SetValues is invoked on the entry in UpdateModelProperties, this is supposed to re-add the entry
-                         * to the list. */ // TODO: see if there is a better way to solve this issue
-                        targetCollection.Add(entityUpdater.UpdateEntity(newState, entityUpdater));
-                    }
-                }
-
-                // Add entries that don't exist in the context yet
-                if (newEntries.Length > 0)
+            // Add entries that don't exist in the Target collection
+            if (newEntries.Length > 0)
                 {
                     foreach (var entry in newEntries)
                     {

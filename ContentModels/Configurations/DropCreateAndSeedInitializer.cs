@@ -12,15 +12,15 @@ namespace RecordLabel.Data.Models.Configurations
         protected override void Seed(T db)
         {
             // MEDIA TYPES
-            var media_LP = new MediaType { LocalizedText = createLocalizedStrings<MediaTypeLocalizedString>(db, "LP", "ビニールレコード") };
-            var media_CD = new MediaType { LocalizedText = createLocalizedStrings<MediaTypeLocalizedString>(db, "CD", null) };
-            var media_FLAC = new MediaType { LocalizedText = createLocalizedStrings<MediaTypeLocalizedString>(db, "FLAC", "F.L.A.C") };
+            var media_LP = new MediaType { LocalizedText = createLocalizedStrings<MediaTypeLocalizedString>("LP", "ビニールレコード") };
+            var media_CD = new MediaType { LocalizedText = createLocalizedStrings<MediaTypeLocalizedString>("CD", null) };
+            var media_FLAC = new MediaType { LocalizedText = createLocalizedStrings<MediaTypeLocalizedString>("FLAC", "F.L.A.C") };
 
 
             // ARTISTS
             var artist1 = new Artist {
                 Name = "Iggy & The Stooges",
-                LocalizedText = createLocalizedStrings<LocalizedString>(db,
+                LocalizedText = createLocalizedStrings<LocalizedString>(
                     "Iggy with Asheton bros and the new guy on guitar", "Iggy")
             };
             db.Artists.Add(artist1);
@@ -28,7 +28,7 @@ namespace RecordLabel.Data.Models.Configurations
             var artist2 = new Artist
             {
                 Name = "The Stooges",
-                LocalizedText = createLocalizedStrings<LocalizedString>(db,
+                LocalizedText = createLocalizedStrings<LocalizedString>(
                     "Iggy, Asheton bros and Dave", "Iggy, Asheton ブラザーズ そして Dave")
             };
             db.Artists.Add(artist2);
@@ -42,7 +42,7 @@ namespace RecordLabel.Data.Models.Configurations
                 CatalogueNumber = "KC3200",
                 Date = 1973,
                 Media = media_LP,
-                LocalizedText = createLocalizedStrings<LocalizedString>(db,
+                LocalizedText = createLocalizedStrings<LocalizedString>(
                     "This is awesome!", "これは素晴らしいです")
             };
             db.Releases.Add(release1);
@@ -54,7 +54,7 @@ namespace RecordLabel.Data.Models.Configurations
                 CatalogueNumber = "EK74000",
                 Date = 1973,
                 Media = media_LP,
-                LocalizedText = createLocalizedStrings< LocalizedString>(db, 
+                LocalizedText = createLocalizedStrings< LocalizedString>(
                     "Their first record", "彼らの最初のレコード")
             };
             db.Releases.Add(release2);
@@ -66,7 +66,7 @@ namespace RecordLabel.Data.Models.Configurations
                 CatalogueNumber = "EK74007",
                 Date = 1973,
                 Media = media_LP,
-                LocalizedText = createLocalizedStrings<LocalizedString>(db,
+                LocalizedText = createLocalizedStrings<LocalizedString>(
                     "They had no idea this would be the best rock and roll record ever!", "彼らはこれが史上最高のロックンロールのレコードになります知りませんでした！")
             };
             db.Releases.Add(release3);
@@ -77,18 +77,18 @@ namespace RecordLabel.Data.Models.Configurations
             // METADATA
             var metadata1 = new Metadata {
                 Type = MetadataType.Genre,
-                LocalizedText = createLocalizedStrings<MetadataLocalizedString>(db,
+                LocalizedText = createLocalizedStrings<MetadataLocalizedString>(
                     "Hard Rock", "ハードロック")
             };
             var metadata2 = new Metadata {
                 Type = MetadataType.Attribute,
-                LocalizedText = createLocalizedStrings<MetadataLocalizedString>(db,
+                LocalizedText = createLocalizedStrings<MetadataLocalizedString>(
                     "Classic Rock", "クラシック・ロック")
             };
             var metadata3 = new Metadata
             {
                 Type = MetadataType.Attribute,
-                LocalizedText = createLocalizedStrings<MetadataLocalizedString>(db,
+                LocalizedText = createLocalizedStrings<MetadataLocalizedString>(
                     "Heavy Metal", "M.H.")
             };
 
@@ -131,7 +131,7 @@ namespace RecordLabel.Data.Models.Configurations
             base.Seed(db);
         }
 
-        public static List<TLocalization> createLocalizedStrings<TLocalization>(ReleaseContext db, string en, string loc2) where TLocalization : LocalizedStringBase, new()
+        public static List<TLocalization> createLocalizedStrings<TLocalization>(string en, string loc2) where TLocalization : LocalizedStringBase, new()
         {
             var list = new List<TLocalization>();
 

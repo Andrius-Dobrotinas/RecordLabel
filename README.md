@@ -14,7 +14,7 @@ Some interesting features:
 • Dynamic loading of items in lists
 • Logged-in users (administrators) see "Edit" buttons to editable content in the same publicly accessible pages.
 
-
+Currently in the process of restructurization and extraction of the Data access layer.
 
 TODO:
 • Extract and separate view models from content models
@@ -22,7 +22,7 @@ TODO:
 • Use some framework to dynamically add items (list results with ajax calls / items in edit mode)
 • Take care of XSS
 • Fix styling of Login form
-• Work on edit forms
+• Work on edit forms styling
 • Sort out CSS classes
 • Review HTML element sizes
 • Release Edit: Finish references styling (and make their order changeable) + Finish tracklist styling (make their order changeable too) + Make Add Image to add new image purely-front in end, just like with references.

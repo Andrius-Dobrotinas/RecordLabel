@@ -10,29 +10,12 @@ using RecordLabel.Data.Context;
 
 namespace RepositoryTests
 {
-    /// <summary>
-    /// Context is reinitialized with fresh test data before testing
-    /// </summary>
     [TestClass]
-    public class ReinitializedReleaseContextTests
+    public class ReinitializedReleaseContextTests : ReinitializedReleaseContextTestsBase
     {
-        private static string connectionString = "UnitTestReinitializableConnection";
-
-        [TestInitialize]
-        public void Initialize()
-        {
-            //Reinitialize the database with test data
-            System.Data.Entity.Database.SetInitializer(new RecordLabel.Data.Models.Configurations.DropCreateAndSeedInitializer<ReleaseContext>());
-        }
-
-        /// <summary>
-        /// Removes 2 tracks, modifies 1 track, adds 1 track
-        /// </summary>
         [TestMethod]
         public void Test1()
         {
-            using (var context = new ReleaseContext(connectionString))
-            {
                 var release1 = new Release
                 {
                     Id = 3,
@@ -69,23 +52,12 @@ namespace RepositoryTests
                 // release1.Tracks.Add(track6);
                 release1.Metadata.Add(metadata3);
 
-                var repository = new RecordLabel.Data.ok.ReleaseRepository(context);
+                var repository = new RecordLabel.Data.ok.ReleaseRepository(Context);
                 repository.SaveModel(release1);
                 repository.SaveChanges();
-            }
 
-            
 
             // TODO: add asserts
         }
-
-        /*[TestMethod]
-        public void Test2()
-        {
-            using (var context = new ReleaseContext(connectionString))
-            {
-                
-            }
-        }*/
     }
 }

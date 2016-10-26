@@ -67,6 +67,7 @@
     <Compile Include="DataAccessRepository\EntityUpdaters\IEntityUpdater.cs" />
     <Compile Include="DataAccessRepository\EntityUpdaters\IRecursiveEntityUpdater.cs" />
     <Compile Include="DataAccessRepository\EntityUpdaters\EntityUpdaterBase.cs" />
+    <Compile Include="DataAccessRepository\EntityKeyPropertyInfo.cs" />
     <Compile Include="DataAccessRepository\RuntimeUpdater.cs" />
     <Compile Include="DataAccessRepository\DbContextReflector.cs" />
     <Compile Include="DataAccessRepository\CollectionUpdater.cs" />

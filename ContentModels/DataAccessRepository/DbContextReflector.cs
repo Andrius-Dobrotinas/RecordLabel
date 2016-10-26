@@ -44,13 +44,48 @@ namespace RecordLabel.Data.ok
 
         public EntityPropertyInfo[] GetAllNavigationProperties(Type entityType)
         {
-            // Supplied type might actually derive from one of the types in the entity set hence IsAssignableFrom
+            return ((EntityType)GetEntitySet(entityType).ElementType).NavigationProperties
+                .Select(prop => new EntityPropertyInfo(prop, relationshipResolver)).ToArray();
+        }
+
+        // TODO: probably make this thing cacheable (especially because of default values)
+        public EntityKeyPropertyInfo[] GetKeyProperties(Type entityType)
+        {
+            return GetEntitySet(entityType).ElementType.KeyProperties.Select(x => new EntityKeyPropertyInfo(x))
+                .OrderBy(x => x.Order).ToArray();
+        }
+
+        public EntityPropertyInfo[] GetAllNavigationProperties<TEntity>()
+        {
+            return GetAllNavigationProperties(typeof(TEntity));
+        }
+
+        public EntityPropertyInfo[] GetCollectionNavigationProperties<TEntity>()
+        {
+            return GetCollectionNavigationProperties(typeof(TEntity));
+        }
+
+        public EntityPropertyInfo[] GetDependentNavigationProperties<TEntity>()
+        {
+            return GetDependentNavigationProperties(typeof(TEntity));
+        }
+
+        public EntityKeyPropertyInfo[] GetKeyProperties<TEntity>()
+        {
+            return GetKeyProperties(typeof(TEntity));
+        }
+
+        /// <summary>
+        /// Retrieves an entity set that corresponds to the specified type (is in the inheritance chain)
+        /// <param name="throwException">Specifies whethen an exception must be thrown if entity set is not found</param>
+        /// </summary>
+        private EntitySetBase GetEntitySet(Type entityType, bool throwException = true)
+        {
             EntitySetBase entity = entities.FirstOrDefault(entry => entry.Key.IsAssignableFrom(entityType)).Value;
-            if (entity == null)
+            if (entity == null && throwException == true)
                 throw new ArgumentOutOfRangeException($"Entity type \"{entityType}\" doesn't exist in the current Context");
 
-            return ((EntityType)entity.ElementType).NavigationProperties
-                .Select(prop => new EntityPropertyInfo(prop, relationshipResolver)).ToArray();
+            return entity;
         }
     }
 }

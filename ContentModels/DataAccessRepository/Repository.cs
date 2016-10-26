@@ -28,7 +28,7 @@ namespace RecordLabel.Data.ok
         public virtual void SaveModel(TModel model)
         {
             var reflector = new DbContextReflector(DbContext, "RecordLabel.Data.Models");
-            IEntityUpdater scalarUpdater = new ScalarPropertyUpdater(DbContext);
+            IEntityUpdater scalarUpdater = new ScalarPropertyUpdater(DbContext, reflector);
             ICollectionMerger collectionMerger = new CollectionMerger();
             IRecursiveEntityUpdater updater = new EntityUpdater(DbContext, scalarUpdater, reflector, collectionMerger);
             IRecursiveEntityUpdater navUpdater = new NavUpdater(DbContext, scalarUpdater, reflector);

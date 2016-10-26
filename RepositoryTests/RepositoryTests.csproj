@@ -59,6 +59,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CollectionMergerTests.cs" />
+    <Compile Include="LocalizedStringCollectionUpdateTests.cs" />
+    <Compile Include="ReinitializedReleaseContextTestsBase.cs" />
+    <Compile Include="ScalarPropertyUpdaterTests.cs" />
     <Compile Include="ReinitializedReleaseContextTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

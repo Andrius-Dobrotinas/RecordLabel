@@ -19,7 +19,7 @@ namespace RecordLabel.Data.ok
         public EntityPropertyInfo(NavigationProperty property, EntityRelationshipResolver relationshipDeterminator)
         {
             PropertyName = property.Name;
-            PropertyInfo = (System.Reflection.PropertyInfo)property.MetadataProperties.First(p => p.Name == PropertyInfoMetadataName).Value;
+            PropertyInfo = (System.Reflection.PropertyInfo)property.MetadataProperties[PropertyInfoMetadataName].Value;
             ReferencedEntityDeleteBehavior = property.FromEndMember.DeleteBehavior;
             ReferencedEntityIsDependent = relationshipDeterminator.DetermineIfEndMemberIsDependent(property);
             Relationship = relationshipDeterminator.GetRelationshipType(property);

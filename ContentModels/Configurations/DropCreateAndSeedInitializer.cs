@@ -67,7 +67,7 @@ namespace RecordLabel.Data.Models.Configurations
                 Date = 1973,
                 Media = media_LP,
                 LocalizedText = createLocalizedStrings<LocalizedString>(
-                    "They had no idea this would be the best rock and roll record ever!", "彼らはこれが史上最高のロックンロールのレコードになります知りませんでした！")
+                    "They had no idea this would be the best rock and roll record ever!", null)//, "彼らはこれが史上最高のロックンロールのレコードになります知りませんでした！")
             };
             db.Releases.Add(release3);
 
@@ -138,7 +138,7 @@ namespace RecordLabel.Data.Models.Configurations
             if (!string.IsNullOrEmpty(en))
                 list.Add(new TLocalization() { Text = en });
 
-            if (!string.IsNullOrEmpty(en))
+            if (!string.IsNullOrEmpty(loc2))
                 list.Add(new TLocalization() { Language = Language.Japanese, Text = loc2 });
 
             return list;

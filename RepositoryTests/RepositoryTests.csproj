@@ -44,6 +44,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -59,6 +60,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CollectionMergerTests.cs" />
+    <Compile Include="EntityComparerByNonForeignKeysTests.cs" />
+    <Compile Include="GlobalValues.cs" />
+    <Compile Include="EntityComparerByKeysTests.cs" />
     <Compile Include="LocalizedStringCollectionUpdateTests.cs" />
     <Compile Include="ReinitializedReleaseContextTestsBase.cs" />
     <Compile Include="ScalarPropertyUpdaterTests.cs" />

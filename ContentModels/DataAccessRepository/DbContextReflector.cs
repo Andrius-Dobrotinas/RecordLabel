@@ -14,6 +14,7 @@ namespace RecordLabel.Data.ok
         private Dictionary<Type, EntitySetBase> entities;
         private EntityRelationshipResolver relationshipResolver = new EntityRelationshipResolver();
 
+        // TODO: if model type is in a different namespace, an exception will be thrown when instantiating the type
         // TODO: come up with a better way to find actual entity types without asking for a namespace string
         /// <summary>
         /// 

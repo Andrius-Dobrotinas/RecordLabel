@@ -37,7 +37,8 @@ namespace RepositoryTests
         {
             IList<TestClass> removed = null;
             var result = merger.MergeCollections<TestClass>(original, newCollection,
-                (origEntity, newEntity) => {
+                (origEntity, newEntity) =>
+                {
                     origEntity.Value = newEntity.Value;
                     return origEntity;
                 },
@@ -146,5 +147,5 @@ namespace RepositoryTests
         public int Id { get; set; }
         public string Value { get; set; }
     }
-    
+
 }

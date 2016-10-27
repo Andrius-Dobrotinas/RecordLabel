@@ -15,8 +15,6 @@ namespace RepositoryTests
     /// </summary>
     public abstract class ReinitializedReleaseContextTestsBase
     {
-        protected static string ConnectionString = "UnitTestReinitializableConnection";
-
         protected ReleaseContext Context;
 
         [TestInitialize]
@@ -25,7 +23,7 @@ namespace RepositoryTests
             //Reinitialize the database with test data
             System.Data.Entity.Database.SetInitializer(new RecordLabel.Data.Models.Configurations.DropCreateAndSeedInitializer<ReleaseContext>());
 
-            Context = new ReleaseContext(ConnectionString);
+            Context = new ReleaseContext(GlobalValues.UnitTestReinitializableConnectionString);
         }
 
         [TestCleanup]

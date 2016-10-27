@@ -56,6 +56,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\CascadeOnDeleteAttribute.cs" />
+    <Compile Include="DataAccessRepository\EntityComparerByNonForeignKeys.cs" />
+    <Compile Include="DataAccessRepository\EntityComparerByKeys.cs" />
     <Compile Include="DataAccessRepository\ICollectionMerger.cs" />
     <Compile Include="DataAccessRepository\ICollectionUpdater.cs" />
     <Compile Include="DataAccessRepository\EntityUpdaters\NavUpdater.cs" />

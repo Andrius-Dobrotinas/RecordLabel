@@ -26,9 +26,8 @@ namespace RecordLabel.Data.ok
                 });
 
             // If adding new entity
-            if (keys.All(x =>
-                (x.CurrentValue == null && x.CurrentValue == null) ||
-                x.CurrentValue != null && x.CurrentValue.Equals(x.DefaultValue)))
+            // TODO: review this. See if there are scenarios where this wouldn't work
+            if (keys.Any(x => x.CurrentValue.Equals(x.DefaultValue)))
             {
                 return DbContext.Set<TModel>().Add(model);
                 // TODO: if we add new entity but assign, like, existing metadata... do that else if anyway.

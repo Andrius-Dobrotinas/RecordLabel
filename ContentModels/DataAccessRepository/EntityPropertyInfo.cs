@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace RecordLabel.Data.ok
 {
+    // TODO: rename to :EntityNavigationPropertyInfo
     public class EntityPropertyInfo
     {
         private const string PropertyInfoMetadataName = "ClrPropertyInfo";

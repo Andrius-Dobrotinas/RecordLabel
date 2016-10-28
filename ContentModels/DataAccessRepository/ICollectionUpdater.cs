@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace RecordLabel.Data.ok
 {
+    // TODO: Consider grouping EntityPropertyInfo and EntityKeyPropertyInfo into something like EntityTypeInfo or EntityInfo
     public interface ICollectionUpdater<TModel>
     {
         // Updates .... any object type that has the same property (name- and type-wise)
-        void UpdateCollection<TCollectionItem>(PropertyInfo propertyInfo, EntityPropertyInfo property, object sourceModel,
-            IRecursiveEntityUpdater entityUpdater, bool modelIsNew)
-            where TCollectionItem : class, IHasId;
+        void UpdateCollection<TCollectionEntry>(EntityPropertyInfo property, IList<EntityKeyPropertyInfo> keyProperties,
+            object sourceModel, bool modelIsNew, IRecursiveEntityUpdater entityUpdater)
+            where TCollectionEntry : class;
     }
 }

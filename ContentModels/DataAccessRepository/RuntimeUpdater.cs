@@ -7,7 +7,7 @@ using RecordLabel.Data.ok;
 
 namespace RecordLabel.Data
 {
-    public class GenericModelUpdater<TModel> where TModel : class, IHasId
+    public class GenericModelUpdater<TModel> where TModel : class
     {
         public void UpdateProperty(EntityPropertyInfo property, TModel newModel, IRecursiveEntityUpdater entityUpdater)
         {
@@ -19,7 +19,7 @@ namespace RecordLabel.Data
         }
     }
 
-    public class GenericCollectionUpdater<TModel> where TModel : class, IHasId
+    public class GenericCollectionUpdater<TModel> where TModel : class
     {
         public ICollectionUpdater<TModel> CollectionUpdater { get; }
 
@@ -29,7 +29,7 @@ namespace RecordLabel.Data
         }
 
         // TODO: might add a method with lambda expression that selects model property
-        public void UpdateCollectionProperty(EntityPropertyInfo property, TModel newModel, IEntityUpdater entityUpdater, bool isNew)
+        public void UpdateCollectionProperty(EntityPropertyInfo property, IList<EntityKeyPropertyInfo> keyProperties, TModel newModel, bool isNew, IEntityUpdater entityUpdater)
         {
             var genericArguments = property.PropertyInfo.PropertyType.GetGenericArguments();
 
@@ -38,7 +38,7 @@ namespace RecordLabel.Data
             GenericMethodInvoker.InvokeGenericMethod(genericType, nameof(ICollectionUpdater<TModel>.UpdateCollection),
                 genericArguments,
                 GenericMethodInvoker.DefaultPublicInstanceBindingFlags,
-                new object[] { property.PropertyInfo, property, newModel, entityUpdater, isNew },
+                new object[] { property, keyProperties, newModel, isNew, entityUpdater },
                 this.CollectionUpdater);
         }
     }

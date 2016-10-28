@@ -16,7 +16,7 @@ namespace RecordLabel.Data.ok
             this.Reflector = reflector;
         }
 
-        public TModel UpdateEntity<TModel>(TModel model) where TModel : class, IHasId
+        public TModel UpdateEntity<TModel>(TModel model) where TModel : class
         {
             var keys = Reflector.GetKeyProperties<TModel>()
                 .Select(x => new

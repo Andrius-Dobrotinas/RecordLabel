@@ -29,8 +29,9 @@ namespace RecordLabel.Data.ok
         {
             var reflector = new DbContextReflector(DbContext, "RecordLabel.Data.Models");
             IEntityUpdater scalarUpdater = new ScalarPropertyUpdater(DbContext, reflector);
-            ICollectionMerger collectionMerger = new CollectionMerger();
-            IRecursiveEntityUpdater updater = new EntityUpdater(DbContext, scalarUpdater, reflector, collectionMerger);
+            EntityComparerByKeys entityComparer = new EntityComparerByNonForeignKeys();
+            ICollectionMerger collectionMerger = new CollectionMerger(entityComparer);
+            IRecursiveEntityUpdater updater = new EntityUpdater(DbContext, reflector, scalarUpdater, collectionMerger);
             IRecursiveEntityUpdater navUpdater = new NavUpdater(DbContext, scalarUpdater, reflector);
             updater.UpdateEntity<TModel>(model, navUpdater);
         }

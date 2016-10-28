@@ -10,11 +10,11 @@ namespace RecordLabel.Data.ok
         protected DbContextReflector Reflector { get; }
         protected ICollectionMerger CollectionMerger { get; }
 
-        public EntityUpdater(DbContext dbContext, IEntityUpdater scalarPropertyUpdater, DbContextReflector reflector, ICollectionMerger collectionMerger)
+        public EntityUpdater(DbContext dbContext, DbContextReflector reflector, IEntityUpdater scalarPropertyUpdater, ICollectionMerger collectionMerger)
             : base(dbContext, scalarPropertyUpdater)
         {
-            this.Reflector = reflector;
-            this.CollectionMerger = collectionMerger;
+            Reflector = reflector;
+            CollectionMerger = collectionMerger;
         }
 
         protected override void UpdateAllNavigationProperties<TEntity>(TEntity updatedModel, TEntity model, IRecursiveEntityUpdater entityUpdater, bool isNew)
@@ -24,10 +24,7 @@ namespace RecordLabel.Data.ok
             var collectionUpdater = new GenericCollectionUpdater<TEntity>(new CollectionUpdater<TEntity>(DbContext, updatedModel, CollectionMerger));
             foreach (var property in collectionProperties)
             {
-                // TODO: implement updates for LocalizedString collection
-                if (property.PropertyName.Contains("Localized")) continue;
-
-                collectionUpdater.UpdateCollectionProperty(property, model, entityUpdater, isNew);
+                collectionUpdater.UpdateCollectionProperty(property, Reflector.GetKeyProperties<TEntity>(), model, isNew, entityUpdater);
             }
         }
     }

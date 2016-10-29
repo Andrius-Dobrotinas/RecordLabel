@@ -6,9 +6,9 @@ namespace AndrewD.EntityPlus.Persistence
 {
     public class CollectionMerger : ICollectionMerger
     {
-        public EntityComparerByKeys EntityComparer { get; }
+        public IEntityComparerByKeys EntityComparer { get; }
 
-        public CollectionMerger(EntityComparerByKeys entityComparer)
+        public CollectionMerger(IEntityComparerByKeys entityComparer)
         {
             EntityComparer = entityComparer;
         }

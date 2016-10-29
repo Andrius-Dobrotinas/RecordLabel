@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AndrewD.EntityPlus
 {
-    public class EntityComparerByKeys
+    public class EntityComparerByKeys : IEntityComparerByKeys
     {
         public bool CompareEntities<TEntity>(TEntity first, TEntity second, IList<EntityKeyPropertyInfo> keyProperties)
         {

@@ -54,6 +54,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EPCore\EPCore.csproj">
+      <Project>{53025D5E-A52C-440C-BD02-2B215844DE4E}</Project>
+      <Name>EPCore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Persistence\Persistence.csproj">
       <Project>{0edfb74c-6298-400c-96c4-b4c0f4e64e8d}</Project>
       <Name>Persistence</Name>

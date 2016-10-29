@@ -73,7 +73,7 @@
       <Project>{6812841d-4973-44b3-a2a7-0c2b487a5ff6}</Project>
       <Name>ContentModels</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core\Core.csproj">
+    <ProjectReference Include="..\Core\Common.csproj">
       <Project>{48f46b5a-4665-40bf-8779-52cb06411fa3}</Project>
       <Name>Core</Name>
     </ProjectReference>

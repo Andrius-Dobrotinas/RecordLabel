@@ -56,25 +56,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\CascadeOnDeleteAttribute.cs" />
-    <Compile Include="DataAccessRepository\EntityComparerByNonForeignKeys.cs" />
-    <Compile Include="DataAccessRepository\EntityComparerByKeys.cs" />
-    <Compile Include="DataAccessRepository\ICollectionMerger.cs" />
-    <Compile Include="DataAccessRepository\ICollectionUpdater.cs" />
-    <Compile Include="DataAccessRepository\EntityUpdaters\NavUpdater.cs" />
-    <Compile Include="DataAccessRepository\EntityUpdaters\ScalarPropertyUpdater.cs" />
-    <Compile Include="DataAccessRepository\EntityPropertyInfo.cs" />
-    <Compile Include="DataAccessRepository\EntityRelationshipType.cs" />
-    <Compile Include="DataAccessRepository\EntityRelationshipResolver.cs" />
-    <Compile Include="DataAccessRepository\EntityUpdaters\EntityUpdater.cs" />
-    <Compile Include="DataAccessRepository\EntityUpdaters\IEntityUpdater.cs" />
-    <Compile Include="DataAccessRepository\EntityUpdaters\IRecursiveEntityUpdater.cs" />
-    <Compile Include="DataAccessRepository\EntityUpdaters\EntityUpdaterBase.cs" />
-    <Compile Include="DataAccessRepository\EntityKeyPropertyInfo.cs" />
-    <Compile Include="DataAccessRepository\ReflectionExtensions.cs" />
-    <Compile Include="DataAccessRepository\RuntimeUpdater.cs" />
-    <Compile Include="DataAccessRepository\DbContextReflector.cs" />
-    <Compile Include="DataAccessRepository\CollectionUpdater.cs" />
-    <Compile Include="DataAccessRepository\CollectionMerger.cs" />
     <Compile Include="Enums\ImageType.cs" />
     <Compile Include="Exceptions\EntityInUseException.cs" />
     <Compile Include="Extensions\DbSetExtensions.cs" />
@@ -131,9 +112,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{48f46b5a-4665-40bf-8779-52cb06411fa3}</Project>
+    <ProjectReference Include="..\..\EntityPlus\Core\Core.csproj">
+      <Project>{53025d5e-a52c-440c-bd02-2b215844de4e}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EntityPlus\Persistence\Persistence.csproj">
+      <Project>{0edfb74c-6298-400c-96c4-b4c0f4e64e8d}</Project>
+      <Name>Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Common.csproj">
+      <Project>{48f46b5a-4665-40bf-8779-52cb06411fa3}</Project>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

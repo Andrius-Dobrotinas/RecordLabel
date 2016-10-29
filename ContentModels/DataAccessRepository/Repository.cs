@@ -6,6 +6,8 @@ using RecordLabel.Data.Models;
 using System.Reflection;
 using RecordLabel.Data.ok;
 using RecordLabel.Data.Context;
+using AndrewD.EntityPlus;
+using AndrewD.EntityPlus.Persistence;
 
 namespace RecordLabel.Data.ok
 {
@@ -17,6 +19,7 @@ namespace RecordLabel.Data.ok
 
         protected Repository(TContext context)
         {
+            
             DbContext = context;
         }
 
@@ -32,7 +35,7 @@ namespace RecordLabel.Data.ok
             EntityComparerByKeys entityComparer = new EntityComparerByNonForeignKeys();
             ICollectionMerger collectionMerger = new CollectionMerger(entityComparer);
             IRecursiveEntityUpdater updater = new EntityUpdater(DbContext, reflector, scalarUpdater, collectionMerger);
-            IRecursiveEntityUpdater navUpdater = new NavUpdater(DbContext, scalarUpdater, reflector);
+            IRecursiveEntityUpdater navUpdater = new NavigationPropertyUpdater(DbContext, scalarUpdater, reflector);
             updater.UpdateEntity<TModel>(model, navUpdater);
         }
 

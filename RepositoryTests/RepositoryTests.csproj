@@ -59,7 +59,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CollectionMergerTests.cs" />
     <Compile Include="EntityComparerByNonForeignKeysTests.cs" />
     <Compile Include="GlobalValues.cs" />
     <Compile Include="EntityComparerByKeysTests.cs" />
@@ -77,6 +76,10 @@
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{48f46b5a-4665-40bf-8779-52cb06411fa3}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EFRepository\EfExtension.csproj">
+      <Project>{663b9510-49fa-42fa-bdf7-1abbcd80f88e}</Project>
+      <Name>EfExtension</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

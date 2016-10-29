@@ -784,7 +784,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Core\Common.csproj">
       <Project>{48f46b5a-4665-40bf-8779-52cb06411fa3}</Project>
-      <Name>Core</Name>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

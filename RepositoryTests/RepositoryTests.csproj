@@ -75,11 +75,15 @@
     </ProjectReference>
     <ProjectReference Include="..\Core\Common.csproj">
       <Project>{48f46b5a-4665-40bf-8779-52cb06411fa3}</Project>
-      <Name>Core</Name>
+      <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EFRepository\EfExtension.csproj">
-      <Project>{663b9510-49fa-42fa-bdf7-1abbcd80f88e}</Project>
-      <Name>EfExtension</Name>
+    <ProjectReference Include="..\Repository\EntityPlus\EPCore\EPCore.csproj">
+      <Project>{53025d5e-a52c-440c-bd02-2b215844de4e}</Project>
+      <Name>EPCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\EntityPlus\Persistence\Persistence.csproj">
+      <Project>{0edfb74c-6298-400c-96c4-b4c0f4e64e8d}</Project>
+      <Name>Persistence</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

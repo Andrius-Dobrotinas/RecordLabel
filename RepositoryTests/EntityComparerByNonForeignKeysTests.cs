@@ -7,6 +7,7 @@ using RecordLabel.Data.ok;
 using RecordLabel.Data.Models;
 using RecordLabel.Data.Context;
 using System.Data.Entity;
+using AndrewD.EntityPlus;
 
 namespace RepositoryTests
 {

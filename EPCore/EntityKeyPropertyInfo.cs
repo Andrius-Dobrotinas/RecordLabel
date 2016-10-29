@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AndrewD.EntityPlus
 {
+    // TODO: this could probably derive from something like ScalarPropertyInfo
     public class EntityKeyPropertyInfo
     {
         private const string PropertyInfoMetadataName = "ClrPropertyInfo";

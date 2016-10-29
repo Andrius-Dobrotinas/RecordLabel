@@ -17,21 +17,21 @@ namespace AndrewD.EntityPlus
         /// </summary>
         /// <param name="entityType">Type of entity whose navigation properties are to be retrieved</param>
         /// <returns></returns>
-        EntityPropertyInfo[] GetDependentNavigationProperties(Type entityType);
+        EntityNavigationPropertyInfo[] GetDependentNavigationProperties(Type entityType);
 
         /// <summary>
         /// Implementing classes must return object context's specified entity type's navigation properties that are collections
         /// </summary>
         /// <param name="entityType">Type of entity whose collection navigation properties are to be retrieved</param>
         /// <returns></returns>
-        EntityPropertyInfo[] GetCollectionNavigationProperties(Type entityType);
+        EntityNavigationPropertyInfo[] GetCollectionNavigationProperties(Type entityType);
 
         /// <summary>
         /// Implementing classes must return object context's specified entity type's all navigation properties (including collection navigation properties)
         /// </summary>
         /// <param name="entityType">Type of entity whose navigation properties are to be retrieved</param>
         /// <returns></returns>
-        EntityPropertyInfo[] GetAllNavigationProperties(Type entityType);
+        EntityNavigationPropertyInfo[] GetAllNavigationProperties(Type entityType);
 
         /// <summary>
         /// Implementing classes must return object context's entity type's properties that serve as Primary keys
@@ -44,14 +44,14 @@ namespace AndrewD.EntityPlus
         /// </summary>
         /// <param name="entityType">Type of entity whose navigation properties are to be retrieved</param>
         /// <returns></returns>
-        EntityPropertyInfo[] GetAllNavigationProperties<TEntity>();
+        EntityNavigationPropertyInfo[] GetAllNavigationProperties<TEntity>();
 
         /// <summary>
         /// Implementing classes must return  object context's specified entity type's navigation properties that are collections
         /// </summary>
         /// <param name="entityType">Type of entity whose collection navigation properties are to be retrieved</param>
         /// <returns></returns>
-        EntityPropertyInfo[] GetCollectionNavigationProperties<TEntity>();
+        EntityNavigationPropertyInfo[] GetCollectionNavigationProperties<TEntity>();
 
         /// <summary>
         /// Implementing classes must return  object context's entity type's navigation properties that refer to types that are dependent upon the specified
@@ -59,7 +59,7 @@ namespace AndrewD.EntityPlus
         /// </summary>
         /// <typeparam name="TEntity">Type of entity whose navigation properties to retrieve</param>
         /// <returns></returns>
-        EntityPropertyInfo[] GetDependentNavigationProperties<TEntity>();
+        EntityNavigationPropertyInfo[] GetDependentNavigationProperties<TEntity>();
 
         /// <param name="entityType"></param>
         /// <summary>

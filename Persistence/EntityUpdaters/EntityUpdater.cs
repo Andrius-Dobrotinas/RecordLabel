@@ -19,7 +19,7 @@ namespace AndrewD.EntityPlus.Persistence
 
         protected override void UpdateAllNavigationProperties<TEntity>(TEntity updatedModel, TEntity model, IRecursiveEntityUpdater entityUpdater, bool isNew)
         {
-            EntityPropertyInfo[] collectionProperties = Reflector.GetCollectionNavigationProperties(typeof(TEntity)); // make it work like <TModel>
+            EntityNavigationPropertyInfo[] collectionProperties = Reflector.GetCollectionNavigationProperties(typeof(TEntity)); // make it work like <TModel>
 
             var collectionUpdater = new ReflectingGenericCollectionPropertyUpdater<TEntity>(new CollectionPropertyUpdater<TEntity>(DbContext, updatedModel, CollectionMerger));
             foreach (var property in collectionProperties)

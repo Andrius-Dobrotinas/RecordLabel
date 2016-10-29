@@ -5,8 +5,7 @@ using System.Linq;
 
 namespace AndrewD.EntityPlus
 {
-    // TODO: rename to :EntityNavigationPropertyInfo
-    public class EntityPropertyInfo
+    public class EntityNavigationPropertyInfo
     {
         private const string PropertyInfoMetadataName = "ClrPropertyInfo";
 
@@ -17,7 +16,7 @@ namespace AndrewD.EntityPlus
         public OperationAction ReferencedEntityDeleteBehavior { get; }
         public EntityRelationshipType Relationship { get; }
 
-        public EntityPropertyInfo(NavigationProperty property, EntityRelationshipResolver relationshipDeterminator)
+        public EntityNavigationPropertyInfo(NavigationProperty property, EntityRelationshipResolver relationshipDeterminator)
         {
             PropertyName = property.Name;
             PropertyInfo = (System.Reflection.PropertyInfo)property.MetadataProperties[PropertyInfoMetadataName].Value;

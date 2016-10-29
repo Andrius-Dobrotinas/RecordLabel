@@ -15,7 +15,7 @@ namespace AndrewD.EntityPlus.Persistence
         }
 
         // TODO: might add a method with lambda expression that selects model property
-        public void UpdateCollectionProperty(EntityPropertyInfo property, IList<EntityKeyPropertyInfo> keyProperties, TModel newModel, bool isNew, IEntityUpdater entityUpdater)
+        public void UpdateCollectionProperty(EntityNavigationPropertyInfo property, IList<EntityKeyPropertyInfo> keyProperties, TModel newModel, bool isNew, IEntityUpdater entityUpdater)
         {
             var genericArguments = property.PropertyInfo.PropertyType.GetGenericArguments();
 

@@ -48,7 +48,7 @@ namespace AndrewD.EntityPlus
         /// </summary>
         /// <param name="entityType">Type of entity whose navigation properties are to be retrieved</param>
         /// <returns></returns>
-        public EntityPropertyInfo[] GetDependentNavigationProperties(Type entityType)
+        public EntityNavigationPropertyInfo[] GetDependentNavigationProperties(Type entityType)
         {
             return GetAllNavigationProperties(entityType).Where(p => p.ReferencedEntityIsDependent == true).ToArray();
         }
@@ -58,7 +58,7 @@ namespace AndrewD.EntityPlus
         /// </summary>
         /// <param name="entityType">Type of entity whose collection navigation properties are to be retrieved</param>
         /// <returns></returns>
-        public EntityPropertyInfo[] GetCollectionNavigationProperties(Type entityType)
+        public EntityNavigationPropertyInfo[] GetCollectionNavigationProperties(Type entityType)
         {
             return GetAllNavigationProperties(entityType).Where(p => p.Relationship == EntityRelationshipType.ManyToMany ||
                 p.Relationship == EntityRelationshipType.OneToMany).ToArray();
@@ -69,10 +69,10 @@ namespace AndrewD.EntityPlus
         /// </summary>
         /// <param name="entityType">Type of entity whose navigation properties are to be retrieved</param>
         /// <returns></returns>
-        public EntityPropertyInfo[] GetAllNavigationProperties(Type entityType)
+        public EntityNavigationPropertyInfo[] GetAllNavigationProperties(Type entityType)
         {
             return ((EntityType)GetEntitySet(entityType).ElementType).NavigationProperties
-                .Select(prop => new EntityPropertyInfo(prop, relationshipResolver)).ToArray();
+                .Select(prop => new EntityNavigationPropertyInfo(prop, relationshipResolver)).ToArray();
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace AndrewD.EntityPlus
         /// </summary>
         /// <param name="entityType">Type of entity whose navigation properties are to be retrieved</param>
         /// <returns></returns>
-        public EntityPropertyInfo[] GetAllNavigationProperties<TEntity>()
+        public EntityNavigationPropertyInfo[] GetAllNavigationProperties<TEntity>()
         {
             return GetAllNavigationProperties(typeof(TEntity));
         }
@@ -101,7 +101,7 @@ namespace AndrewD.EntityPlus
         /// </summary>
         /// <param name="entityType">Type of entity whose collection navigation properties are to be retrieved</param>
         /// <returns></returns>
-        public EntityPropertyInfo[] GetCollectionNavigationProperties<TEntity>()
+        public EntityNavigationPropertyInfo[] GetCollectionNavigationProperties<TEntity>()
         {
             return GetCollectionNavigationProperties(typeof(TEntity));
         }
@@ -112,7 +112,7 @@ namespace AndrewD.EntityPlus
         /// </summary>
         /// <typeparam name="TEntity">Type of entity whose navigation properties to retrieve</param>
         /// <returns></returns>
-        public EntityPropertyInfo[] GetDependentNavigationProperties<TEntity>()
+        public EntityNavigationPropertyInfo[] GetDependentNavigationProperties<TEntity>()
         {
             return GetDependentNavigationProperties(typeof(TEntity));
         }

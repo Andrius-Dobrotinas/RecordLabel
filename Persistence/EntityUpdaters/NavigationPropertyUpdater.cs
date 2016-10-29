@@ -17,7 +17,7 @@ namespace AndrewD.EntityPlus.Persistence
 
         protected override void UpdateAllNavigationProperties<TEntity>(TEntity updatedModel, TEntity model, IRecursiveEntityUpdater entityUpdater, bool modelIsNew)
         {
-            EntityPropertyInfo[] navigationProperties = Reflector.GetDependentNavigationProperties(typeof(TEntity));
+            EntityNavigationPropertyInfo[] navigationProperties = Reflector.GetDependentNavigationProperties(typeof(TEntity));
 
             var modelUpdater = new ReflectingGenericEntityUpdater<TEntity>();
             foreach (var property in navigationProperties)

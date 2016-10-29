@@ -8,7 +8,7 @@ namespace AndrewD.EntityPlus.Persistence
     public interface ICollectionPropertyUpdater<TModel>
     {
         // Updates .... any object type that has the same property (name- and type-wise)
-        void UpdateCollection<TCollectionEntry>(EntityPropertyInfo property, IList<EntityKeyPropertyInfo> keyProperties,
+        void UpdateCollection<TCollectionEntry>(EntityNavigationPropertyInfo property, IList<EntityKeyPropertyInfo> keyProperties,
             object sourceModel, bool modelIsNew, IRecursiveEntityUpdater entityUpdater)
             where TCollectionEntry : class;
     }

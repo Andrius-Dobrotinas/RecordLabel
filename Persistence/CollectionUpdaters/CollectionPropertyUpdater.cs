@@ -13,7 +13,7 @@ namespace AndrewD.EntityPlus.Persistence
         public TModel Model { get; }
         public ICollectionMerger CollectionMerger { get; }
         //public bool DisableCascadeOnDeleteBehavior // TODO
-        protected EntityPropertyInfo Property;
+        protected EntityNavigationPropertyInfo Property;
         protected IList<EntityKeyPropertyInfo> KeyProperties;
         protected IRecursiveEntityUpdater EntityUpdater;
         
@@ -36,7 +36,7 @@ namespace AndrewD.EntityPlus.Persistence
             UpdateCollection((PropertyInfo)mex.Member, sourceModel);
         }*/
 
-        public void UpdateCollection<TCollectionEntry>(EntityPropertyInfo property, IList<EntityKeyPropertyInfo> keyProperties,
+        public void UpdateCollection<TCollectionEntry>(EntityNavigationPropertyInfo property, IList<EntityKeyPropertyInfo> keyProperties,
             object sourceModel, bool modelIsNew, IRecursiveEntityUpdater entityUpdater)
             where TCollectionEntry : class
         {

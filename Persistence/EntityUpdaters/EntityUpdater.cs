@@ -7,10 +7,10 @@ namespace AndrewD.EntityPlus.Persistence
 {
     public class EntityUpdater : EntityUpdaterBase
     {
-        protected DbContextReflector Reflector { get; }
+        protected IDbContextReflector Reflector { get; }
         protected ICollectionMerger CollectionMerger { get; }
 
-        public EntityUpdater(DbContext dbContext, DbContextReflector reflector, IEntityUpdater scalarPropertyUpdater, ICollectionMerger collectionMerger)
+        public EntityUpdater(DbContext dbContext, IDbContextReflector reflector, IEntityUpdater scalarPropertyUpdater, ICollectionMerger collectionMerger)
             : base(dbContext, scalarPropertyUpdater)
         {
             Reflector = reflector;
@@ -24,7 +24,7 @@ namespace AndrewD.EntityPlus.Persistence
             var collectionUpdater = new ReflectingGenericCollectionPropertyUpdater<TEntity>(new CollectionPropertyUpdater<TEntity>(DbContext, updatedModel, CollectionMerger));
             foreach (var property in collectionProperties)
             {
-                collectionUpdater.UpdateCollectionProperty(property, Reflector.GetKeyProperties<TEntity>(), model, isNew, entityUpdater);
+                collectionUpdater.UpdateCollectionProperty(Reflector, property, model, isNew, entityUpdater);
             }
         }
     }

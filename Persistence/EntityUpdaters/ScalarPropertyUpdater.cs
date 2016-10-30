@@ -8,9 +8,9 @@ namespace AndrewD.EntityPlus.Persistence
     public class ScalarPropertyUpdater : IEntityUpdater
     {
         protected DbContext DbContext { get; }
-        protected DbContextReflector Reflector { get; }
+        protected IDbContextReflector Reflector { get; }
 
-        public ScalarPropertyUpdater(DbContext dbContext, DbContextReflector reflector)
+        public ScalarPropertyUpdater(DbContext dbContext, IDbContextReflector reflector)
         {
             this.DbContext = dbContext;
             this.Reflector = reflector;

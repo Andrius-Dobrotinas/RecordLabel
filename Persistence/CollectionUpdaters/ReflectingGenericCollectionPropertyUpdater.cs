@@ -15,7 +15,7 @@ namespace AndrewD.EntityPlus.Persistence
         }
 
         // TODO: might add a method with lambda expression that selects model property
-        public void UpdateCollectionProperty(EntityNavigationPropertyInfo property, IList<EntityKeyPropertyInfo> keyProperties, TModel newModel, bool isNew, IEntityUpdater entityUpdater)
+        public void UpdateCollectionProperty(IDbContextReflector reflector, EntityNavigationPropertyInfo property, TModel newModel, bool isNew, IEntityUpdater entityUpdater)
         {
             var genericArguments = property.PropertyInfo.PropertyType.GetGenericArguments();
 
@@ -24,7 +24,7 @@ namespace AndrewD.EntityPlus.Persistence
             GenericMethodInvoker.InvokeGenericMethod(genericType, nameof(ICollectionPropertyUpdater<TModel>.UpdateCollection),
                 genericArguments,
                 GenericMethodInvoker.DefaultPublicInstanceBindingFlags,
-                new object[] { property, keyProperties, newModel, isNew, entityUpdater },
+                new object[] { reflector, property, newModel, isNew, entityUpdater },
                 this.CollectionPropertyUpdater);
         }
     }

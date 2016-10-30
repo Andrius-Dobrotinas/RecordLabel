@@ -11,7 +11,7 @@ namespace AndrewD.EntityPlus
     /// <summary>
     /// Provides a way to retrieve Object Context entity metadata
     /// </summary>
-    public class DbContextReflector
+    public class DbContextReflector : IDbContextReflector
     {
         public ObjectContext ObjectContext { get; }
         private EntityContainer entityContainer;

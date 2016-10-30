@@ -7,9 +7,9 @@ namespace AndrewD.EntityPlus.Persistence
 {
     public class NavigationPropertyUpdater : EntityUpdaterBase
     {
-        protected DbContextReflector Reflector { get; }
+        protected IDbContextReflector Reflector { get; }
 
-        public NavigationPropertyUpdater(DbContext dbContext, IEntityUpdater scalarEntityUpdater, DbContextReflector reflector)
+        public NavigationPropertyUpdater(DbContext dbContext, IEntityUpdater scalarEntityUpdater, IDbContextReflector reflector)
             : base(dbContext, scalarEntityUpdater)
         {
             Reflector = reflector;

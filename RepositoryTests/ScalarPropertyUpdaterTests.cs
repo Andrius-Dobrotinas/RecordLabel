@@ -17,7 +17,7 @@ namespace RepositoryTests
     {
         private TEntity UpdateEntity<TEntity>(TEntity model) where TEntity : class, IHasId
         {
-            var reflector = new DbContextReflector(Context, GlobalValues.ReleaseContextModelsNamespace);
+            var reflector = new DbContextReflector(Context, GlobalValues.ReleaseContextModelsNamespace, GlobalValues.ReleaseContextModelsAssembly);
             IEntityUpdater updater = new ScalarPropertyUpdater(Context, reflector);
             return updater.UpdateEntity(model);
         }

@@ -23,7 +23,7 @@ namespace RepositoryTests
         {
             Context = new ReleaseContext(GlobalValues.UnitTestReinitializableConnectionString);
 
-            reflector = new DbContextReflector(Context, GlobalValues.ReleaseContextModelsNamespace);
+            reflector = new DbContextReflector(Context, GlobalValues.ReleaseContextModelsNamespace, GlobalValues.ReleaseContextModelsAssembly);
             comparer = new EntityComparerByNonForeignKeys();
         }
 

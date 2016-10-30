@@ -30,7 +30,7 @@ namespace RecordLabel.Data.ok
 
         public virtual void SaveModel(TModel model)
         {
-            var reflector = new DbContextReflector(DbContext, "RecordLabel.Data.Models");
+            IDbContextReflector reflector = new DbContextReflector(DbContext, "RecordLabel.Data.Models", "ReleaseData");
             IEntityUpdater scalarUpdater = new ScalarPropertyUpdater(DbContext, reflector);
             EntityComparerByKeys entityComparer = new EntityComparerByNonForeignKeys();
             ICollectionMerger collectionMerger = new CollectionMerger(entityComparer);

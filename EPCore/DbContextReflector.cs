@@ -16,30 +16,45 @@ namespace AndrewD.EntityPlus
         public ObjectContext ObjectContext { get; }
         private EntityContainer entityContainer;
         private Dictionary<Type, EntitySetBase> entities;
-        private EntityRelationshipResolver relationshipResolver = new EntityRelationshipResolver(); // TODO: do something about this
+        // TODO: do something about this:
+        private EntityRelationshipResolver relationshipResolver = new EntityRelationshipResolver();
 
 
         // TODO: come up with a better way to find actual entity types without asking for a namespace string
 
+        /// <param name="objectContextAdapter">Object context that is to be interrogated</param>
         /// <param name="modelsNamespace">Namespace in which all context entities are defined (all models must be within 
         /// the same namespace. If model type is in a different namespace, an exception will be thrown when instantiating
         /// the type. This is, hopefully, a temporary workaround, until I find a good solution for this)</param>
-        public DbContextReflector(IObjectContextAdapter objectContextAdapter, string modelsNamespace) : this(objectContextAdapter.ObjectContext, modelsNamespace)
+        /// <param name="modelAssemblyName">Name of assembly which contains all context enties. Again, just like with the
+        /// namespace parameter, this is a temporary workaround</param>
+        public DbContextReflector(IObjectContextAdapter objectContextAdapter, string modelsNamespace, string modelAssemblyName)
+            : this(objectContextAdapter.ObjectContext, modelsNamespace, modelAssemblyName)
         {
 
         }
 
+        /// <param name="objectContextAdapter">Object context that is to be interrogated</param>
         /// <param name="modelsNamespace">Namespace in which all context entities are defined (all models must be within 
         /// the same namespace. If model type is in a different namespace, an exception will be thrown when instantiating
         /// the type. This is, hopefully, a temporary workaround, until I find a good solution for this)</param>
-        public DbContextReflector(ObjectContext objectContext, string modelsNamespace)
+        /// <param name="modelAssemblyName">Name of assembly which contains all context enties. Again, just like with the
+        /// namespace parameter, this is a temporary workaround</param>
+        public DbContextReflector(ObjectContext objectContext, string modelsNamespace, string modelAssemblyName)
         {
+            if (objectContext == null)
+                throw new ArgumentNullException(nameof(objectContext));
+            if (string.IsNullOrEmpty(modelsNamespace))
+                throw new ArgumentNullException(nameof(modelsNamespace));
+            if (string.IsNullOrEmpty(modelAssemblyName))
+                throw new ArgumentNullException(nameof(modelAssemblyName));
+
             ObjectContext = objectContext;
             entityContainer = objectContext.MetadataWorkspace.GetEntityContainer(objectContext.DefaultContainerName, DataSpace.CSpace);
 
             entities = entityContainer.BaseEntitySets.Where(set => set.BuiltInTypeKind == BuiltInTypeKind.EntitySet)
                 .ToDictionary<EntitySetBase, Type>(set =>
-                Type.GetType($"{modelsNamespace}.{set.ElementType.Name}"));
+                Type.GetType($"{modelsNamespace}.{set.ElementType.Name},{modelAssemblyName}"));
         }
 
         /// <summary>

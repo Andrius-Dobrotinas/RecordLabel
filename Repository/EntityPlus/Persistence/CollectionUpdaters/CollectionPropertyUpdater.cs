@@ -10,11 +10,11 @@ namespace AndrewD.EntityPlus.Persistence
     public class CollectionPropertyUpdater<TModel> : ICollectionPropertyUpdater<TModel>
     {
         public DbContext DbContext { get; }
+        public IDbContextReflector Reflector { get; protected set; }
         public TModel Model { get; }
         public ICollectionMerger CollectionMerger { get; }
         //public bool DisableCascadeOnDeleteBehavior // TODO
-        protected EntityPropertyInfo Property;
-        protected IList<EntityKeyPropertyInfo> KeyProperties;
+        protected EntityNavigationPropertyInfo Property;
         protected IRecursiveEntityUpdater EntityUpdater;
         
         /// <summary>
@@ -36,12 +36,12 @@ namespace AndrewD.EntityPlus.Persistence
             UpdateCollection((PropertyInfo)mex.Member, sourceModel);
         }*/
 
-        public void UpdateCollection<TCollectionEntry>(EntityPropertyInfo property, IList<EntityKeyPropertyInfo> keyProperties,
+        public void UpdateCollection<TCollectionEntry>(IDbContextReflector reflector, EntityNavigationPropertyInfo property,
             object sourceModel, bool modelIsNew, IRecursiveEntityUpdater entityUpdater)
             where TCollectionEntry : class
         {
+            Reflector = reflector;
             Property = property;
-            KeyProperties = keyProperties;
             EntityUpdater = entityUpdater;
 
             if (modelIsNew)
@@ -108,9 +108,10 @@ namespace AndrewD.EntityPlus.Persistence
                 }
                 else
                 {
+                    var keyProperties = Reflector.GetKeyProperties<TCollectionEntry>();
                     // Add/Update (or Attach, if entities are not dependent upon the model) / Remove entries
                     var updatedCollection = CollectionMerger.MergeCollections(targetCollection, newCollection,
-                        KeyProperties,
+                        keyProperties,
                         (original, newState) =>
                         {
                             if (!Property.ReferencedEntityIsDependent)
@@ -121,9 +122,9 @@ namespace AndrewD.EntityPlus.Persistence
                             else
                             {
                                 // Copy foreign key property values to the new state
-                                if (KeyProperties.Any(x => x.IsForeignKey == true))
+                                if (keyProperties.Any(x => x.IsForeignKey == true))
                                 {
-                                    newState.CopyPropertyValues(original, KeyProperties.Where(x => x.IsForeignKey == true)
+                                    newState.CopyPropertyValues(original, keyProperties.Where(x => x.IsForeignKey == true)
                                         .Select(x => x.PropertyInfo).ToArray());
                                 }
                                 return EntityUpdater.UpdateEntity(newState, EntityUpdater);

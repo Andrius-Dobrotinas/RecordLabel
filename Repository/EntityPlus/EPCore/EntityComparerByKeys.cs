@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace AndrewD.EntityPlus
 {
+    /// <summary>
+    /// Determines entity value equality by comparing their key property values 
+    /// </summary>
     public class EntityComparerByKeys : IEntityComparerByKeys
     {
         public bool CompareEntities<TEntity>(TEntity first, TEntity second, IList<EntityKeyPropertyInfo> keyProperties)

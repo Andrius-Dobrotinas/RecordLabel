@@ -4,6 +4,10 @@ using System.Linq;
 
 namespace AndrewD.EntityPlus
 {
+    /// <summary>
+    /// Determines entity value equality by comparing values of their key properties except those
+    /// that also serve as Foreign keys
+    /// </summary>
     public class EntityComparerByNonForeignKeys : EntityComparerByKeys
     {
         protected override IEnumerable<EntityKeyPropertyInfo> FilterKeys(IList<EntityKeyPropertyInfo> keyProperties)

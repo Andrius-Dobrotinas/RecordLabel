@@ -7,9 +7,9 @@ namespace AndrewD.EntityPlus.Persistence
 {
     public class NavigationPropertyUpdater : EntityUpdaterBase
     {
-        protected DbContextReflector Reflector { get; }
+        protected IDbContextReflector Reflector { get; }
 
-        public NavigationPropertyUpdater(DbContext dbContext, IEntityUpdater scalarEntityUpdater, DbContextReflector reflector)
+        public NavigationPropertyUpdater(DbContext dbContext, IEntityUpdater scalarEntityUpdater, IDbContextReflector reflector)
             : base(dbContext, scalarEntityUpdater)
         {
             Reflector = reflector;
@@ -17,7 +17,7 @@ namespace AndrewD.EntityPlus.Persistence
 
         protected override void UpdateAllNavigationProperties<TEntity>(TEntity updatedModel, TEntity model, IRecursiveEntityUpdater entityUpdater, bool modelIsNew)
         {
-            EntityPropertyInfo[] navigationProperties = Reflector.GetDependentNavigationProperties(typeof(TEntity));
+            EntityNavigationPropertyInfo[] navigationProperties = Reflector.GetDependentNavigationProperties(typeof(TEntity));
 
             var modelUpdater = new ReflectingGenericEntityUpdater<TEntity>();
             foreach (var property in navigationProperties)

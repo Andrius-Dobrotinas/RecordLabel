@@ -49,10 +49,12 @@
     <Compile Include="DbContextReflector.cs" />
     <Compile Include="EntityComparerByKeys.cs" />
     <Compile Include="EntityComparerByNonForeignKeys.cs" />
+    <Compile Include="EntityScalarPropertyInfo.cs" />
     <Compile Include="EntityKeyPropertyInfo.cs" />
-    <Compile Include="EntityPropertyInfo.cs" />
+    <Compile Include="EntityNavigationPropertyInfo.cs" />
     <Compile Include="EntityRelationshipResolver.cs" />
     <Compile Include="EntityRelationshipType.cs" />
+    <Compile Include="IDbContextReflector.cs" />
     <Compile Include="IEntityComparerByKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\GenericMethodInvoker.cs" />

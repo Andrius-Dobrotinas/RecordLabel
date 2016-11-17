@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace AndrewD.EntityPlus.Persistence
 {
+    /// <summary>
+    /// Updates entity scalar and navigation properties
+    /// </summary>
     public class NavigationPropertyUpdater : EntityUpdaterBase
     {
         protected IDbContextReflector Reflector { get; }

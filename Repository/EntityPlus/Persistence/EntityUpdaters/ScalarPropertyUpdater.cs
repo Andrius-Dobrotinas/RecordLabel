@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace AndrewD.EntityPlus.Persistence
 {
+    /// <summary>
+    /// Merges entity's all scalar property values
+    /// </summary>
     public class ScalarPropertyUpdater : IEntityUpdater
     {
         protected DbContext DbContext { get; }
@@ -16,6 +19,13 @@ namespace AndrewD.EntityPlus.Persistence
             this.Reflector = reflector;
         }
 
+        /// <summary>
+        /// Retrieves a corresponding entity from the underlying context, merges all scalar property values and
+        /// returns the tracked entity. In case of new entity, the supplied model is attached to the context.
+        /// </summary>
+        /// <example="KeyNotFoundException">When the supplied model has non-default values for its key properties
+        /// but is not found in the context</example>
+        /// <returns>Entity that's tracked by the EF</returns>
         public TModel UpdateEntity<TModel>(TModel model) where TModel : class
         {
             var keys = Reflector.GetKeyProperties<TModel>()
